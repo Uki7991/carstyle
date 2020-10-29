@@ -26,6 +26,10 @@
     @apply bg-gray-100;
 }
 
+.fourth {
+    background: radial-gradient(53.01% 118.22% at 50% 20.57%, rgba(237, 239, 245, 0.6) 0%, #EDEFF5 60.23%, #EDEFF5 100%);
+}
+
 .menu li {
     margin-left: 35px;
 }
