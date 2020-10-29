@@ -42,8 +42,9 @@
     </nav>
 
     <main>
-        <section class="first py-32">
-            <div class="container mx-auto flex justify-end">
+        <section class="first py-32 relative">
+            <div class="dots_back w-10/12 h-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-50"></div>
+            <div class="container mx-auto flex justify-end z-10 relative">
                 <div class="w-6/12">
                     <p class="font-bold text-6xl mb-5 leading-tight">Тонирование <br> и оклейка авто</p>
                     <p class="leading-6 mb-10">Качественное тонирование и оклеивание  вашего автомобиля <br> нашими специалистами.
@@ -67,7 +68,10 @@
             </div>
         </section>
 
-        <section class="second py-32">
+        <section class="second py-32 relative">
+            <div class="absolute w-1/2 top-0 left-1/2 transform -translate-x-1/2">
+                <img class="w-full" src="./assets/images/styler.png" alt="">
+            </div>
             <div class="container mx-auto">
                 <p class="text-indigo-600 text-lg mb-3 font-semibold text-center">Почему мы?</p>
                 <p class="font-bold mb-5 text-4xl text-center leading-tight">Более 2000 автомобилей было <br> затонированно и оклеено за время работы <br> нашей студии.</p>
@@ -342,6 +346,76 @@
                 </div>
             </div>
         </section>
+
+        <section class="sixth py-32 relative">
+            <div class="container mx-auto bg-transparent z-10 relative">
+                <p class="text-indigo-600 text-lg mb-3 font-semibold">Контакты</p>
+                <p class="font-bold mb-5 text-4xl leading-tight">Как нас найти?</p>
+
+                <div class="flex flex-col space-y-5 py-5">
+                    <div class="flex">
+                        <img class="mr-1" src="./assets/icons/map.svg" alt="">
+                        <p>Краснобогатырская ул., 13, с1 </p>
+                    </div>
+                    <div class="flex">
+                        <img class="mr-1" src="./assets/icons/mail.svg" alt="">
+                        <p>carstyle@gmail.com</p>
+                    </div>
+                    <div class="flex">
+                        <img class="mr-1" src="./assets/icons/phone.svg" alt="">
+                        <p>+74957556983</p>
+                    </div>
+                </div>
+
+                <div class="flex space-x-5 py-5">
+                    <img class="w-9 cursor-pointer" src="./assets/icons/instagram.svg" alt="">
+                    <img class="w-9 cursor-pointer" src="./assets/icons/whatsapp.svg" alt="">
+                </div>
+            </div>
+            <div class="flex absolute top-0 w-full">
+                <div class="w-5/12 bg-white absolute h-202">
+                </div>
+                <div class="w-8/12 map-shadow absolute right-0 top-7">
+                    <iframe src="https://yandex.ru/map-widget/v1/-/CCQ~nEg3tD" width="100%" height="566" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
+                </div>
+            </div>
+
+        </section>
+
+        <footer class="pb-12 pt-24">
+            <div class="container mx-auto">
+                <div class="flex items-center mb-5">
+                    <div class="text-logo uppercase">
+                        Car style
+                    </div>
+
+                    <ul class="flex menu">
+                        <li>Услуги</li>
+                        <li>Материалы</li>
+                        <li>Наши работы</li>
+                    </ul>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex space-x-9">
+                        <img src="./assets/icons/instagram.svg" alt="">
+                        <img src="./assets/icons/whatsapp.svg" alt="">
+                        <div class="flex space-x-1">
+                            <img src="./assets/icons/phone.svg" alt="">
+                            <p>+74957556983</p>
+                        </div>
+                        <div class="flex space-x-1">
+                            <img src="./assets/icons/map.svg" alt="">
+                            <p>Краснобогатырская ул., 13, с1 </p>
+                        </div>
+                        <div class="flex space-x-1">
+                            <img src="./assets/icons/mail.svg" alt="">
+                            <p>carstyle@gmail.com</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500">Все права защищены — 2020 © CAR STYLE</p>
+                </div>
+            </div>
+        </footer>
     </main>
 </div>
 
