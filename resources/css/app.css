@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Secular+One&display=swap');
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+* {
+    @apply font-carstyle-text;
+}
+
+.text-logo {
+    font-size: 26px;
+    @apply font-carstyle-logo;
+}
+
+.first {
+    background: radial-gradient(74.35% 165.12% at 71.34% 62.79%, rgba(244, 245, 249, 0) 0%, #F4F5F9 60.23%, #F4F5F9 100%);
+}
+
+.second {
+    background: radial-gradient(53.01% 118.22% at 50% 20.57%, rgba(237, 239, 245, 0.6) 0%, #EDEFF5 60.23%, #EDEFF5 100%);
+}
+
+.third {
+    @apply bg-gray-100;
+}
+
+.menu li {
+    margin-left: 35px;
+}
+
+.nav-header {
+    padding-top: 36px;
+    padding-bottom: 36px;
+}

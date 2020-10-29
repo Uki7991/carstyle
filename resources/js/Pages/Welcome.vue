@@ -1,0 +1,174 @@
+<template>
+    <div>
+        <nav class="sticky top-0 bg-white">
+            <div class="container nav-header flex items-center mx-auto">
+                <div class="text-logo uppercase">
+                    Car style
+                </div>
+                <ul class="flex menu">
+                    <li>Услуги</li>
+                    <li>Материалы</li>
+                    <li>Наши работы</li>
+                    <li>Контакты</li>
+                </ul>
+
+                <ul class="flex menu items-center ml-auto">
+                    <li class="icon">
+                        <img src="/assets/icons/instagram.svg" alt="">
+                    </li>
+                    <li class="icon">
+                        <img src="/assets/icons/whatsapp.svg" alt="">
+                    </li>
+                    <li class="icon flex">
+                        <img src="/assets/icons/map.svg" class="mr-1" alt="">
+                        <span>Краснобогатырская ул., 13, с1 </span>
+                    </li>
+                    <li class="icon flex">
+                        <img src="/assets/icons/phone.svg" class="mr-1" alt="">
+                        <span>+74957556983</span>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main>
+            <section class="first py-32">
+                <div class="container mx-auto flex justify-end">
+                    <div class="w-6/12">
+                        <p class="font-bold text-6xl mb-5 leading-tight">Тонирование <br> и оклейка авто</p>
+                        <p class="leading-6 mb-10">Качественное тонирование и оклеивание  вашего автомобиля <br> нашими специалистами.
+                            Высококачественные пленки от <br> проверенных поставщиков с гарантией выполненной работы 3 <br> года.
+                            Записывайтесь и получайте <span class="font-bold text-indigo-600">скидку 5%</span>.</p>
+                        <form class="flex items-center bg-white py-3 px-3 rounded-xl">
+                            <div class="flex px-5">
+                                <img src="/assets/icons/person.svg" alt="">
+                                <input placeholder="Имя" class="w-full ml-2 focus:outline-none" type="text">
+                            </div>
+                            <div class="flex px-5">
+                                <img src="/assets/icons/phone_black.svg" alt="">
+                                <input placeholder="Номер" class="w-full ml-2 focus:outline-none" type="text">
+                            </div>
+                            <button class="bg-blue-600 py-3 px-9 text-white rounded-md">Записаться</button>
+                        </form>
+                    </div>
+                    <div class="w-6/12">
+                        <img src="/assets/images/car.png" class="max-w-none" alt="">
+                    </div>
+                </div>
+            </section>
+
+            <section class="second py-32">
+                <div class="container mx-auto">
+                    <p class="text-indigo-600 text-lg mb-3 font-semibold text-center">Почему мы?</p>
+                    <p class="font-bold mb-5 text-4xl text-center leading-tight">Более 2000 автомобилей было <br> затонированно и оклеено за время работы <br> нашей студии.</p>
+                    <div class="flex w-9/12 mx-auto flex-wrap justify-center">
+                        <div v-for="(item, i) in advantages" :data-id="i" class="w-4/12 text-center py-7 px-6" :key="i">
+                            <div class="rounded-2xl border-2 border-white shadow-2xl w-21 h-21 flex items-center mx-auto justify-center">
+                                <img :src="'/assets/icons/' + item.icon" alt="">
+                            </div>
+                            <p class="mt-6 mb-5 text-lg font-semibold">{{item.title}}</p>
+                            <p>{{ item.text }}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="third py-32">
+                <div class="container mx-auto">
+                    <p class="text-indigo-600 text-lg mb-3 font-semibold">Услуги</p>
+                    <p class="font-bold mb-5 text-4xl leading-tight">Каталог наших услуг</p>
+                    <div class="flex flex-wrap">
+                        <div class="w-3/12 px-5 my-6" v-for="(item, i) in services" :key="i">
+                            <p class="font-semibold text-lg text-gray-800">{{ item.title }}</p>
+                            <p class="text-sm text-gray-600 italic">{{ item.text }}</p>
+                            <img class="mt-4" :src="'/assets/images/' + item.image" alt="">
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</template>
+
+<script>
+    import AppLayout from "../Layouts/AppLayout";
+
+    export default {
+        components: {
+            AppLayout,
+        },
+        data() {
+            return {
+                advantages: [
+                    {
+                        icon: 'warranty.svg',
+                        title: 'Даем гарантию',
+                        text: 'Получайте гарантию 3 года на проделаную работу'
+                    },
+                    {
+                        icon: 'price.svg',
+                        title: 'Низкие цены',
+                        text: 'Платите приятные цены за качественную работу'
+                    },
+                    {
+                        icon: 'material.svg',
+                        title: 'Лучшые материалы',
+                        text: 'Оригинальные пленки Llumar, Suntek, SPECTROLL, KPMF'
+                    },
+                    {
+                        icon: 'card.svg',
+                        title: 'Удобная оплата',
+                        text: 'Принимаем к оплате карты, а также безналичный расчет'
+                    },
+                    {
+                        icon: 'time.svg',
+                        title: 'Трепетное отношение',
+                        text: 'Сохраняем заводскую гарантию на автомобиль'
+                    },
+                    {
+                        icon: 'wifi.svg',
+                        title: 'Клиентская зона',
+                        text: 'Скоротать время ожидания с кофе и бесплатным WI-FI'
+                    },
+                ],
+                services: [
+                    {
+                        title: 'Атермальная тонировка',
+                        text: 'О атермальнной тонировке',
+                        image: '1.jpg',
+                    },
+                    {
+                        title: 'Тонирование стекол',
+                        text: 'О тонировании стекол',
+                        image: '2.jpg',
+                    },
+                    {
+                        title: 'Защита лобового стекла',
+                        text: 'О защите лобового стекла',
+                        image: '3.jpg',
+                    },
+                    {
+                        title: 'Антигравийная защита',
+                        text: 'О антигравийной защите',
+                        image: '4.jpg',
+                    },
+                    {
+                        title: 'Защита фар',
+                        text: 'О защите фар',
+                        image: '5.jpg',
+                    },
+                    {
+                        title: 'Антихром на авто',
+                        text: 'О антихроме',
+                        image: '6.jpg',
+                    },
+                ]
+            }
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>
