@@ -1,0 +1,15 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+      "build-css": "tailwindcss build src/app.css -o public/app.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tailwindcss": "^1.9.6",
+    "vue": "^2.6.12"
+  }
+}
