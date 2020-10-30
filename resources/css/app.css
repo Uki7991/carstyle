@@ -4,6 +4,12 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+@layer utilities {
+    .backdrop-blur-3 {
+        backdrop-filter: blur(0.75rem);
+    }
+}
+
 * {
     @apply font-carstyle-text;
 }
@@ -23,6 +29,27 @@
 
 .third {
     @apply bg-gray-100;
+}
+
+.fourth {
+    background: radial-gradient(53.01% 118.22% at 50% 20.57%, rgba(237, 239, 245, 0.6) 0%, #EDEFF5 60.23%, #EDEFF5 100%);
+}
+
+.fifth {
+    background: radial-gradient(53.01% 118.22% at 50% 20.57%, rgba(237, 239, 245, 0.6) 0%, #EDEFF5 60.23%, #EDEFF5 100%);
+}
+
+body {
+    background: radial-gradient(53.01% 118.22% at 50% 20.57%, rgba(237, 239, 245, 0.6) 0%, #EDEFF5 60.23%, #EDEFF5 100%);
+}
+
+.map-shadow {
+    box-shadow: 0px 15px 33px -6px #D4D7E1;
+}
+
+.dots_back {
+    background-image: url("/assets/images/dots_back.png");
+    @apply bg-no-repeat bg-cover absolute;
 }
 
 .menu li {
