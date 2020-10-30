@@ -14,17 +14,23 @@
             </template>
             Dashboard
         </vs-sidebar-item>
-        <vs-sidebar-item @click.native="clickSidebar('/admin/products')" id="products">
+        <vs-sidebar-item @click.native="clickSidebar('/admin/services')" id="products">
             <template #icon>
                 <i class='bx bx-grid-alt'></i>
             </template>
-            Products
+            Сервисы
         </vs-sidebar-item>
-        <vs-sidebar-item id="categories" @click.native="clickSidebar('/admin/categories')">
+        <vs-sidebar-item id="categories" @click.native="clickSidebar('/admin/materials')">
             <template #icon>
-                <i class='bx bxs-music'></i>
+                <i class='bx bxs-layer-plus'></i>
             </template>
-            Categories
+            Материалы
+        </vs-sidebar-item>
+        <vs-sidebar-item id="categories" @click.native="clickSidebar('/admin/gallery')">
+            <template #icon>
+                <i class='bx bx-images'></i>
+            </template>
+            Галерея
         </vs-sidebar-item>
         <vs-sidebar-group>
             <template #header>

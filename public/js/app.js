@@ -2091,6 +2091,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -24928,7 +24934,7 @@ var render = function() {
           attrs: { id: "products" },
           nativeOn: {
             click: function($event) {
-              return _vm.clickSidebar("/admin/products")
+              return _vm.clickSidebar("/admin/services")
             }
           },
           scopedSlots: _vm._u([
@@ -24941,7 +24947,7 @@ var render = function() {
             }
           ])
         },
-        [_vm._v("\n        Products\n    ")]
+        [_vm._v("\n        Сервисы\n    ")]
       ),
       _vm._v(" "),
       _c(
@@ -24950,20 +24956,42 @@ var render = function() {
           attrs: { id: "categories" },
           nativeOn: {
             click: function($event) {
-              return _vm.clickSidebar("/admin/categories")
+              return _vm.clickSidebar("/admin/materials")
             }
           },
           scopedSlots: _vm._u([
             {
               key: "icon",
               fn: function() {
-                return [_c("i", { staticClass: "bx bxs-music" })]
+                return [_c("i", { staticClass: "bx bxs-layer-plus" })]
               },
               proxy: true
             }
           ])
         },
-        [_vm._v("\n        Categories\n    ")]
+        [_vm._v("\n        Материалы\n    ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "vs-sidebar-item",
+        {
+          attrs: { id: "categories" },
+          nativeOn: {
+            click: function($event) {
+              return _vm.clickSidebar("/admin/gallery")
+            }
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "icon",
+              fn: function() {
+                return [_c("i", { staticClass: "bx bx-images" })]
+              },
+              proxy: true
+            }
+          ])
+        },
+        [_vm._v("\n        Галерея\n    ")]
       ),
       _vm._v(" "),
       _c(
