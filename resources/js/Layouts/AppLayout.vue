@@ -192,12 +192,7 @@
             </div>
         </nav>
 
-        <!-- Page Heading -->
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                <slot name="header"></slot>
-            </div>
-        </header>
+        <sidebar></sidebar>
 
         <!-- Page Content -->
         <main>
@@ -216,6 +211,7 @@
     import JetDropdownLink from '@/Jetstream/DropdownLink'
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
+    import Sidebar from "@/Components/Sidebar";
 
     export default {
         components: {
@@ -224,6 +220,7 @@
             JetDropdownLink,
             JetNavLink,
             JetResponsiveNavLink,
+            Sidebar,
         },
 
         data() {
@@ -233,13 +230,13 @@
         },
 
         methods: {
-            switchToTeam(team) {
-                this.$inertia.put(route('current-team.update'), {
-                    'team_id': team.id
-                }, {
-                    preserveState: false
-                })
-            },
+            // switchToTeam(team) {
+            //     this.$inertia.put(route('current-team.update'), {
+            //         'team_id': team.id
+            //     }, {
+            //         preserveState: false
+            //     })
+            // },
 
             logout() {
                 axios.post(route('logout').url()).then(response => {

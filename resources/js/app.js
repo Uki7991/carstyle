@@ -16,6 +16,7 @@ Vue.use(PortalVue);
 Vue.use(Vuesax);
 
 const app = document.getElementById('app');
+export const bus = new Vue();
 
 new Vue({
     render: (h) =>
