@@ -9,8 +9,17 @@ class Material extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title', 'image', 'active',
+    ];
+
     public function properties()
     {
         return $this->hasMany(MaterialProperty::class);
+    }
+
+    public function getActiveAttribute($value)
+    {
+        return (boolean)$value;
     }
 }

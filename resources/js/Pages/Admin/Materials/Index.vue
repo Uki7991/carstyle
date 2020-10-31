@@ -2,13 +2,13 @@
     <app-layout>
         <div class="flex justify-center">
             <admin-component-div>
-                <div v-if="$page.materails.length">
+                <div v-if="$page.materials.length">
                     <div class="flex items-center justify-between mb-5">
                         <h2 class="font-bold">Материалы</h2>
                         <vs-button
                             success
                             gradient
-                            @click="link(route('materails.create'))"
+                            @click="link(route('materials.create'))"
                         >
                             Создать
                         </vs-button>
@@ -17,21 +17,29 @@
                         <template #thead>
                             <vs-tr>
                                 <vs-th>Название</vs-th>
+                                <vs-th>Картинка</vs-th>
+                                <vs-th>Активность</vs-th>
                                 <vs-th>Действие</vs-th>
                             </vs-tr>
                         </template>
                         <template #tbody>
-                            <vs-tr v-for="materail in $page.materails" :key="materail.id">
-                                <vs-td>{{materail.title}}</vs-td>
+                            <vs-tr v-for="material in $page.materials" :key="material.id">
+                                <vs-td>{{material.title}}</vs-td>
+                                <vs-td><img :src="'/storage/small/'+material.image" alt=""></vs-td>
                                 <vs-td>
-                                    <i class="bx bxs-edit cursor-pointer p-2 text-lg" @click="link(route('materails.edit', [materail.id]))"></i>
-                                    <i class="bx bx-trash text-red-700 cursor-pointer p-2 text-lg" @click="link(route('materails.destroy', [materail.id]))"></i>
+                                    <div class="w-8">
+                                        <vs-switch :val="1" :not-value="0" @input="switchChanged($event, material)" v-model="material.active"></vs-switch>
+                                    </div>
+                                </vs-td>
+                                <vs-td>
+                                    <i class="bx bxs-edit cursor-pointer p-2 text-lg" @click="link(route('materials.edit', [material.id]))"></i>
+                                    <i class="bx bx-trash text-red-700 cursor-pointer p-2 text-lg" @click="link(route('materials.destroy', [material.id]))"></i>
                                 </vs-td>
                             </vs-tr>
                         </template>
                     </vs-table>
                 </div>
-                <no-data v-else title="Тут нет данных!" :href="$page.create_url" btn-text="Создать"></no-data>
+                <no-data v-else title="Тут нет данных!" :href="route('materials.create')" btn-text="Создать"></no-data>
 
             </admin-component-div>
 
@@ -50,7 +58,18 @@
             NoData,
             AdminComponentDiv,
         },
+        data() {
+            return {
+                form: this.$inertia.form({
+                    active: false,
+                }),
+            }
+        },
         methods: {
+            switchChanged(event, material) {
+                this.form.active = event;
+                this.form.put(this.route('materials.status', {material: material.id}))
+            }
         }
     }
 </script>

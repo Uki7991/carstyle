@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\MaterialController;
 
 /*
@@ -26,10 +27,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']]
     Route::get('/dashboard', function () {
         return Inertia\Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::post('/images/post-image', [ImageUploadController::class, 'postImage'])->name('images.post-image');
 
     Route::put('/services/{service}/status', [ServiceController::class, 'status'])->name('services.status');
-    Route::post('/services/post-image', [ServiceController::class, 'postImage'])->name('services.post-image');
     Route::resource('services', ServiceController::class);
+    Route::put('/materials/{material}/status', [MaterialController::class, 'status'])->name('materials.status');
     Route::resource('materials', MaterialController::class);
 });
 

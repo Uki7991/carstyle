@@ -17,6 +17,7 @@ class CreateMaterialsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('image')->nullable();
+            $table->boolean('active')->default(false);
             $table->timestamps();
         });
     }

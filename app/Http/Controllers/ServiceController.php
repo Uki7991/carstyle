@@ -121,15 +121,6 @@ class ServiceController extends Controller
         return redirect()->route('services.index');
     }
 
-    public function postImage(Request $request)
-    {
-        $filename = ImageUploader::upload($request->files->get('test'), 'services', 'service');
-
-        return \response()->json([
-            'filename' => $filename,
-        ]);
-    }
-
     public function status(Request $request, Service $service)
     {
         $service->update($request->all());

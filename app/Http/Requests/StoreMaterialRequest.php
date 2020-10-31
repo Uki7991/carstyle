@@ -13,7 +13,7 @@ class StoreMaterialRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,7 @@ class StoreMaterialRequest extends FormRequest
     {
         return [
             'title' => 'required',
+            'image' => 'required',
         ];
     }
 }

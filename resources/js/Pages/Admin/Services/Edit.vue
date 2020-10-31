@@ -27,7 +27,7 @@
                         ref="pond"
                         label-idle="Drop files here..."
                         @processfile="processFile($event)"
-                        :server="route('services.post-image').url()"
+                        :server="route('images.post-image', {dir: 'services', prefix: 'service'}).url()"
                     ></file-pond>
                     <vs-button
                         gradient

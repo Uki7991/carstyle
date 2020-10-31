@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMaterialRequest;
 use App\Http\Requests\UpdateMaterialRequest;
 use App\Models\Material;
+use App\Services\ImageUploader;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
@@ -41,7 +42,13 @@ class MaterialController extends Controller
      */
     public function store(StoreMaterialRequest $request)
     {
-        $material = Material::create($request->validated());
+        $material = Material::create($request->all());
+
+        $request->session()->flash('form_post', [
+            'status' => true,
+            'title' => 'Успешно!',
+            'text' => 'Материал добавлен!'
+        ]);
 
         return redirect()->route('materials.index');
     }
@@ -79,7 +86,17 @@ class MaterialController extends Controller
      */
     public function update(UpdateMaterialRequest $request, Material $material)
     {
-        $material->update($request->validated());
+        if ($request->has('image')) {
+            ImageUploader::delete($material->image);
+        }
+
+        $material->update($request->all());
+
+        $request->session()->flash('form_post', [
+            'status' => true,
+            'title' => 'Успешно!',
+            'text' => 'Материал обновлен!'
+        ]);
 
         return redirect()->route('materials.index');
     }
@@ -90,9 +107,28 @@ class MaterialController extends Controller
      * @param  \App\Models\Material  $material
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Material $material)
+    public function destroy(Request $request, Material $material)
     {
         $material->delete();
+
+        $request->session()->flash('form_post', [
+            'status' => true,
+            'title' => 'Успешно!',
+            'text' => 'Материал удален!'
+        ]);
+
+        return redirect()->route('materials.index');
+    }
+
+    public function status(Request $request, Material $material)
+    {
+        $material->update($request->all());
+
+        $request->session()->flash('form_post', [
+            'status' => true,
+            'title' => 'Успешно!',
+            'text' => 'Сервис обновлен!'
+        ]);
 
         return redirect()->route('materials.index');
     }

@@ -29,7 +29,7 @@
                         label-idle="Drop files here..."
                         :files="myFiles"
                         @processfile="processFile($event)"
-                        :server="route('services.post-image').url()"
+                        :server="route('images.post-image', {dir: 'services', prefix: 'service'}).url()"
                     ></file-pond>
                     <p v-if="form.error('image')" class="text-xs px-1 -mt-4 text-red-500">
                         {{form.error('image')}}

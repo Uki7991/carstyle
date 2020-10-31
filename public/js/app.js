@@ -3746,6 +3746,19 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _Components_Buttons_BackTo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Buttons/BackTo */ "./resources/js/Components/Buttons/BackTo.vue");
+/* harmony import */ var vue_filepond__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-filepond */ "./node_modules/vue-filepond/dist/vue-filepond.js");
+/* harmony import */ var vue_filepond__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_filepond__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! filepond/dist/filepond.min.css */ "./node_modules/filepond/dist/filepond.min.css");
+/* harmony import */ var filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css */ "./node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css");
+/* harmony import */ var filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! filepond-plugin-image-preview */ "./node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js");
+/* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_5__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3781,16 +3794,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 
+
+ // Import image preview plugin styles
+
+ // Import image preview and file type validation plugins
+// import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+
+
+var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_2___default()(filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_5___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
-    BackTo: _Components_Buttons_BackTo__WEBPACK_IMPORTED_MODULE_1__["default"]
+    BackTo: _Components_Buttons_BackTo__WEBPACK_IMPORTED_MODULE_1__["default"],
+    FilePond: FilePond
   },
   data: function data() {
     return {
       form: this.$inertia.form({
         title: '',
-        description: ''
+        image: ''
       }, {
         bag: 'default',
         resetOnSuccess: true
@@ -3799,7 +3821,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     create: function create() {
-      this.form.post(this.$page.store_url);
+      this.form.post(this.route('materials.store'));
+    },
+    processFile: function processFile(e) {
+      this.form.image = JSON.parse(this.$refs.pond.getFile().serverId).filename;
     }
   }
 });
@@ -3817,6 +3842,21 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _Components_Buttons_BackTo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Buttons/BackTo */ "./resources/js/Components/Buttons/BackTo.vue");
+/* harmony import */ var _Components_AdminComponentDiv__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/AdminComponentDiv */ "./resources/js/Components/AdminComponentDiv.vue");
+/* harmony import */ var vue_filepond__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-filepond */ "./node_modules/vue-filepond/dist/vue-filepond.js");
+/* harmony import */ var vue_filepond__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_filepond__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! filepond/dist/filepond.min.css */ "./node_modules/filepond/dist/filepond.min.css");
+/* harmony import */ var filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css */ "./node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css");
+/* harmony import */ var filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! filepond-plugin-image-preview */ "./node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js");
+/* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3852,16 +3892,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 
+
+
+ // Import image preview plugin styles
+
+ // Import image preview and file type validation plugins
+// import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+
+
+var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_3___default()(filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
-    BackTo: _Components_Buttons_BackTo__WEBPACK_IMPORTED_MODULE_1__["default"]
+    BackTo: _Components_Buttons_BackTo__WEBPACK_IMPORTED_MODULE_1__["default"],
+    FilePond: FilePond,
+    AdminComponentDiv: _Components_AdminComponentDiv__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
+      file: '/storage/medium/' + this.$page.material.image,
       form: this.$inertia.form({
-        title: this.$page.materail.title,
-        description: this.$page.materail.description
+        title: this.$page.material.title,
+        image: this.$page.material.image
       }, {
         bag: 'default',
         resetOnSuccess: true
@@ -3870,7 +3922,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     create: function create() {
-      this.form.put(route('materails.update', [this.$page.materail.id]));
+      this.form.put(route('materials.update', [this.$page.material.id]));
+    },
+    processFile: function processFile(e) {
+      this.form.image = JSON.parse(this.$refs.pond.getFile().serverId).filename;
     }
   }
 });
@@ -3930,6 +3985,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3939,7 +4002,21 @@ __webpack_require__.r(__webpack_exports__);
     NoData: _Components_NoData__WEBPACK_IMPORTED_MODULE_1__["default"],
     AdminComponentDiv: _Components_AdminComponentDiv__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  methods: {}
+  data: function data() {
+    return {
+      form: this.$inertia.form({
+        active: false
+      })
+    };
+  },
+  methods: {
+    switchChanged: function switchChanged(event, material) {
+      this.form.active = event;
+      this.form.put(this.route('materials.status', {
+        material: material.id
+      }));
+    }
+  }
 });
 
 /***/ }),
@@ -46139,7 +46216,7 @@ var render = function() {
         { staticClass: "mb-5" },
         [
           _c("back-to", {
-            attrs: { href: _vm.route("materails.index"), title: "Назад" }
+            attrs: { href: _vm.route("materials.index"), title: "Назад" }
           })
         ],
         1
@@ -46190,37 +46267,40 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("vs-input", {
-            attrs: { "label-placeholder": "Описание", primary: "" },
-            scopedSlots: _vm._u(
-              [
-                _vm.form.error("description")
-                  ? {
-                      key: "message-danger",
-                      fn: function() {
-                        return [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(_vm.form.error("description")) +
-                              "\n                "
-                          )
-                        ]
-                      },
-                      proxy: true
-                    }
-                  : null
-              ],
-              null,
-              true
-            ),
-            model: {
-              value: _vm.form.description,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "description", $$v)
-              },
-              expression: "form.description"
-            }
-          }),
+          _c(
+            "div",
+            [
+              _c("file-pond", {
+                ref: "pond",
+                attrs: {
+                  name: "test",
+                  "label-idle": "Drop files here...",
+                  server: _vm
+                    .route("images.post-image", {
+                      dir: "materials",
+                      prefix: "material"
+                    })
+                    .url()
+                },
+                on: {
+                  processfile: function($event) {
+                    return _vm.processFile($event)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.form.error("image")
+                ? _c("p", { staticClass: "text-xs px-1 -mt-4 text-red-500" }, [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.form.error("image")) +
+                        "\n                "
+                    )
+                  ])
+                : _vm._e()
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("vs-button", { attrs: { gradient: "", block: "", success: "" } }, [
             _vm._v("\n                Создать")
@@ -46254,102 +46334,105 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("app-layout", [
-    _c("div", { staticClass: "container mx-auto py-16" }, [
-      _c(
-        "div",
-        { staticClass: "mb-5" },
-        [
-          _c("back-to", {
-            attrs: { href: _vm.route("materails.index"), title: "Назад" }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "form",
-        {
-          staticClass:
-            "space-y-6 w-3/12 bg-white rounded-2xl px-4 py-7 conform",
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.create($event)
-            }
-          }
-        },
-        [
-          _c("vs-input", {
-            attrs: { "label-placeholder": "Название", primary: "" },
-            scopedSlots: _vm._u(
-              [
-                _vm.form.error("title")
-                  ? {
-                      key: "message-danger",
-                      fn: function() {
-                        return [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(_vm.form.error("title")) +
-                              "\n                "
-                          )
-                        ]
-                      },
-                      proxy: true
-                    }
-                  : null
-              ],
-              null,
-              true
-            ),
-            model: {
-              value: _vm.form.title,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "title", $$v)
+    _c(
+      "div",
+      { staticClass: "container mx-auto py-16" },
+      [
+        _c(
+          "div",
+          { staticClass: "mb-5" },
+          [
+            _c("back-to", {
+              attrs: { href: _vm.route("materials.index"), title: "Назад" }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "admin-component-div",
+          { staticClass: "py-12 flex flex-row space-x-5" },
+          [
+            _c(
+              "form",
+              {
+                staticClass: "space-y-6 w-3/12 conform",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.create($event)
+                  }
+                }
               },
-              expression: "form.title"
-            }
-          }),
-          _vm._v(" "),
-          _c("vs-input", {
-            attrs: { "label-placeholder": "Описание", primary: "" },
-            scopedSlots: _vm._u(
               [
-                _vm.form.error("description")
-                  ? {
-                      key: "message-danger",
-                      fn: function() {
-                        return [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(_vm.form.error("description")) +
-                              "\n                "
-                          )
-                        ]
-                      },
-                      proxy: true
+                _c("vs-input", {
+                  attrs: { "label-placeholder": "Название", primary: "" },
+                  scopedSlots: _vm._u(
+                    [
+                      _vm.form.error("title")
+                        ? {
+                            key: "message-danger",
+                            fn: function() {
+                              return [
+                                _vm._v(
+                                  "\n                        " +
+                                    _vm._s(_vm.form.error("title")) +
+                                    "\n                    "
+                                )
+                              ]
+                            },
+                            proxy: true
+                          }
+                        : null
+                    ],
+                    null,
+                    true
+                  ),
+                  model: {
+                    value: _vm.form.title,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "title", $$v)
+                    },
+                    expression: "form.title"
+                  }
+                }),
+                _vm._v(" "),
+                _c("file-pond", {
+                  ref: "pond",
+                  attrs: {
+                    name: "test",
+                    "label-idle": "Drop files here...",
+                    server: _vm
+                      .route("images.post-image", {
+                        dir: "materials",
+                        prefix: "material"
+                      })
+                      .url()
+                  },
+                  on: {
+                    processfile: function($event) {
+                      return _vm.processFile($event)
                     }
-                  : null
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "vs-button",
+                  { attrs: { gradient: "", block: "", success: "" } },
+                  [_vm._v("\n                    Обновить\n                ")]
+                )
               ],
-              null,
-              true
+              1
             ),
-            model: {
-              value: _vm.form.description,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "description", $$v)
-              },
-              expression: "form.description"
-            }
-          }),
-          _vm._v(" "),
-          _c("vs-button", { attrs: { gradient: "", block: "", success: "" } }, [
-            _vm._v("\n                Создать")
-          ])
-        ],
-        1
-      )
-    ])
+            _vm._v(" "),
+            _c("div", { staticClass: "w-3/12" }, [
+              _c("img", { attrs: { src: _vm.file, alt: "" } })
+            ])
+          ]
+        )
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
@@ -46382,7 +46465,7 @@ var render = function() {
         _c(
           "admin-component-div",
           [
-            _vm.$page.materails.length
+            _vm.$page.materials.length
               ? _c(
                   "div",
                   [
@@ -46400,7 +46483,7 @@ var render = function() {
                             attrs: { success: "", gradient: "" },
                             on: {
                               click: function($event) {
-                                _vm.link(_vm.route("materails.create"))
+                                _vm.link(_vm.route("materials.create"))
                               }
                             }
                           },
@@ -46427,6 +46510,10 @@ var render = function() {
                                   [
                                     _c("vs-th", [_vm._v("Название")]),
                                     _vm._v(" "),
+                                    _c("vs-th", [_vm._v("Картинка")]),
+                                    _vm._v(" "),
+                                    _c("vs-th", [_vm._v("Активность")]),
+                                    _vm._v(" "),
                                     _c("vs-th", [_vm._v("Действие")])
                                   ],
                                   1
@@ -46438,15 +46525,57 @@ var render = function() {
                           {
                             key: "tbody",
                             fn: function() {
-                              return _vm._l(_vm.$page.materails, function(
-                                materail
+                              return _vm._l(_vm.$page.materials, function(
+                                material
                               ) {
                                 return _c(
                                   "vs-tr",
-                                  { key: materail.id },
+                                  { key: material.id },
                                   [
                                     _c("vs-td", [
-                                      _vm._v(_vm._s(materail.title))
+                                      _vm._v(_vm._s(material.title))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("vs-td", [
+                                      _c("img", {
+                                        attrs: {
+                                          src:
+                                            "/storage/small/" + material.image,
+                                          alt: ""
+                                        }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("vs-td", [
+                                      _c(
+                                        "div",
+                                        { staticClass: "w-8" },
+                                        [
+                                          _c("vs-switch", {
+                                            attrs: { val: 1, "not-value": 0 },
+                                            on: {
+                                              input: function($event) {
+                                                return _vm.switchChanged(
+                                                  $event,
+                                                  material
+                                                )
+                                              }
+                                            },
+                                            model: {
+                                              value: material.active,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  material,
+                                                  "active",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "material.active"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
                                     ]),
                                     _vm._v(" "),
                                     _c("vs-td", [
@@ -46456,8 +46585,8 @@ var render = function() {
                                         on: {
                                           click: function($event) {
                                             _vm.link(
-                                              _vm.route("materails.edit", [
-                                                materail.id
+                                              _vm.route("materials.edit", [
+                                                material.id
                                               ])
                                             )
                                           }
@@ -46470,8 +46599,8 @@ var render = function() {
                                         on: {
                                           click: function($event) {
                                             _vm.link(
-                                              _vm.route("materails.destroy", [
-                                                materail.id
+                                              _vm.route("materials.destroy", [
+                                                material.id
                                               ])
                                             )
                                           }
@@ -46488,7 +46617,7 @@ var render = function() {
                         ],
                         null,
                         false,
-                        447958258
+                        714202448
                       )
                     })
                   ],
@@ -46497,7 +46626,7 @@ var render = function() {
               : _c("no-data", {
                   attrs: {
                     title: "Тут нет данных!",
-                    href: _vm.$page.create_url,
+                    href: _vm.route("materials.create"),
                     "btn-text": "Создать"
                   }
                 })
@@ -46630,7 +46759,12 @@ var render = function() {
                   name: "test",
                   "label-idle": "Drop files here...",
                   files: _vm.myFiles,
-                  server: _vm.route("services.post-image").url()
+                  server: _vm
+                    .route("images.post-image", {
+                      dir: "services",
+                      prefix: "service"
+                    })
+                    .url()
                 },
                 on: {
                   processfile: function($event) {
@@ -46784,7 +46918,12 @@ var render = function() {
                   attrs: {
                     name: "test",
                     "label-idle": "Drop files here...",
-                    server: _vm.route("services.post-image").url()
+                    server: _vm
+                      .route("images.post-image", {
+                        dir: "services",
+                        prefix: "service"
+                      })
+                      .url()
                   },
                   on: {
                     processfile: function($event) {
