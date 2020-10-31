@@ -44,6 +44,8 @@ class MaterialController extends Controller
     {
         $material = Material::create($request->all());
 
+        $material->properties()->createMany($request->properties);
+
         $request->session()->flash('form_post', [
             'status' => true,
             'title' => 'Успешно!',

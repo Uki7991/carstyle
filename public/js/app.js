@@ -3746,14 +3746,15 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _Components_Buttons_BackTo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Buttons/BackTo */ "./resources/js/Components/Buttons/BackTo.vue");
-/* harmony import */ var vue_filepond__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-filepond */ "./node_modules/vue-filepond/dist/vue-filepond.js");
-/* harmony import */ var vue_filepond__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_filepond__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! filepond/dist/filepond.min.css */ "./node_modules/filepond/dist/filepond.min.css");
-/* harmony import */ var filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css */ "./node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css");
-/* harmony import */ var filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! filepond-plugin-image-preview */ "./node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js");
-/* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _Components_AdminComponentDiv__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/AdminComponentDiv */ "./resources/js/Components/AdminComponentDiv.vue");
+/* harmony import */ var vue_filepond__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-filepond */ "./node_modules/vue-filepond/dist/vue-filepond.js");
+/* harmony import */ var vue_filepond__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_filepond__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! filepond/dist/filepond.min.css */ "./node_modules/filepond/dist/filepond.min.css");
+/* harmony import */ var filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css */ "./node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css");
+/* harmony import */ var filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! filepond-plugin-image-preview */ "./node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js");
+/* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6__);
 //
 //
 //
@@ -3792,6 +3793,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -3801,18 +3832,20 @@ __webpack_require__.r(__webpack_exports__);
 // import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 
 
-var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_2___default()(filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_5___default.a);
+var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_3___default()(filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
     BackTo: _Components_Buttons_BackTo__WEBPACK_IMPORTED_MODULE_1__["default"],
-    FilePond: FilePond
+    FilePond: FilePond,
+    AdminComponentDiv: _Components_AdminComponentDiv__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
       form: this.$inertia.form({
         title: '',
-        image: ''
+        image: '',
+        properties: []
       }, {
         bag: 'default',
         resetOnSuccess: true
@@ -3825,6 +3858,15 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_2___default()(filepond_plug
     },
     processFile: function processFile(e) {
       this.form.image = JSON.parse(this.$refs.pond.getFile().serverId).filename;
+    },
+    addProperty: function addProperty() {
+      this.form.properties.push({
+        title: '',
+        value: ''
+      });
+    },
+    removeProperty: function removeProperty(index) {
+      this.form.properties.splice(index, 1);
     }
   }
 });
@@ -46210,105 +46252,180 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("app-layout", [
-    _c("div", { staticClass: "container mx-auto py-16" }, [
-      _c(
-        "div",
-        { staticClass: "mb-5" },
-        [
-          _c("back-to", {
-            attrs: { href: _vm.route("materials.index"), title: "Назад" }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "form",
-        {
-          staticClass:
-            "space-y-6 w-3/12 bg-white rounded-2xl px-4 py-7 conform",
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.create($event)
-            }
-          }
-        },
-        [
-          _c("vs-input", {
-            attrs: { "label-placeholder": "Название", primary: "" },
-            scopedSlots: _vm._u(
-              [
-                _vm.form.error("title")
-                  ? {
-                      key: "message-danger",
-                      fn: function() {
-                        return [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(_vm.form.error("title")) +
-                              "\n                "
-                          )
-                        ]
-                      },
-                      proxy: true
-                    }
-                  : null
-              ],
-              null,
-              true
-            ),
-            model: {
-              value: _vm.form.title,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "title", $$v)
-              },
-              expression: "form.title"
-            }
-          }),
-          _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "container mx-auto py-16" },
+      [
+        _c(
+          "div",
+          { staticClass: "mb-5" },
+          [
+            _c("back-to", {
+              attrs: { href: _vm.route("materials.index"), title: "Назад" }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("admin-component-div", { staticClass: "py-8 flex" }, [
           _c(
-            "div",
+            "form",
+            {
+              staticClass: "space-y-6 w-3/12 px-4 py-7 conform",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.create($event)
+                }
+              }
+            },
             [
-              _c("file-pond", {
-                ref: "pond",
-                attrs: {
-                  name: "test",
-                  "label-idle": "Drop files here...",
-                  server: _vm
-                    .route("images.post-image", {
-                      dir: "materials",
-                      prefix: "material"
-                    })
-                    .url()
-                },
-                on: {
-                  processfile: function($event) {
-                    return _vm.processFile($event)
-                  }
+              _c("vs-input", {
+                attrs: { "label-placeholder": "Название", primary: "" },
+                scopedSlots: _vm._u(
+                  [
+                    _vm.form.error("title")
+                      ? {
+                          key: "message-danger",
+                          fn: function() {
+                            return [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(_vm.form.error("title")) +
+                                  "\n                    "
+                              )
+                            ]
+                          },
+                          proxy: true
+                        }
+                      : null
+                  ],
+                  null,
+                  true
+                ),
+                model: {
+                  value: _vm.form.title,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "title", $$v)
+                  },
+                  expression: "form.title"
                 }
               }),
               _vm._v(" "),
-              _vm.form.error("image")
-                ? _c("p", { staticClass: "text-xs px-1 -mt-4 text-red-500" }, [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.form.error("image")) +
-                        "\n                "
-                    )
-                  ])
-                : _vm._e()
+              _c(
+                "div",
+                [
+                  _c("file-pond", {
+                    ref: "pond",
+                    attrs: {
+                      name: "test",
+                      "label-idle": "Drop files here...",
+                      server: _vm
+                        .route("images.post-image", {
+                          dir: "materials",
+                          prefix: "material"
+                        })
+                        .url()
+                    },
+                    on: {
+                      processfile: function($event) {
+                        return _vm.processFile($event)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.form.error("image")
+                    ? _c(
+                        "p",
+                        { staticClass: "text-xs px-1 -mt-4 text-red-500" },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(_vm.form.error("image")) +
+                              "\n                    "
+                          )
+                        ]
+                      )
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "vs-button",
+                { attrs: { gradient: "", block: "", success: "" } },
+                [_vm._v("\n                    Создать")]
+              )
             ],
             1
           ),
           _vm._v(" "),
-          _c("vs-button", { attrs: { gradient: "", block: "", success: "" } }, [
-            _vm._v("\n                Создать")
-          ])
-        ],
-        1
-      )
-    ])
+          _c(
+            "div",
+            {
+              staticClass:
+                "flex flex-col justify-center items-center flex-grow space-y-7"
+            },
+            [
+              _c("h2", [_vm._v("Свойства материала:")]),
+              _vm._v(" "),
+              _vm._l(_vm.form.properties, function(property, index) {
+                return _c(
+                  "div",
+                  { key: index, staticClass: "flex items-center" },
+                  [
+                    _c("vs-input", {
+                      staticClass: "mx-4",
+                      attrs: { "label-placeholder": "Название", primary: "" },
+                      model: {
+                        value: property.title,
+                        callback: function($$v) {
+                          _vm.$set(property, "title", $$v)
+                        },
+                        expression: "property.title"
+                      }
+                    }),
+                    _vm._v(":\n                    "),
+                    _c("vs-input", {
+                      staticClass: "mx-4",
+                      attrs: { "label-placeholder": "Значение", primary: "" },
+                      model: {
+                        value: property.value,
+                        callback: function($$v) {
+                          _vm.$set(property, "value", $$v)
+                        },
+                        expression: "property.value"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "vs-button",
+                      {
+                        attrs: { icon: "", danger: "" },
+                        on: {
+                          click: function($event) {
+                            return _vm.removeProperty(index)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "bx bx-x" })]
+                    )
+                  ],
+                  1
+                )
+              }),
+              _vm._v(" "),
+              _c("vs-button", { on: { click: _vm.addProperty } }, [
+                _c("i", { staticClass: "bx bx-plus" }),
+                _vm._v(" Добавить\n                ")
+              ])
+            ],
+            2
+          )
+        ])
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []

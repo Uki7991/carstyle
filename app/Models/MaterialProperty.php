@@ -9,6 +9,10 @@ class MaterialProperty extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title', 'value',
+    ];
+
     public function material()
     {
         return $this->belongsTo(Material::class);
