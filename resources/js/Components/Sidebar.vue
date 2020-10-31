@@ -8,25 +8,25 @@
         <template #logo>
             <!-- ...img logo -->
         </template>
-        <vs-sidebar-item @click.native="clickSidebar('/admin/dashboard')" id="dashboard">
+        <vs-sidebar-item @click.native="link(route('dashboard'))" id="dashboard">
             <template #icon>
                 <i class='bx bx-home'></i>
             </template>
             Dashboard
         </vs-sidebar-item>
-        <vs-sidebar-item @click.native="clickSidebar('/admin/services')" id="services">
+        <vs-sidebar-item @click.native="link(route('services.index'))" id="services">
             <template #icon>
                 <i class='bx bx-grid-alt'></i>
             </template>
             Сервисы
         </vs-sidebar-item>
-        <vs-sidebar-item id="materials" @click.native="clickSidebar('/admin/materials')">
+        <vs-sidebar-item id="materials" @click.native="link(route('materials.index'))">
             <template #icon>
                 <i class='bx bxs-layer-plus'></i>
             </template>
             Материалы
         </vs-sidebar-item>
-        <vs-sidebar-item id="categories" @click.native="clickSidebar('/admin/gallery')">
+        <vs-sidebar-item id="categories" @click.native="link(route('galleries.index'))">
             <template #icon>
                 <i class='bx bx-images'></i>
             </template>
@@ -120,7 +120,7 @@
             </template>
             Shopping
         </vs-sidebar-item>
-        <vs-sidebar-item id="chat" @click.native="clickPostRoute('/logout')">
+        <vs-sidebar-item id="chat" @click.native="link(route('logout'))">
             <template #icon>
                 <i class='bx bx-exit bx-rotate-180' ></i>
             </template>
@@ -157,7 +157,6 @@
 </template>
 
 <script>
-    import {Inertia} from '@inertiajs/inertia'
     import {pathToRegexp} from 'path-to-regexp/dist'
     import {bus} from "../app";
 
@@ -182,14 +181,9 @@
             }
         },
         methods: {
-            clickSidebar(route) {
-                Inertia.visit(route);
-            },
-            clickPostRoute(route) {
-                Inertia.post('/logout');
-            },
             clickReduce() {
                 this.reduce = !this.reduce;
+                bus.$emit('reduce', this.reduce);
             }
         },
         created() {

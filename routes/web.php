@@ -15,7 +15,7 @@ use App\Http\Controllers\ServiceController;
 |
 */
 
-Route::get('/login', [LoginController::class, 'login']);
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 
 Route::get('/', function () {
     return inertia('Welcome');

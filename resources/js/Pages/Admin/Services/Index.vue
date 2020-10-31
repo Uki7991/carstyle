@@ -1,9 +1,19 @@
 <template>
     <app-layout>
-        <div class="container py-32 mx-auto">
-            <div class="flex justify-center">
-                <div class="rounded-2xl w-full bg-white py-6 px-4">
-                    <vs-table striped v-if="$page.services.length">
+        <div class="flex justify-center">
+            <admin-component-div>
+                <div v-if="$page.services.length">
+                    <div class="flex items-center justify-between mb-5">
+                        <h2 class="font-bold">Сервисы</h2>
+                        <vs-button
+                            success
+                            gradient
+                            @click="link(route('services.create'))"
+                        >
+                            Создать
+                        </vs-button>
+                    </div>
+                    <vs-table striped>
                         <template #thead>
                             <vs-tr>
                                 <vs-th>Название</vs-th>
@@ -15,11 +25,11 @@
                             </vs-tr>
                         </template>
                     </vs-table>
-                    <no-data v-else title="Тут нет данных!" :href="$page.create_url" btn-text="Создать"></no-data>
-
                 </div>
+                <no-data v-else title="Тут нет данных!" :href="$page.create_url" btn-text="Создать"></no-data>
 
-            </div>
+            </admin-component-div>
+
         </div>
     </app-layout>
 </template>
@@ -27,11 +37,15 @@
 <script>
     import AppLayout from "@/Layouts/AppLayout";
     import NoData from "@/Components/NoData";
+    import AdminComponentDiv from "@/Components/AdminComponentDiv";
 
     export default {
         components: {
             AppLayout,
             NoData,
+            AdminComponentDiv,
+        },
+        methods: {
         }
     }
 </script>

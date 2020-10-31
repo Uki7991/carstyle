@@ -193,10 +193,12 @@
         </nav>
 
         <div class="flex">
-            <sidebar></sidebar>
+            <div class="relative" :style="widthStyle">
+                <sidebar></sidebar>
+            </div>
 
             <!-- Page Content -->
-            <main class="">
+            <main class="flex-auto px-4 py-4">
                 <slot></slot>
             </main>
         </div>
@@ -214,6 +216,7 @@
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
     import Sidebar from "@/Components/Sidebar";
+    import {bus} from "@/app";
 
     export default {
         components: {
@@ -225,9 +228,16 @@
             Sidebar,
         },
 
+        computed: {
+            widthStyle() {
+                return this.reduce ? 'width: 60px;' : 'width: 270px;';
+            }
+        },
+
         data() {
             return {
                 showingNavigationDropdown: false,
+                reduce: false,
             }
         },
 
@@ -258,6 +268,9 @@
                     progress: 'auto',
                 });
             }
+            bus.$on('reduce', (reduce) => {
+                this.reduce = reduce;
+            })
         }
     }
 </script>
