@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateServiceRequest;
 use App\Http\Requests\StoreServiceRequest;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -42,7 +43,7 @@ class ServiceController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreServiceRequest $request)
     {
@@ -72,11 +73,13 @@ class ServiceController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Service  $service
-     * @return Response
+     * @return \Inertia\Response|\Inertia\ResponseFactory
      */
     public function edit(Service $service)
     {
-        //
+        return inertia('Admin/Services/Edit', [
+            'service' => $service,
+        ]);
     }
 
     /**
@@ -84,11 +87,13 @@ class ServiceController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Service  $service
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Service $service)
+    public function update(UpdateServiceRequest $request, Service $service)
     {
-        //
+        $service->update($request->validated());
+
+        return redirect()->route('services.index');
     }
 
     /**
@@ -99,6 +104,8 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        $service->delete();
+
+        return redirect()->route('services.index');
     }
 }

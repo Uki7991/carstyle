@@ -17,11 +17,16 @@
                         <template #thead>
                             <vs-tr>
                                 <vs-th>Название</vs-th>
+                                <vs-th>Действие</vs-th>
                             </vs-tr>
                         </template>
                         <template #tbody>
                             <vs-tr v-for="service in $page.services" :key="service.id">
                                 <vs-td>{{service.title}}</vs-td>
+                                <vs-td>
+                                    <i class="bx bxs-edit cursor-pointer p-2 text-lg" @click="link(route('services.edit', [service.id]))"></i>
+                                    <i class="bx bx-trash text-red-700 cursor-pointer p-2 text-lg" @click="link(route('services.destroy', [service.id]))"></i>
+                                </vs-td>
                             </vs-tr>
                         </template>
                     </vs-table>
