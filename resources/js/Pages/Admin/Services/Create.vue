@@ -2,7 +2,7 @@
     <app-layout>
         <div class="container mx-auto py-16">
             <div class="mb-5">
-                <back-to :href="$page.back" title="Назад"></back-to>
+                <back-to :href="route('services.index')" title="Назад"></back-to>
             </div>
             <form @submit.prevent="create" class="space-y-6 w-3/12 bg-white rounded-2xl px-4 py-7 conform">
                 <vs-input
