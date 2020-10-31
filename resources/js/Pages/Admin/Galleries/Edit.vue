@@ -2,7 +2,7 @@
     <app-layout>
         <div class="container mx-auto py-16">
             <div class="mb-5">
-                <back-to :href="route('services.index')" title="Назад"></back-to>
+                <back-to :href="route('galleries.index')" title="Назад"></back-to>
             </div>
             <admin-component-div class="py-12 flex flex-row space-x-5">
                 <form @submit.prevent="create" class="space-y-6 w-3/12 conform">
@@ -27,7 +27,7 @@
                         ref="pond"
                         label-idle="Drop files here..."
                         @processfile="processFile($event)"
-                        :server="route('images.post-image', {dir: 'services', prefix: 'service'}).url()"
+                        :server="route('images.post-image', {dir: 'galleries', prefix: 'gallery'}).url()"
                     ></file-pond>
                     <vs-button
                         gradient
@@ -69,11 +69,11 @@
         },
         data() {
             return {
-                file: '/storage/medium/'+this.$page.service.image,
+                file: '/storage/medium/'+this.$page.gallery.image,
                 form: this.$inertia.form({
-                    title: this.$page.service.title,
-                    description: this.$page.service.description,
-                    image: this.$page.service.image,
+                    title: this.$page.gallery.title,
+                    description: this.$page.gallery.description,
+                    image: this.$page.gallery.image,
                 }, {
                     bag: 'default',
                     resetOnSuccess: true,
@@ -82,7 +82,7 @@
         },
         methods: {
             create() {
-                this.form.put(this.route('services.update', [this.$page.service.id]));
+                this.form.put(route('galleries.update', [this.$page.gallery.id]));
             },
             processFile(e) {
                 this.form.image = JSON.parse(this.$refs.pond.getFile().serverId).filename;

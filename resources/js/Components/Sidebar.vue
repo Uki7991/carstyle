@@ -26,7 +26,7 @@
             </template>
             Материалы
         </vs-sidebar-item>
-        <vs-sidebar-item id="categories" @click.native="link(route('galleries.index'))">
+        <vs-sidebar-item id="galleries" @click.native="link(route('galleries.index'))">
             <template #icon>
                 <i class='bx bx-images'></i>
             </template>

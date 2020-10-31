@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\GalleryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +34,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']]
     Route::resource('services', ServiceController::class);
     Route::put('/materials/{material}/status', [MaterialController::class, 'status'])->name('materials.status');
     Route::resource('materials', MaterialController::class);
+    Route::put('/galleries/{gallery}/status', [GalleryController::class, 'status'])->name('galleries.status');
+    Route::resource('galleries', GalleryController::class);
 });
 
