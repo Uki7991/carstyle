@@ -92,7 +92,13 @@ class ServiceController extends Controller
      */
     public function update(UpdateServiceRequest $request, Service $service)
     {
-        $service->update($request->validated());
+        $service->update($request->all());
+
+        $request->session()->flash('form_post', [
+            'status' => true,
+            'title' => 'Успешно!',
+            'text' => 'Сервис обновлен!'
+        ]);
 
         return redirect()->route('services.index');
     }
@@ -117,5 +123,18 @@ class ServiceController extends Controller
         return \response()->json([
             'filename' => $filename,
         ]);
+    }
+
+    public function status(Request $request, Service $service)
+    {
+        $service->update($request->all());
+
+        $request->session()->flash('form_post', [
+            'status' => true,
+            'title' => 'Успешно!',
+            'text' => 'Сервис обновлен!'
+        ]);
+
+        return redirect()->route('services.index');
     }
 }

@@ -22,14 +22,19 @@
                     </template>
                 </vs-input>
 
-                <file-pond
-                    name="test"
-                    ref="pond"
-                    label-idle="Drop files here..."
-                    :files="myFiles"
-                    @processfile="processFile($event)"
-                    :server="route('services.post-image').url()"
-                ></file-pond>
+                <div>
+                    <file-pond
+                        name="test"
+                        ref="pond"
+                        label-idle="Drop files here..."
+                        :files="myFiles"
+                        @processfile="processFile($event)"
+                        :server="route('services.post-image').url()"
+                    ></file-pond>
+                    <p v-if="form.error('image')" class="text-xs px-1 -mt-4 text-red-500">
+                        {{form.error('image')}}
+                    </p>
+                </div>
                 <vs-button
                     gradient
                     block

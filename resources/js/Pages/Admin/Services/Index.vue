@@ -17,12 +17,20 @@
                         <template #thead>
                             <vs-tr>
                                 <vs-th>Название</vs-th>
+                                <vs-th>Картинка</vs-th>
+                                <vs-th>Активность</vs-th>
                                 <vs-th>Действие</vs-th>
                             </vs-tr>
                         </template>
                         <template #tbody>
                             <vs-tr v-for="service in $page.services" :key="service.id">
                                 <vs-td>{{service.title}}</vs-td>
+                                <vs-td><img :src="'/storage/small/'+service.image" alt=""></vs-td>
+                                <vs-td>
+                                    <div class="w-8">
+                                        <vs-switch :val="1" :not-value="0" @input="switchChanged($event, service)" v-model="service.active"></vs-switch>
+                                    </div>
+                                </vs-td>
                                 <vs-td>
                                     <i class="bx bxs-edit cursor-pointer p-2 text-lg" @click="link(route('services.edit', [service.id]))"></i>
                                     <i class="bx bx-trash text-red-700 cursor-pointer p-2 text-lg" @click="link(route('services.destroy', [service.id]))"></i>
@@ -50,7 +58,18 @@
             NoData,
             AdminComponentDiv,
         },
+        data() {
+            return {
+                form: this.$inertia.form({
+                    active: false,
+                }),
+            }
+        },
         methods: {
+            switchChanged(event, service) {
+                this.form.active = event;
+                this.form.put(this.route('services.status', {service: service.id}))
+            }
         }
     }
 </script>
