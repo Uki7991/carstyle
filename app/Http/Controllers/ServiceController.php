@@ -8,6 +8,7 @@ use App\Models\Service;
 use App\Services\ImageUploader;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 
 class ServiceController extends Controller
@@ -92,6 +93,10 @@ class ServiceController extends Controller
      */
     public function update(UpdateServiceRequest $request, Service $service)
     {
+        if ($request->has('image')) {
+            ImageUploader::delete($service->image);
+        }
+
         $service->update($request->all());
 
         $request->session()->flash('form_post', [

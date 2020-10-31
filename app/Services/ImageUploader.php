@@ -8,6 +8,12 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class ImageUploader
 {
+    public const DIRS = [
+        'small',
+        'large',
+        'medium',
+    ];
+
     public static function upload(UploadedFile $file, $dir, $prefix, $quality = 90, $params = [])
     {
         if (!file_exists(storage_path('app/public/small'))) {
@@ -46,5 +52,12 @@ class ImageUploader
         return $img->resize($width, null, function ($constraint) {
             $constraint->aspectRatio();
         });
+    }
+
+    public static function delete($image_path)
+    {
+        foreach (ImageUploader::DIRS as $DIR) {
+            Storage::disk('local')->delete('public/'.$DIR.'/'.$image_path);
+        }
     }
 }

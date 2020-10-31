@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Material extends Model
+class MaterialProperty extends Model
 {
     use HasFactory;
 
-    public function properties()
+    public function material()
     {
-        return $this->hasMany(MaterialProperty::class);
+        return $this->belongsTo(Material::class);
     }
 }

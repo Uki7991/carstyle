@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMaterialsTable extends Migration
+class CreateMaterialPropertiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateMaterialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('materials', function (Blueprint $table) {
+        Schema::create('material_properties', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('image')->nullable();
+            $table->string('value');
+            $table->foreignId('material_id');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateMaterialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('materials');
+        Schema::dropIfExists('material_properties');
     }
 }
