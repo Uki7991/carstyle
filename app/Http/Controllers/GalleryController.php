@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gallery;
+use App\Models\GalleryCategory;
 use Illuminate\Http\Request;
 
 class GalleryController extends Controller
@@ -14,7 +15,7 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        $galleries = Gallery::all();
+        $galleries = Gallery::with('category')->get();
 
         return inertia('Admin/Galleries/Index', [
             'galleries' => $galleries,
@@ -28,7 +29,11 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        return inertia('Admin/Galleries/Create');
+        $categories = GalleryCategory::all();
+
+        return inertia('Admin/Galleries/Create', [
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -39,7 +44,13 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        $galleries = Gallery::insert($request->images);
+        $category = GalleryCategory::where('title', $request->gallery_category['title'])->first();
+
+        if (!$category) {
+            $category = GalleryCategory::create(['title' => $request->gallery_category['title']]);
+        }
+
+        $category->galleries()->createMany($request->images);
 
         return redirect()->route('galleries.index');
     }

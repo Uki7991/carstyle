@@ -17,12 +17,14 @@
                         <template #thead>
                             <vs-tr>
                                 <vs-th>Картинка</vs-th>
+                                <vs-th>Категория</vs-th>
                                 <vs-th>Действие</vs-th>
                             </vs-tr>
                         </template>
                         <template #tbody>
                             <vs-tr v-for="gallery in $page.galleries" :key="gallery.id">
                                 <vs-td><img :src="'/storage/small/'+gallery.image" alt=""></vs-td>
+                                <vs-td>{{gallery.category.title}}</vs-td>
                                 <vs-td>
                                     <i class="bx bxs-edit cursor-pointer p-2 text-lg" @click="link(route('galleries.edit', [gallery.id]))"></i>
                                     <i class="bx bx-trash text-red-700 cursor-pointer p-2 text-lg" @click="link(route('galleries.destroy', [gallery.id]))"></i>
