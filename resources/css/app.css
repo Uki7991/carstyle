@@ -10,7 +10,11 @@
     }
 }
 
-.button:focus {
+.conform .vs-input {
+    width: 100% !important;
+}
+
+*:focus {
     outline: none!important;
 }
 

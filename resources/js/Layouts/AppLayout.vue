@@ -192,12 +192,14 @@
             </div>
         </nav>
 
-        <sidebar></sidebar>
+        <div class="flex">
+            <sidebar></sidebar>
 
-        <!-- Page Content -->
-        <main>
-            <slot></slot>
-        </main>
+            <!-- Page Content -->
+            <main class="">
+                <slot></slot>
+            </main>
+        </div>
 
         <!-- Modal Portal -->
         <portal-target name="modal" multiple>
@@ -243,6 +245,19 @@
                     window.location = '/';
                 })
             },
+        },
+        mounted() {
+            if (this.$page.form_post) {
+                this.$vs.notification({
+                    position: 'top-right',
+                    color: this.$page.form_post.status ? 'success' : 'danger',
+                    title: this.$page.form_post.title,
+                    text: this.$page.form_post.text,
+                    duration: 10000,
+                    sticky: true,
+                    progress: 'auto',
+                });
+            }
         }
     }
 </script>

@@ -41,6 +41,7 @@ module.exports = {
     },
 
     variants: {
+        translate: ['hover', 'group-hover', 'responsive'],
         opacity: ['responsive', 'hover', 'focus', 'disabled'],
     },
 

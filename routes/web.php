@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [\App\Http\Controllers\LoginController::class, 'login']);
+Route::get('/login', [LoginController::class, 'login']);
 
 Route::get('/', function () {
     return inertia('Welcome');
@@ -23,5 +25,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']]
     Route::get('/dashboard', function () {
         return Inertia\Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::resource('services', ServiceController::class);
 });
 

@@ -14,13 +14,13 @@
             </template>
             Dashboard
         </vs-sidebar-item>
-        <vs-sidebar-item @click.native="clickSidebar('/admin/services')" id="products">
+        <vs-sidebar-item @click.native="clickSidebar('/admin/services')" id="services">
             <template #icon>
                 <i class='bx bx-grid-alt'></i>
             </template>
             Сервисы
         </vs-sidebar-item>
-        <vs-sidebar-item id="categories" @click.native="clickSidebar('/admin/materials')">
+        <vs-sidebar-item id="materials" @click.native="clickSidebar('/admin/materials')">
             <template #icon>
                 <i class='bx bxs-layer-plus'></i>
             </template>
