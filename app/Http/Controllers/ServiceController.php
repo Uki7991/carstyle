@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateServiceRequest;
 use App\Http\Requests\StoreServiceRequest;
 use App\Models\Service;
+use App\Services\ImageUploader;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\URL;
@@ -107,5 +108,14 @@ class ServiceController extends Controller
         $service->delete();
 
         return redirect()->route('services.index');
+    }
+
+    public function postImage(Request $request)
+    {
+        $filename = ImageUploader::upload($request->files->get('test'), 'services', 'service');
+
+        return \response()->json([
+            'filename' => $filename,
+        ]);
     }
 }

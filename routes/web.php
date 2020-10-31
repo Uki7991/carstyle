@@ -27,6 +27,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']]
         return Inertia\Inertia::render('Dashboard');
     })->name('dashboard');
 
+    Route::post('/services/post-image', [ServiceController::class, 'postImage'])->name('services.post-image');
     Route::resource('services', ServiceController::class);
     Route::resource('materials', MaterialController::class);
 });

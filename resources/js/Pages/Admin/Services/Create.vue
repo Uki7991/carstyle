@@ -21,6 +21,15 @@
                         {{form.error('description')}}
                     </template>
                 </vs-input>
+
+                <file-pond
+                    name="test"
+                    ref="pond"
+                    label-idle="Drop files here..."
+                    :files="myFiles"
+                    @processfile="processFile($event)"
+                    :server="route('services.post-image').url()"
+                ></file-pond>
                 <vs-button
                     gradient
                     block
@@ -34,17 +43,30 @@
 <script>
     import AppLayout from "@/Layouts/AppLayout";
     import BackTo from "@/Components/Buttons/BackTo";
+    import VueFilePond from 'vue-filepond';
+    import 'filepond/dist/filepond.min.css';
+    // Import image preview plugin styles
+    import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
+
+    // Import image preview and file type validation plugins
+    // import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+    import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+
+    const FilePond = VueFilePond(FilePondPluginImagePreview);
 
     export default {
         components: {
             AppLayout,
             BackTo,
+            FilePond,
         },
         data() {
             return {
+                myFiles: [],
                 form: this.$inertia.form({
                     title: '',
                     description: '',
+                    image: '',
                 }, {
                     bag: 'default',
                     resetOnSuccess: true,
@@ -54,6 +76,9 @@
         methods: {
             create() {
                 this.form.post(this.$page.store_url);
+            },
+            processFile(e) {
+                this.form.image = JSON.parse(this.$refs.pond.getFile().serverId).filename;
             }
         }
     }
