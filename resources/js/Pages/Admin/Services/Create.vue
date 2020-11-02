@@ -45,14 +45,18 @@
 
                 <div class="items-center w-9/12 justify-center flex flex-col">
                     <div class="admin-service-tabs" v-if="form.tables.length">
-                        <tabs>
-                            <tab :name="formTable.title" v-for="(formTable, index) in form.tables" :key="index">
+                        <tabs ref="tabsComponent">
+                            <tab :name="formTable.title" v-for="(formTable, index) in form.tables" :key="index" class="custom" :error="formTable.error">
                                 <vs-input
                                     primary
                                     label="Название таблицы"
                                     v-model="formTable.title"
                                     class="py-4"
-                                ></vs-input>
+                                >
+                                    <template #message-danger style="height: unset!important;" v-if="form.error('tables.'+index+'.title')">
+                                        {{form.error('tables.'+index+'.title')}}
+                                    </template>
+                                </vs-input>
                                 <vs-table class="max-w-full">
                                     <template #thead>
                                         <vs-tr>
@@ -62,7 +66,19 @@
                                                     placeholder="Пустое название колонки"
                                                     border
                                                     v-model="heading.title"
-                                                ></vs-input>
+                                                >
+                                                    <template #message-danger style="height: unset!important;" v-if="form.error('tables.'+index+'.headings.'+headingIndex+'.title')">
+                                                        {{form.error('tables.'+index+'.headings.'+headingIndex+'.title')}}
+                                                    </template>
+                                                </vs-input>
+                                                <vs-button
+                                                    icon
+                                                    danger
+                                                    @click="removeColumn(headingIndex, index)"
+                                                    v-if="headingIndex !== 0"
+                                                >
+                                                    <i class="bx bx-x"></i>
+                                                </vs-button>
                                             </vs-th>
                                             <vs-th>
                                                 <vs-button
@@ -82,7 +98,21 @@
                                                     border
                                                     placeholder="Пустое значение"
                                                     v-model="formTable.headings[j].values[i]"
-                                                ></vs-input>
+                                                >
+                                                    <template style="height: unset!important;" #message-danger v-if="form.error('tables.'+index+'.headings.'+j+'.values.'+i)">
+                                                        {{form.error('tables.'+index+'.headings.'+j+'.values.'+i)}}
+                                                    </template>
+                                                </vs-input>
+                                            </vs-td>
+                                            <vs-td>
+                                                <vs-button
+                                                    icon
+                                                    danger
+                                                    @click="removeRow(i, index)"
+                                                    v-if="i !== 0"
+                                                >
+                                                    <i class="bx bx-x"></i>
+                                                </vs-button>
                                             </vs-td>
                                         </vs-tr>
                                         <vs-tr>
@@ -138,6 +168,7 @@
                 table: {
                     title: 'Новая таблица',
                     headings: [],
+                    error: false,
                 },
                 heading: {
                     title: '',
@@ -165,6 +196,7 @@
                 this.form.tables.push({
                     ...this.table,
                     title: Date.now().toString(),
+                    error: false,
                     headings: [{
                         ...this.heading,
                         values: [''],
@@ -185,7 +217,36 @@
                     formTable.headings[i].values.push('');
                 }
 
+            },
+            filteredErrors(index) {
+                for (let key in this.$page.errors) {
+                    let reg = new RegExp(`tables\.`+index, 'g');
+                    console.log(reg);
+                    if (this.$page.errors.hasOwnProperty(key) && key.match(reg)) {
+                        console.log(true);
+                        this.form.tables[index].error = true;
+                        return true;
+                    }
+                }
+                this.form.tables[index].error = false;
+
+                console.log(false);
+                return false;
+            },
+            removeColumn(headingIndex, index) {
+                this.form.tables[index].headings.splice(headingIndex, 1);
+            },
+            removeRow(i, index) {
+                this.form.tables[index].headings.forEach(item => {
+                    item.values.splice(i, 1);
+                })
             }
+        },
+        updated() {
+            this.form.tables.forEach((item, index) => {
+                this.filteredErrors(index);
+            })
+            console.log(this.$refs.tabsComponent);
         }
     }
 </script>

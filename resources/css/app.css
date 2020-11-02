@@ -68,6 +68,13 @@ body {
     padding-top: 36px;
     padding-bottom: 36px;
 }
+.vs-input__message.vs-input__message--danger.v-enter-to {
+    height: unset!important;
+}
+.vs-input__message.vs-input__message--danger.v-leave-to {
+    height: 0!important;
+}
+
 .admin-service-tabs {
     @apply max-w-full;
 }

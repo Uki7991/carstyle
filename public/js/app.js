@@ -4528,6 +4528,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4551,7 +4581,8 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_3___default()(filepond_plug
       myFiles: [],
       table: {
         title: 'Новая таблица',
-        headings: []
+        headings: [],
+        error: false
       },
       heading: {
         title: '',
@@ -4578,6 +4609,7 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_3___default()(filepond_plug
     addTable: function addTable() {
       this.form.tables.push(_objectSpread(_objectSpread({}, this.table), {}, {
         title: Date.now().toString(),
+        error: false,
         headings: [_objectSpread(_objectSpread({}, this.heading), {}, {
           values: ['']
         })]
@@ -4594,7 +4626,39 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_3___default()(filepond_plug
         console.log(formTable.headings[i]);
         formTable.headings[i].values.push('');
       }
+    },
+    filteredErrors: function filteredErrors(index) {
+      for (var key in this.$page.errors) {
+        var reg = new RegExp("tables." + index, 'g');
+        console.log(reg);
+
+        if (this.$page.errors.hasOwnProperty(key) && key.match(reg)) {
+          console.log(true);
+          this.form.tables[index].error = true;
+          return true;
+        }
+      }
+
+      this.form.tables[index].error = false;
+      console.log(false);
+      return false;
+    },
+    removeColumn: function removeColumn(headingIndex, index) {
+      this.form.tables[index].headings.splice(headingIndex, 1);
+    },
+    removeRow: function removeRow(i, index) {
+      this.form.tables[index].headings.forEach(function (item) {
+        item.values.splice(i, 1);
+      });
     }
+  },
+  updated: function updated() {
+    var _this = this;
+
+    this.form.tables.forEach(function (item, index) {
+      _this.filteredErrors(index);
+    });
+    console.log(this.$refs.tabsComponent);
   }
 });
 
@@ -47830,10 +47894,18 @@ var render = function() {
                     [
                       _c(
                         "tabs",
+                        { ref: "tabsComponent" },
                         _vm._l(_vm.form.tables, function(formTable, index) {
                           return _c(
                             "tab",
-                            { key: index, attrs: { name: formTable.title } },
+                            {
+                              key: index,
+                              staticClass: "custom",
+                              attrs: {
+                                name: formTable.title,
+                                error: formTable.error
+                              }
+                            },
                             [
                               _c("vs-input", {
                                 staticClass: "py-4",
@@ -47841,6 +47913,33 @@ var render = function() {
                                   primary: "",
                                   label: "Название таблицы"
                                 },
+                                scopedSlots: _vm._u(
+                                  [
+                                    _vm.form.error("tables." + index + ".title")
+                                      ? {
+                                          key: "message-danger",
+                                          fn: function() {
+                                            return [
+                                              _vm._v(
+                                                "\n                                    " +
+                                                  _vm._s(
+                                                    _vm.form.error(
+                                                      "tables." +
+                                                        index +
+                                                        ".title"
+                                                    )
+                                                  ) +
+                                                  "\n                                "
+                                              )
+                                            ]
+                                          },
+                                          proxy: true
+                                        }
+                                      : null
+                                  ],
+                                  null,
+                                  true
+                                ),
                                 model: {
                                   value: formTable.title,
                                   callback: function($$v) {
@@ -47881,6 +47980,42 @@ var render = function() {
                                                             "Пустое название колонки",
                                                           border: ""
                                                         },
+                                                        scopedSlots: _vm._u(
+                                                          [
+                                                            _vm.form.error(
+                                                              "tables." +
+                                                                index +
+                                                                ".headings." +
+                                                                headingIndex +
+                                                                ".title"
+                                                            )
+                                                              ? {
+                                                                  key:
+                                                                    "message-danger",
+                                                                  fn: function() {
+                                                                    return [
+                                                                      _vm._v(
+                                                                        "\n                                                    " +
+                                                                          _vm._s(
+                                                                            _vm.form.error(
+                                                                              "tables." +
+                                                                                index +
+                                                                                ".headings." +
+                                                                                headingIndex +
+                                                                                ".title"
+                                                                            )
+                                                                          ) +
+                                                                          "\n                                                "
+                                                                      )
+                                                                    ]
+                                                                  },
+                                                                  proxy: true
+                                                                }
+                                                              : null
+                                                          ],
+                                                          null,
+                                                          true
+                                                        ),
                                                         model: {
                                                           value: heading.title,
                                                           callback: function(
@@ -47895,7 +48030,35 @@ var render = function() {
                                                           expression:
                                                             "heading.title"
                                                         }
-                                                      })
+                                                      }),
+                                                      _vm._v(" "),
+                                                      headingIndex !== 0
+                                                        ? _c(
+                                                            "vs-button",
+                                                            {
+                                                              attrs: {
+                                                                icon: "",
+                                                                danger: ""
+                                                              },
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.removeColumn(
+                                                                    headingIndex,
+                                                                    index
+                                                                  )
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("i", {
+                                                                staticClass:
+                                                                  "bx bx-x"
+                                                              })
+                                                            ]
+                                                          )
+                                                        : _vm._e()
                                                     ],
                                                     1
                                                   )
@@ -47944,53 +48107,127 @@ var render = function() {
                                               return _c(
                                                 "vs-tr",
                                                 { key: i },
-                                                _vm._l(
-                                                  formTable.headings.length,
-                                                  function(jtem, j) {
-                                                    return _c(
-                                                      "vs-td",
-                                                      { key: j },
-                                                      [
-                                                        _vm._v(
-                                                          "\n                                            " +
-                                                            _vm._s(i) +
-                                                            " " +
-                                                            _vm._s(j) +
-                                                            "\n                                            "
-                                                        ),
-                                                        _c("vs-input", {
-                                                          attrs: {
-                                                            primary: "",
-                                                            border: "",
-                                                            placeholder:
-                                                              "Пустое значение"
-                                                          },
-                                                          model: {
-                                                            value:
-                                                              formTable
-                                                                .headings[j]
-                                                                .values[i],
-                                                            callback: function(
-                                                              $$v
-                                                            ) {
-                                                              _vm.$set(
+                                                [
+                                                  _vm._l(
+                                                    formTable.headings.length,
+                                                    function(jtem, j) {
+                                                      return _c(
+                                                        "vs-td",
+                                                        { key: j },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                            " +
+                                                              _vm._s(i) +
+                                                              " " +
+                                                              _vm._s(j) +
+                                                              "\n                                            "
+                                                          ),
+                                                          _c("vs-input", {
+                                                            attrs: {
+                                                              primary: "",
+                                                              border: "",
+                                                              placeholder:
+                                                                "Пустое значение"
+                                                            },
+                                                            scopedSlots: _vm._u(
+                                                              [
+                                                                _vm.form.error(
+                                                                  "tables." +
+                                                                    index +
+                                                                    ".headings." +
+                                                                    j +
+                                                                    ".values." +
+                                                                    i
+                                                                )
+                                                                  ? {
+                                                                      key:
+                                                                        "message-danger",
+                                                                      fn: function() {
+                                                                        return [
+                                                                          _vm._v(
+                                                                            "\n                                                    " +
+                                                                              _vm._s(
+                                                                                _vm.form.error(
+                                                                                  "tables." +
+                                                                                    index +
+                                                                                    ".headings." +
+                                                                                    j +
+                                                                                    ".values." +
+                                                                                    i
+                                                                                )
+                                                                              ) +
+                                                                              "\n                                                "
+                                                                          )
+                                                                        ]
+                                                                      },
+                                                                      proxy: true
+                                                                    }
+                                                                  : null
+                                                              ],
+                                                              null,
+                                                              true
+                                                            ),
+                                                            model: {
+                                                              value:
                                                                 formTable
                                                                   .headings[j]
-                                                                  .values,
-                                                                i,
+                                                                  .values[i],
+                                                              callback: function(
                                                                 $$v
-                                                              )
+                                                              ) {
+                                                                _vm.$set(
+                                                                  formTable
+                                                                    .headings[j]
+                                                                    .values,
+                                                                  i,
+                                                                  $$v
+                                                                )
+                                                              },
+                                                              expression:
+                                                                "formTable.headings[j].values[i]"
+                                                            }
+                                                          })
+                                                        ],
+                                                        1
+                                                      )
+                                                    }
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "vs-td",
+                                                    [
+                                                      i !== 0
+                                                        ? _c(
+                                                            "vs-button",
+                                                            {
+                                                              attrs: {
+                                                                icon: "",
+                                                                danger: ""
+                                                              },
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.removeRow(
+                                                                    i,
+                                                                    index
+                                                                  )
+                                                                }
+                                                              }
                                                             },
-                                                            expression:
-                                                              "formTable.headings[j].values[i]"
-                                                          }
-                                                        })
-                                                      ],
-                                                      1
-                                                    )
-                                                  }
-                                                ),
-                                                1
+                                                            [
+                                                              _c("i", {
+                                                                staticClass:
+                                                                  "bx bx-x"
+                                                              })
+                                                            ]
+                                                          )
+                                                        : _vm._e()
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                2
                                               )
                                             }
                                           ),
