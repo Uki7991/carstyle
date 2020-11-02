@@ -102,7 +102,7 @@
                             <div class="w-3/12 px-5 my-6" v-for="(item, i) in services" :key="i" @click="activeService(item)">
                                 <p class="font-semibold text-lg text-gray-800">{{ item.title }}</p>
                                 <p class="text-sm text-gray-600 italic">{{ item.description }}</p>
-                                <img class="mt-4" :src="'/storage/medium/' + item.image" alt="">
+                                <img class="mt-4" :src="'/storage/large/' + item.image" alt="">
                             </div>
                         </div>
 
@@ -116,163 +116,17 @@
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Материалы</p>
                     <p class="font-bold mb-5 text-4xl leading-tight">Характеристики используемых брендов</p>
 
-                    <div class="flex py-5 flex-wrap">
+                    <div class="flex py-5 flex-wrap" v-for="materialCategory in materialCategories" :key="materialCategory.id">
                         <div class="w-full mb-7">
-                            <p class="text-xl font-bold">Тонирование стекол</p>
+                            <p class="text-xl font-bold">{{materialCategory.title}}</p>
                         </div>
-                        <div class="w-1/2 px-3" v-for="material in materials" :key="material.id">
+                        <div class="w-1/2 px-3 mb-4" v-for="material in materialCategory.materials" :key="material.id">
                             <div class="bg-white rounded-3xl py-5 px-6">
-                                <img :src="'/storage/large/'+material.image" alt="">
+                                <img class="h-12 object-cover" :src="'/storage/small/'+material.image" alt="">
                                 <div class="mt-4 text-sm leading-loose">
                                     <div class="flex justify-between" v-for="property in material.properties" :key="property.id">
                                         <p>{{property.title}}:</p>
                                         <p class="font-medium">{{property.value}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-1/2 px-3">
-                            <div class="bg-white rounded-3xl py-5 px-6">
-                                <img src="/assets/images/llumar.png" alt="">
-                                <div class="mt-4 text-sm leading-loose">
-                                    <div class="flex justify-between">
-                                        <p>Страна:</p>
-                                        <p class="font-medium">США</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Металлизированная:</p>
-                                        <p class="font-medium">3-слойная</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Отражение видимого света:</p>
-                                        <p class="font-medium">8%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Отражение солнечной энергии:</p>
-                                        <p class="font-medium">74%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Подавление бликов:</p>
-                                        <p class="font-medium">96%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Блокирование ультрафиолета:</p>
-                                        <p class="font-medium">99%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Цвет:</p>
-                                        <p class="font-medium">Угольно-черный</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Пропускание сета:</p>
-                                        <p class="font-medium">5%, 15%, 20%, 35%, 50%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Устойчивость к царапинам:</p>
-                                        <p class="font-medium">Да</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Гарантия:</p>
-                                        <p class="font-medium">Бессрочно</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex py-5 flex-wrap">
-                        <div class="w-full mb-7">
-                            <p class="text-xl font-bold">Антигравийная защита</p>
-                        </div>
-                        <div class="w-1/2 px-3">
-                            <div class="bg-white rounded-3xl py-5 px-6">
-                                <img src="/assets/images/llumar.png" alt="">
-                                <div class="mt-4 text-sm leading-loose">
-                                    <div class="flex justify-between">
-                                        <p>Страна:</p>
-                                        <p class="font-medium">США</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Металлизированная:</p>
-                                        <p class="font-medium">3-слойная</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Отражение видимого света:</p>
-                                        <p class="font-medium">8%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Отражение солнечной энергии:</p>
-                                        <p class="font-medium">74%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Подавление бликов:</p>
-                                        <p class="font-medium">96%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Блокирование ультрафиолета:</p>
-                                        <p class="font-medium">99%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Цвет:</p>
-                                        <p class="font-medium">Угольно-черный</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Пропускание сета:</p>
-                                        <p class="font-medium">5%, 15%, 20%, 35%, 50%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Устойчивость к царапинам:</p>
-                                        <p class="font-medium">Да</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Гарантия:</p>
-                                        <p class="font-medium">Бессрочно</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-1/2 px-3">
-                            <div class="bg-white rounded-3xl py-5 px-6">
-                                <img src="/assets/images/llumar.png" alt="">
-                                <div class="mt-4 text-sm leading-loose">
-                                    <div class="flex justify-between">
-                                        <p>Страна:</p>
-                                        <p class="font-medium">США</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Металлизированная:</p>
-                                        <p class="font-medium">3-слойная</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Отражение видимого света:</p>
-                                        <p class="font-medium">8%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Отражение солнечной энергии:</p>
-                                        <p class="font-medium">74%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Подавление бликов:</p>
-                                        <p class="font-medium">96%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Блокирование ультрафиолета:</p>
-                                        <p class="font-medium">99%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Цвет:</p>
-                                        <p class="font-medium">Угольно-черный</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Пропускание сета:</p>
-                                        <p class="font-medium">5%, 15%, 20%, 35%, 50%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Устойчивость к царапинам:</p>
-                                        <p class="font-medium">Да</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Гарантия:</p>
-                                        <p class="font-medium">Бессрочно</p>
                                     </div>
                                 </div>
                             </div>
@@ -327,23 +181,27 @@
                     <p class="font-bold mb-5 text-4xl leading-tight">Как нас найти?</p>
 
                     <div class="flex flex-col space-y-5 py-5">
-                        <div class="flex">
+                        <a href="" class="flex">
                             <img class="mr-1" src="/assets/icons/map.svg" alt="">
                             <p>Краснобогатырская ул., 13, с1 </p>
-                        </div>
-                        <div class="flex">
+                        </a>
+                        <a href="" class="flex">
                             <img class="mr-1" src="/assets/icons/mail.svg" alt="">
                             <p>carstyle@gmail.com</p>
-                        </div>
-                        <div class="flex">
+                        </a>
+                        <a href="" class="flex">
                             <img class="mr-1" src="/assets/icons/phone.svg" alt="">
                             <p>+74957556983</p>
-                        </div>
+                        </a>
                     </div>
 
                     <div class="flex space-x-5 py-5">
-                        <img class="w-9 cursor-pointer" src="/assets/icons/instagram.svg" alt="">
-                        <img class="w-9 cursor-pointer" src="/assets/icons/whatsapp.svg" alt="">
+                        <a href="">
+                            <img class="w-9 cursor-pointer" src="/assets/icons/instagram.svg" alt="">
+                        </a>
+                        <a href="">
+                            <img class="w-9 cursor-pointer" src="/assets/icons/whatsapp.svg" alt="">
+                        </a>
                     </div>
                 </div>
                 <div class="flex absolute top-0 w-full">
@@ -448,7 +306,7 @@
                     },
                 ],
                 services: this.$page.services,
-                materials: this.$page.materials,
+                materialCategories: this.$page.materialCategories,
                 tables: this.$page.tables,
             }
         },

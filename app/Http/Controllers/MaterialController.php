@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMaterialRequest;
 use App\Http\Requests\UpdateMaterialRequest;
 use App\Models\Material;
+use App\Models\MaterialCategory;
+use App\Models\MaterialProperty;
 use App\Services\ImageUploader;
 use Illuminate\Http\Request;
 
@@ -31,7 +33,11 @@ class MaterialController extends Controller
      */
     public function create()
     {
-        return inertia('Admin/Materials/Create');
+        $categories = MaterialCategory::all();
+
+        return inertia('Admin/Materials/Create', [
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -42,7 +48,13 @@ class MaterialController extends Controller
      */
     public function store(StoreMaterialRequest $request)
     {
-        $material = Material::create($request->all());
+        $category = MaterialCategory::where('title', $request->category['title'])->first();
+
+        if (!$category) {
+            $category = MaterialCategory::create($request->category);
+        }
+
+        $material = $category->materials()->create($request->validated());
 
         $material->properties()->createMany($request->properties);
 
@@ -75,7 +87,8 @@ class MaterialController extends Controller
     public function edit(Material $material)
     {
         return inertia('Admin/Materials/Edit', [
-            'material' => $material,
+            'material' => $material->load('category', 'properties'),
+            'categories' => MaterialCategory::all(),
         ]);
     }
 
@@ -88,11 +101,27 @@ class MaterialController extends Controller
      */
     public function update(UpdateMaterialRequest $request, Material $material)
     {
-        if ($request->has('image')) {
-            ImageUploader::delete($material->image);
+        $category = MaterialCategory::where('title', $request->category['title'])->first();
+
+        if (!$category) {
+            $category = MaterialCategory::create($request->category);
+        }
+        $previousImage = $material->image;
+        $category->materials()->save($material);
+        $material->update($request->all());
+
+        foreach ($request->properties as $property) {
+            if (array_key_exists('id', $property)) {
+                $property = MaterialProperty::find($property['id']);
+                $material->properties()->save($property);
+                continue;
+            }
+            $material->properties()->create($property);
         }
 
-        $material->update($request->all());
+        if ($request->has('image') && $material->wasChanged('image') && $previousImage) {
+            ImageUploader::delete($previousImage);
+        }
 
         $request->session()->flash('form_post', [
             'status' => true,

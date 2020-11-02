@@ -4170,8 +4170,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css */ "./node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css");
 /* harmony import */ var filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! filepond-plugin-image-preview */ "./node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js");
-/* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-multiselect/dist/vue-multiselect.min.css */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.css");
+/* harmony import */ var vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! filepond-plugin-image-preview */ "./node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js");
+/* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-multiselect */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.js");
+/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect__WEBPACK_IMPORTED_MODULE_8__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4245,23 +4275,28 @@ __webpack_require__.r(__webpack_exports__);
 
  // Import image preview plugin styles
 
+
  // Import image preview and file type validation plugins
 // import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 
 
-var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_3___default()(filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6___default.a);
+
+var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_3___default()(filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_7___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
     BackTo: _Components_Buttons_BackTo__WEBPACK_IMPORTED_MODULE_1__["default"],
     FilePond: FilePond,
-    AdminComponentDiv: _Components_AdminComponentDiv__WEBPACK_IMPORTED_MODULE_2__["default"]
+    AdminComponentDiv: _Components_AdminComponentDiv__WEBPACK_IMPORTED_MODULE_2__["default"],
+    MultiSelect: vue_multiselect__WEBPACK_IMPORTED_MODULE_8___default.a
   },
   data: function data() {
     return {
+      values: this.$page.categories,
       form: this.$inertia.form({
         title: '',
         image: '',
+        category: '',
         properties: []
       }, {
         bag: 'default',
@@ -4284,6 +4319,16 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_3___default()(filepond_plug
     },
     removeProperty: function removeProperty(index) {
       this.form.properties.splice(index, 1);
+    },
+    addTag: function addTag(newTag) {
+      newTag = {
+        title: newTag
+      };
+      this.values.push(newTag);
+      this.form.category = newTag;
+    },
+    selecting: function selecting(val, id) {
+      this.form.category = val.title;
     }
   }
 });
@@ -4306,10 +4351,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_filepond__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_filepond__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! filepond/dist/filepond.min.css */ "./node_modules/filepond/dist/filepond.min.css");
 /* harmony import */ var filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css */ "./node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css");
-/* harmony import */ var filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! filepond-plugin-image-preview */ "./node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js");
-/* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-multiselect/dist/vue-multiselect.min.css */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.css");
+/* harmony import */ var vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-multiselect */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.js");
+/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css */ "./node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css");
+/* harmony import */ var filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_preview_dist_filepond_plugin_image_preview_min_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! filepond-plugin-image-preview */ "./node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js");
+/* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_8__);
 //
 //
 //
@@ -4349,6 +4398,64 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
@@ -4359,20 +4466,24 @@ __webpack_require__.r(__webpack_exports__);
 // import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 
 
-var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_3___default()(filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6___default.a);
+var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_3___default()(filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_8___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
     BackTo: _Components_Buttons_BackTo__WEBPACK_IMPORTED_MODULE_1__["default"],
     FilePond: FilePond,
-    AdminComponentDiv: _Components_AdminComponentDiv__WEBPACK_IMPORTED_MODULE_2__["default"]
+    AdminComponentDiv: _Components_AdminComponentDiv__WEBPACK_IMPORTED_MODULE_2__["default"],
+    MultiSelect: vue_multiselect__WEBPACK_IMPORTED_MODULE_6___default.a
   },
   data: function data() {
     return {
+      values: this.$page.categories,
       file: '/storage/medium/' + this.$page.material.image,
       form: this.$inertia.form({
         title: this.$page.material.title,
-        image: this.$page.material.image
+        image: this.$page.material.image,
+        category: this.$page.material.category,
+        properties: this.$page.material.properties
       }, {
         bag: 'default',
         resetOnSuccess: true
@@ -4385,6 +4496,25 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_3___default()(filepond_plug
     },
     processFile: function processFile(e) {
       this.form.image = JSON.parse(this.$refs.pond.getFile().serverId).filename;
+    },
+    addTag: function addTag(newTag) {
+      newTag = {
+        title: newTag
+      };
+      this.values.push(newTag);
+      this.form.category = newTag;
+    },
+    selecting: function selecting(val, id) {
+      this.form.category = val.title;
+    },
+    addProperty: function addProperty() {
+      this.form.properties.push({
+        title: '',
+        value: ''
+      });
+    },
+    removeProperty: function removeProperty(index) {
+      this.form.properties.splice(index, 1);
     }
   }
 });
@@ -6126,148 +6256,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6303,7 +6291,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         text: 'Скоротать время ожидания с кофе и бесплатным WI-FI'
       }],
       services: this.$page.services,
-      materials: this.$page.materials,
+      materialCategories: this.$page.materialCategories,
       tables: this.$page.tables
     };
   },
@@ -47547,6 +47535,38 @@ var render = function() {
               }
             },
             [
+              _c(
+                "div",
+                [
+                  _c("multi-select", {
+                    attrs: {
+                      "tag-placeholder": "Добавить новую категорию материала",
+                      placeholder: "Поиск категорий материала",
+                      options: _vm.values,
+                      multiple: false,
+                      taggable: true,
+                      label: "title",
+                      value: "title"
+                    },
+                    on: { tag: _vm.addTag, select: _vm.selecting },
+                    model: {
+                      value: _vm.form.category,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "category", $$v)
+                      },
+                      expression: "form.category"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.form.error("category")
+                    ? _c("p", { staticClass: "text-xs text-red-500" }, [
+                        _vm._v(_vm._s(_vm.form.error("category")))
+                      ])
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
               _c("vs-input", {
                 attrs: { "label-placeholder": "Название", primary: "" },
                 scopedSlots: _vm._u(
@@ -47641,29 +47661,71 @@ var render = function() {
                   "div",
                   { key: index, staticClass: "flex items-center" },
                   [
-                    _c("vs-input", {
-                      staticClass: "mx-4",
-                      attrs: { "label-placeholder": "Название", primary: "" },
-                      model: {
-                        value: property.title,
-                        callback: function($$v) {
-                          _vm.$set(property, "title", $$v)
-                        },
-                        expression: "property.title"
-                      }
-                    }),
-                    _vm._v(":\n                    "),
-                    _c("vs-input", {
-                      staticClass: "mx-4",
-                      attrs: { "label-placeholder": "Значение", primary: "" },
-                      model: {
-                        value: property.value,
-                        callback: function($$v) {
-                          _vm.$set(property, "value", $$v)
-                        },
-                        expression: "property.value"
-                      }
-                    }),
+                    _c(
+                      "div",
+                      [
+                        _c("vs-input", {
+                          staticClass: "mx-4",
+                          attrs: {
+                            "label-placeholder": "Название",
+                            primary: ""
+                          },
+                          model: {
+                            value: property.title,
+                            callback: function($$v) {
+                              _vm.$set(property, "title", $$v)
+                            },
+                            expression: "property.title"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.form.error("properties." + index + ".title")
+                          ? _c("p", { staticClass: "text-xs text-red-500" }, [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.form.error(
+                                    "properties." + index + ".title"
+                                  )
+                                )
+                              )
+                            ])
+                          : _vm._e()
+                      ],
+                      1
+                    ),
+                    _vm._v("\n                    :\n                    "),
+                    _c(
+                      "div",
+                      [
+                        _c("vs-input", {
+                          staticClass: "mx-4",
+                          attrs: {
+                            "label-placeholder": "Значение",
+                            primary: ""
+                          },
+                          model: {
+                            value: property.value,
+                            callback: function($$v) {
+                              _vm.$set(property, "value", $$v)
+                            },
+                            expression: "property.value"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.form.error("properties." + index + ".value")
+                          ? _c("p", { staticClass: "text-xs text-red-500" }, [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.form.error(
+                                    "properties." + index + ".value"
+                                  )
+                                )
+                              )
+                            ])
+                          : _vm._e()
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
                     _c(
                       "vs-button",
@@ -47682,10 +47744,23 @@ var render = function() {
                 )
               }),
               _vm._v(" "),
-              _c("vs-button", { on: { click: _vm.addProperty } }, [
-                _c("i", { staticClass: "bx bx-plus" }),
-                _vm._v(" Добавить\n                ")
-              ])
+              _c(
+                "div",
+                { staticClass: "flex flex-col justify-center" },
+                [
+                  _c("vs-button", { on: { click: _vm.addProperty } }, [
+                    _c("i", { staticClass: "bx bx-plus" }),
+                    _vm._v(" Добавить\n                    ")
+                  ]),
+                  _vm._v(" "),
+                  _vm.form.error("properties")
+                    ? _c("p", { staticClass: "text-xs text-red-500" }, [
+                        _vm._v(_vm._s(_vm.form.error("properties")))
+                      ])
+                    : _vm._e()
+                ],
+                1
+              )
             ],
             2
           )
@@ -47749,6 +47824,38 @@ var render = function() {
                 }
               },
               [
+                _c(
+                  "div",
+                  [
+                    _c("multi-select", {
+                      attrs: {
+                        "tag-placeholder": "Добавить новую категорию материала",
+                        placeholder: "Поиск категорий материала",
+                        options: _vm.values,
+                        multiple: false,
+                        taggable: true,
+                        label: "title",
+                        value: "title"
+                      },
+                      on: { tag: _vm.addTag, select: _vm.selecting },
+                      model: {
+                        value: _vm.form.category,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "category", $$v)
+                        },
+                        expression: "form.category"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.form.error("category")
+                      ? _c("p", { staticClass: "text-xs text-red-500" }, [
+                          _vm._v(_vm._s(_vm.form.error("category")))
+                        ])
+                      : _vm._e()
+                  ],
+                  1
+                ),
+                _vm._v(" "),
                 _c("vs-input", {
                   attrs: { "label-placeholder": "Название", primary: "" },
                   scopedSlots: _vm._u(
@@ -47800,6 +47907,10 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
+                _c("div", { staticClass: "w-6/12" }, [
+                  _c("img", { attrs: { src: _vm.file, alt: "" } })
+                ]),
+                _vm._v(" "),
                 _c(
                   "vs-button",
                   { attrs: { gradient: "", block: "", success: "" } },
@@ -47809,9 +47920,123 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "w-3/12" }, [
-              _c("img", { attrs: { src: _vm.file, alt: "" } })
-            ])
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col justify-center items-center flex-grow space-y-7"
+              },
+              [
+                _c("h2", [_vm._v("Свойства материала:")]),
+                _vm._v(" "),
+                _vm._l(_vm.form.properties, function(property, index) {
+                  return _c(
+                    "div",
+                    { key: index, staticClass: "flex items-center" },
+                    [
+                      _c(
+                        "div",
+                        [
+                          _c("vs-input", {
+                            staticClass: "mx-4",
+                            attrs: {
+                              "label-placeholder": "Название",
+                              primary: ""
+                            },
+                            model: {
+                              value: property.title,
+                              callback: function($$v) {
+                                _vm.$set(property, "title", $$v)
+                              },
+                              expression: "property.title"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.form.error("properties." + index + ".title")
+                            ? _c("p", { staticClass: "text-xs text-red-500" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm.form.error(
+                                      "properties." + index + ".title"
+                                    )
+                                  )
+                                )
+                              ])
+                            : _vm._e()
+                        ],
+                        1
+                      ),
+                      _vm._v("\n                    :\n                    "),
+                      _c(
+                        "div",
+                        [
+                          _c("vs-input", {
+                            staticClass: "mx-4",
+                            attrs: {
+                              "label-placeholder": "Значение",
+                              primary: ""
+                            },
+                            model: {
+                              value: property.value,
+                              callback: function($$v) {
+                                _vm.$set(property, "value", $$v)
+                              },
+                              expression: "property.value"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.form.error("properties." + index + ".value")
+                            ? _c("p", { staticClass: "text-xs text-red-500" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm.form.error(
+                                      "properties." + index + ".value"
+                                    )
+                                  )
+                                )
+                              ])
+                            : _vm._e()
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "vs-button",
+                        {
+                          attrs: { icon: "", danger: "" },
+                          on: {
+                            click: function($event) {
+                              return _vm.removeProperty(index)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "bx bx-x" })]
+                      )
+                    ],
+                    1
+                  )
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "flex flex-col justify-center" },
+                  [
+                    _c("vs-button", { on: { click: _vm.addProperty } }, [
+                      _c("i", { staticClass: "bx bx-plus" }),
+                      _vm._v(" Добавить\n                    ")
+                    ]),
+                    _vm._v(" "),
+                    _vm.form.error("properties")
+                      ? _c("p", { staticClass: "text-xs text-red-500" }, [
+                          _vm._v(_vm._s(_vm.form.error("properties")))
+                        ])
+                      : _vm._e()
+                  ],
+                  1
+                )
+              ],
+              2
+            )
           ]
         )
       ],
@@ -50556,7 +50781,7 @@ var render = function() {
                             _c("img", {
                               staticClass: "mt-4",
                               attrs: {
-                                src: "/storage/medium/" + item.image,
+                                src: "/storage/large/" + item.image,
                                 alt: ""
                               }
                             })
@@ -50580,75 +50805,88 @@ var render = function() {
         "section",
         { staticClass: "fourth py-32", attrs: { id: "materials" } },
         [
-          _c("div", { staticClass: "container mx-auto" }, [
-            _c(
-              "p",
-              { staticClass: "text-indigo-600 text-lg mb-3 font-semibold" },
-              [_vm._v("Материалы")]
-            ),
-            _vm._v(" "),
-            _c("p", { staticClass: "font-bold mb-5 text-4xl leading-tight" }, [
-              _vm._v("Характеристики используемых брендов")
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "flex py-5 flex-wrap" },
-              [
-                _vm._m(4),
-                _vm._v(" "),
-                _vm._l(_vm.materials, function(material) {
-                  return _c(
-                    "div",
-                    { key: material.id, staticClass: "w-1/2 px-3" },
-                    [
-                      _c(
+          _c(
+            "div",
+            { staticClass: "container mx-auto" },
+            [
+              _c(
+                "p",
+                { staticClass: "text-indigo-600 text-lg mb-3 font-semibold" },
+                [_vm._v("Материалы")]
+              ),
+              _vm._v(" "),
+              _c(
+                "p",
+                { staticClass: "font-bold mb-5 text-4xl leading-tight" },
+                [_vm._v("Характеристики используемых брендов")]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.materialCategories, function(materialCategory) {
+                return _c(
+                  "div",
+                  {
+                    key: materialCategory.id,
+                    staticClass: "flex py-5 flex-wrap"
+                  },
+                  [
+                    _c("div", { staticClass: "w-full mb-7" }, [
+                      _c("p", { staticClass: "text-xl font-bold" }, [
+                        _vm._v(_vm._s(materialCategory.title))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(materialCategory.materials, function(material) {
+                      return _c(
                         "div",
-                        { staticClass: "bg-white rounded-3xl py-5 px-6" },
+                        { key: material.id, staticClass: "w-1/2 px-3 mb-4" },
                         [
-                          _c("img", {
-                            attrs: {
-                              src: "/storage/large/" + material.image,
-                              alt: ""
-                            }
-                          }),
-                          _vm._v(" "),
                           _c(
                             "div",
-                            { staticClass: "mt-4 text-sm leading-loose" },
-                            _vm._l(material.properties, function(property) {
-                              return _c(
+                            { staticClass: "bg-white rounded-3xl py-5 px-6" },
+                            [
+                              _c("img", {
+                                staticClass: "h-12 object-cover",
+                                attrs: {
+                                  src: "/storage/small/" + material.image,
+                                  alt: ""
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
                                 "div",
-                                {
-                                  key: property.id,
-                                  staticClass: "flex justify-between"
-                                },
-                                [
-                                  _c("p", [
-                                    _vm._v(_vm._s(property.title) + ":")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("p", { staticClass: "font-medium" }, [
-                                    _vm._v(_vm._s(property.value))
-                                  ])
-                                ]
+                                { staticClass: "mt-4 text-sm leading-loose" },
+                                _vm._l(material.properties, function(property) {
+                                  return _c(
+                                    "div",
+                                    {
+                                      key: property.id,
+                                      staticClass: "flex justify-between"
+                                    },
+                                    [
+                                      _c("p", [
+                                        _vm._v(_vm._s(property.title) + ":")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("p", { staticClass: "font-medium" }, [
+                                        _vm._v(_vm._s(property.value))
+                                      ])
+                                    ]
+                                  )
+                                }),
+                                0
                               )
-                            }),
-                            0
+                            ]
                           )
                         ]
                       )
-                    ]
-                  )
-                }),
-                _vm._v(" "),
-                _vm._m(5)
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _vm._m(6)
-          ])
+                    })
+                  ],
+                  2
+                )
+              })
+            ],
+            2
+          )
         ]
       ),
       _vm._v(" "),
@@ -50660,7 +50898,7 @@ var render = function() {
             [_vm._v("Наши работы")]
           ),
           _vm._v(" "),
-          _vm._m(7),
+          _vm._m(4),
           _vm._v(" "),
           _c(
             "div",
@@ -50714,9 +50952,9 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(8),
+      _vm._m(5),
       _vm._v(" "),
-      _vm._m(9)
+      _vm._m(6)
     ])
   ])
 }
@@ -50924,246 +51162,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-full mb-7" }, [
-      _c("p", { staticClass: "text-xl font-bold" }, [
-        _vm._v("Тонирование стекол")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-1/2 px-3" }, [
-      _c("div", { staticClass: "bg-white rounded-3xl py-5 px-6" }, [
-        _c("img", { attrs: { src: "/assets/images/llumar.png", alt: "" } }),
-        _vm._v(" "),
-        _c("div", { staticClass: "mt-4 text-sm leading-loose" }, [
-          _c("div", { staticClass: "flex justify-between" }, [
-            _c("p", [_vm._v("Страна:")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "font-medium" }, [_vm._v("США")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex justify-between" }, [
-            _c("p", [_vm._v("Металлизированная:")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "font-medium" }, [_vm._v("3-слойная")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex justify-between" }, [
-            _c("p", [_vm._v("Отражение видимого света:")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "font-medium" }, [_vm._v("8%")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex justify-between" }, [
-            _c("p", [_vm._v("Отражение солнечной энергии:")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "font-medium" }, [_vm._v("74%")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex justify-between" }, [
-            _c("p", [_vm._v("Подавление бликов:")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "font-medium" }, [_vm._v("96%")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex justify-between" }, [
-            _c("p", [_vm._v("Блокирование ультрафиолета:")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "font-medium" }, [_vm._v("99%")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex justify-between" }, [
-            _c("p", [_vm._v("Цвет:")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "font-medium" }, [_vm._v("Угольно-черный")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex justify-between" }, [
-            _c("p", [_vm._v("Пропускание сета:")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "font-medium" }, [
-              _vm._v("5%, 15%, 20%, 35%, 50%")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex justify-between" }, [
-            _c("p", [_vm._v("Устойчивость к царапинам:")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "font-medium" }, [_vm._v("Да")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex justify-between" }, [
-            _c("p", [_vm._v("Гарантия:")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "font-medium" }, [_vm._v("Бессрочно")])
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex py-5 flex-wrap" }, [
-      _c("div", { staticClass: "w-full mb-7" }, [
-        _c("p", { staticClass: "text-xl font-bold" }, [
-          _vm._v("Антигравийная защита")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "w-1/2 px-3" }, [
-        _c("div", { staticClass: "bg-white rounded-3xl py-5 px-6" }, [
-          _c("img", { attrs: { src: "/assets/images/llumar.png", alt: "" } }),
-          _vm._v(" "),
-          _c("div", { staticClass: "mt-4 text-sm leading-loose" }, [
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Страна:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [_vm._v("США")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Металлизированная:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [_vm._v("3-слойная")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Отражение видимого света:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [_vm._v("8%")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Отражение солнечной энергии:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [_vm._v("74%")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Подавление бликов:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [_vm._v("96%")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Блокирование ультрафиолета:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [_vm._v("99%")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Цвет:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [
-                _vm._v("Угольно-черный")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Пропускание сета:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [
-                _vm._v("5%, 15%, 20%, 35%, 50%")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Устойчивость к царапинам:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [_vm._v("Да")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Гарантия:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [_vm._v("Бессрочно")])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "w-1/2 px-3" }, [
-        _c("div", { staticClass: "bg-white rounded-3xl py-5 px-6" }, [
-          _c("img", { attrs: { src: "/assets/images/llumar.png", alt: "" } }),
-          _vm._v(" "),
-          _c("div", { staticClass: "mt-4 text-sm leading-loose" }, [
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Страна:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [_vm._v("США")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Металлизированная:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [_vm._v("3-слойная")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Отражение видимого света:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [_vm._v("8%")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Отражение солнечной энергии:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [_vm._v("74%")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Подавление бликов:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [_vm._v("96%")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Блокирование ультрафиолета:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [_vm._v("99%")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Цвет:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [
-                _vm._v("Угольно-черный")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Пропускание сета:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [
-                _vm._v("5%, 15%, 20%, 35%, 50%")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Устойчивость к царапинам:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [_vm._v("Да")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between" }, [
-              _c("p", [_vm._v("Гарантия:")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-medium" }, [_vm._v("Бессрочно")])
-            ])
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "flex items-end justify-between" }, [
       _c("p", { staticClass: "font-bold mb-5 text-4xl leading-tight" }, [
         _vm._v("Фотографии работ")
@@ -51249,7 +51247,7 @@ var staticRenderFns = [
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "flex flex-col space-y-5 py-5" }, [
-              _c("div", { staticClass: "flex" }, [
+              _c("a", { staticClass: "flex", attrs: { href: "" } }, [
                 _c("img", {
                   staticClass: "mr-1",
                   attrs: { src: "/assets/icons/map.svg", alt: "" }
@@ -51258,7 +51256,7 @@ var staticRenderFns = [
                 _c("p", [_vm._v("Краснобогатырская ул., 13, с1 ")])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "flex" }, [
+              _c("a", { staticClass: "flex", attrs: { href: "" } }, [
                 _c("img", {
                   staticClass: "mr-1",
                   attrs: { src: "/assets/icons/mail.svg", alt: "" }
@@ -51267,7 +51265,7 @@ var staticRenderFns = [
                 _c("p", [_vm._v("carstyle@gmail.com")])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "flex" }, [
+              _c("a", { staticClass: "flex", attrs: { href: "" } }, [
                 _c("img", {
                   staticClass: "mr-1",
                   attrs: { src: "/assets/icons/phone.svg", alt: "" }
@@ -51278,15 +51276,19 @@ var staticRenderFns = [
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "flex space-x-5 py-5" }, [
-              _c("img", {
-                staticClass: "w-9 cursor-pointer",
-                attrs: { src: "/assets/icons/instagram.svg", alt: "" }
-              }),
+              _c("a", { attrs: { href: "" } }, [
+                _c("img", {
+                  staticClass: "w-9 cursor-pointer",
+                  attrs: { src: "/assets/icons/instagram.svg", alt: "" }
+                })
+              ]),
               _vm._v(" "),
-              _c("img", {
-                staticClass: "w-9 cursor-pointer",
-                attrs: { src: "/assets/icons/whatsapp.svg", alt: "" }
-              })
+              _c("a", { attrs: { href: "" } }, [
+                _c("img", {
+                  staticClass: "w-9 cursor-pointer",
+                  attrs: { src: "/assets/icons/whatsapp.svg", alt: "" }
+                })
+              ])
             ])
           ]
         ),

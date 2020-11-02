@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Gallery;
 use App\Models\Material;
+use App\Models\MaterialCategory;
 use App\Models\Service;
 use App\Models\ServiceTable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -13,7 +15,9 @@ class IndexController extends Controller
     public function home(Request $request)
     {
         $services = Service::with('tables.headings.values')->where('active', true)->get();
-        $materials = Material::with('properties')->where('active', true)->get();
+        $materialCategories = MaterialCategory::whereHas('materials', function(Builder $query) {
+            $query->with('properties')->where('active', true);
+        })->with('materials.properties')->get();
         $galleries = Gallery::with('category')->get();
         $tables = ServiceTable::with('headings.values')->whereIn('service_id', $services->pluck('id'))->get();
 
@@ -29,7 +33,7 @@ class IndexController extends Controller
 
         return inertia('Welcome', [
             'services' => $services,
-            'materials' => $materials,
+            'materialCategories' => $materialCategories,
             'galleries' => $galleries,
             'tables' => $tables,
         ]);

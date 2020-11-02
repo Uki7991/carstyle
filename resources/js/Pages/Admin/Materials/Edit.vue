@@ -6,6 +6,21 @@
             </div>
             <admin-component-div class="py-12 flex flex-row space-x-5">
                 <form @submit.prevent="create" class="space-y-6 w-3/12 conform">
+                    <div>
+                        <multi-select
+                            v-model="form.category"
+                            tag-placeholder="Добавить новую категорию материала"
+                            placeholder="Поиск категорий материала"
+                            :options="values"
+                            :multiple="false"
+                            :taggable="true"
+                            label="title"
+                            value="title"
+                            @tag="addTag"
+                            @select="selecting"
+                        ></multi-select>
+                        <p v-if="form.error('category')" class="text-xs text-red-500">{{form.error('category')}}</p>
+                    </div>
                     <vs-input
                         v-model="form.title"
                         label-placeholder="Название"
@@ -21,6 +36,9 @@
                         @processfile="processFile($event)"
                         :server="route('images.post-image', {dir: 'materials', prefix: 'material'}).url()"
                     ></file-pond>
+                    <div class="w-6/12">
+                        <img :src="file" alt="">
+                    </div>
                     <vs-button
                         gradient
                         block
@@ -28,9 +46,47 @@
                     >
                         Обновить
                     </vs-button>
+
                 </form>
-                <div class="w-3/12">
-                    <img :src="file" alt="">
+
+
+                <div class="flex flex-col justify-center items-center flex-grow space-y-7">
+                    <h2>Свойства материала:</h2>
+                    <div class="flex items-center" v-for="(property, index) in form.properties" :key="index">
+                        <div>
+                            <vs-input
+                                label-placeholder="Название"
+                                primary
+                                v-model="property.title"
+                                class="mx-4"
+                            ></vs-input>
+                            <p v-if="form.error('properties.'+index+'.title')" class="text-xs text-red-500">{{form.error('properties.'+index+'.title')}}</p>
+                        </div>
+                        :
+                        <div>
+                            <vs-input
+                                label-placeholder="Значение"
+                                primary
+                                v-model="property.value"
+                                class="mx-4"
+                            ></vs-input>
+                            <p v-if="form.error('properties.'+index+'.value')" class="text-xs text-red-500">{{form.error('properties.'+index+'.value')}}</p>
+                        </div>
+
+                        <vs-button
+                            icon
+                            danger
+                            @click="removeProperty(index)"
+                        >
+                            <i class="bx bx-x"></i>
+                        </vs-button>
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <vs-button @click="addProperty">
+                            <i class="bx bx-plus"></i> Добавить
+                        </vs-button>
+                        <p v-if="form.error('properties')" class="text-xs text-red-500">{{form.error('properties')}}</p>
+                    </div>
                 </div>
             </admin-component-div>
         </div>
@@ -43,6 +99,8 @@
     import AdminComponentDiv from "@/Components/AdminComponentDiv";
     import VueFilePond from 'vue-filepond';
     import 'filepond/dist/filepond.min.css';
+    import 'vue-multiselect/dist/vue-multiselect.min.css';
+    import MultiSelect from 'vue-multiselect'
     // Import image preview plugin styles
     import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
 
@@ -58,13 +116,17 @@
             BackTo,
             FilePond,
             AdminComponentDiv,
+            MultiSelect,
         },
         data() {
             return {
+                values: this.$page.categories,
                 file: '/storage/medium/'+this.$page.material.image,
                 form: this.$inertia.form({
                     title: this.$page.material.title,
                     image: this.$page.material.image,
+                    category: this.$page.material.category,
+                    properties: this.$page.material.properties,
                 }, {
                     bag: 'default',
                     resetOnSuccess: true,
@@ -77,7 +139,24 @@
             },
             processFile(e) {
                 this.form.image = JSON.parse(this.$refs.pond.getFile().serverId).filename;
-            }
+            },
+            addTag(newTag) {
+                newTag = {title: newTag};
+                this.values.push(newTag);
+                this.form.category = newTag;
+            },
+            selecting(val, id) {
+                this.form.category = val.title;
+            },
+            addProperty() {
+                this.form.properties.push({
+                    title: '',
+                    value: '',
+                });
+            },
+            removeProperty(index) {
+                this.form.properties.splice(index, 1);
+            },
         }
     }
 </script>

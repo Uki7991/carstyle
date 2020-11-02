@@ -26,6 +26,10 @@ class StoreMaterialRequest extends FormRequest
         return [
             'title' => 'required',
             'image' => 'required',
+            'category' => 'required',
+            'properties' => 'array|min:1',
+            'properties.*.title' => 'required',
+            'properties.*.value' => 'required',
         ];
     }
 }

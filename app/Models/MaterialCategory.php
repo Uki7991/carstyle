@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MaterialProperty extends Model
+class MaterialCategory extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'id', 'title', 'value',
+        'title',
     ];
 
-    public function material()
+    public function materials()
     {
-        return $this->belongsTo(Material::class);
+        return $this->hasMany(Material::class, 'category_id', 'id');
     }
 }

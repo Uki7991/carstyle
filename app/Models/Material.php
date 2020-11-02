@@ -18,6 +18,11 @@ class Material extends Model
         return $this->hasMany(MaterialProperty::class);
     }
 
+    public function category()
+    {
+        return $this->belongsTo(MaterialCategory::class, 'category_id', 'id');
+    }
+
     public function getActiveAttribute($value)
     {
         return (boolean)$value;
