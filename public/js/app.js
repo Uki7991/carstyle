@@ -4558,6 +4558,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4595,7 +4606,7 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_3___default()(filepond_plug
         tables: []
       }, {
         bag: 'default',
-        resetOnSuccess: true
+        resetOnSuccess: false
       })
     };
   },
@@ -4623,24 +4634,22 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_3___default()(filepond_plug
     },
     addRow: function addRow(formTable) {
       for (var i = 0; i < formTable.headings.length; i++) {
-        console.log(formTable.headings[i]);
         formTable.headings[i].values.push('');
       }
     },
     filteredErrors: function filteredErrors(index) {
       for (var key in this.$page.errors) {
         var reg = new RegExp("tables." + index, 'g');
-        console.log(reg);
 
         if (this.$page.errors.hasOwnProperty(key) && key.match(reg)) {
-          console.log(true);
           this.form.tables[index].error = true;
+          document.querySelectorAll('[href="#' + this.form.tables[index].title + '"]')[0].parentElement.classList.add('error');
           return true;
         }
       }
 
       this.form.tables[index].error = false;
-      console.log(false);
+      document.querySelectorAll('[href="#' + this.form.tables[index].title + '"]')[0].parentElement.classList.remove('error');
       return false;
     },
     removeColumn: function removeColumn(headingIndex, index) {
@@ -4650,6 +4659,14 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_3___default()(filepond_plug
       this.form.tables[index].headings.forEach(function (item) {
         item.values.splice(i, 1);
       });
+    },
+    removeTable: function removeTable(index) {
+      this.form.tables.splice(index, 1);
+
+      if (document.getElementsByClassName('tabs-component-tab').length === 2) {
+        document.getElementsByClassName('tabs-component-tab')[0].classList.add('is-active');
+        document.getElementsByClassName('tabs-component-panel')[0].style.display = 'block';
+      }
     }
   },
   updated: function updated() {
@@ -4658,7 +4675,6 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_3___default()(filepond_plug
     this.form.tables.forEach(function (item, index) {
       _this.filteredErrors(index);
     });
-    console.log(this.$refs.tabsComponent);
   }
 });
 
@@ -47907,47 +47923,74 @@ var render = function() {
                               }
                             },
                             [
-                              _c("vs-input", {
-                                staticClass: "py-4",
-                                attrs: {
-                                  primary: "",
-                                  label: "Название таблицы"
-                                },
-                                scopedSlots: _vm._u(
-                                  [
-                                    _vm.form.error("tables." + index + ".title")
-                                      ? {
-                                          key: "message-danger",
-                                          fn: function() {
-                                            return [
-                                              _vm._v(
-                                                "\n                                    " +
-                                                  _vm._s(
-                                                    _vm.form.error(
-                                                      "tables." +
-                                                        index +
-                                                        ".title"
-                                                    )
-                                                  ) +
-                                                  "\n                                "
-                                              )
-                                            ]
-                                          },
-                                          proxy: true
+                              _c(
+                                "div",
+                                { staticClass: "flex items-center" },
+                                [
+                                  _c("vs-input", {
+                                    staticClass: "py-4",
+                                    attrs: {
+                                      primary: "",
+                                      label: "Название таблицы"
+                                    },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        _vm.form.error(
+                                          "tables." + index + ".title"
+                                        )
+                                          ? {
+                                              key: "message-danger",
+                                              fn: function() {
+                                                return [
+                                                  _vm._v(
+                                                    "\n                                        " +
+                                                      _vm._s(
+                                                        _vm.form.error(
+                                                          "tables." +
+                                                            index +
+                                                            ".title"
+                                                        )
+                                                      ) +
+                                                      "\n                                    "
+                                                  )
+                                                ]
+                                              },
+                                              proxy: true
+                                            }
+                                          : null
+                                      ],
+                                      null,
+                                      true
+                                    ),
+                                    model: {
+                                      value: formTable.title,
+                                      callback: function($$v) {
+                                        _vm.$set(formTable, "title", $$v)
+                                      },
+                                      expression: "formTable.title"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "vs-button",
+                                    {
+                                      attrs: { danger: "" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.removeTable(index)
                                         }
-                                      : null
-                                  ],
-                                  null,
-                                  true
-                                ),
-                                model: {
-                                  value: formTable.title,
-                                  callback: function($$v) {
-                                    _vm.$set(formTable, "title", $$v)
-                                  },
-                                  expression: "formTable.title"
-                                }
-                              }),
+                                      }
+                                    },
+                                    [
+                                      _c("i", { staticClass: "bx bx-x" }),
+                                      _vm._v(
+                                        " Удалить таблицу\n                                "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              ),
                               _vm._v(" "),
                               _c("vs-table", {
                                 staticClass: "max-w-full",
@@ -48292,7 +48335,17 @@ var render = function() {
                 _vm._v(
                   "\n                    Создать таблицу\n                "
                 )
-              ])
+              ]),
+              _vm._v(" "),
+              _vm.form.error("tables")
+                ? _c("p", { staticClass: "text-red-500 text-xs" }, [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.form.error("tables")) +
+                        "\n                "
+                    )
+                  ])
+                : _vm._e()
             ],
             1
           )

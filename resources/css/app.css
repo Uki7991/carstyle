@@ -87,6 +87,9 @@ body {
 .admin-service-tabs .tabs-component-tab {
     @apply border transform relative transition duration-300 translate-x-1;
 }
+.admin-service-tabs .tabs-component-tab.error {
+    @apply border-red-500;
+}
 .admin-service-tabs .tabs-component-tab .tabs-component-tab-a {
     @apply p-4 w-full flex;
 }

@@ -8,6 +8,7 @@ use App\Models\Service;
 use App\Services\ImageUploader;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 
@@ -49,8 +50,20 @@ class ServiceController extends Controller
      */
     public function store(StoreServiceRequest $request)
     {
-        dump($request->all());
-        $service = Service::create($request->validated());
+        DB::transaction(function () use ($request) {
+            $service = Service::create($request->validated());
+
+            foreach ($request->tables as $rTable) {
+                $table = $service->tables()->create($rTable);
+                foreach ($rTable['headings'] as $rHeading) {
+                    $heading = $table->headings()->create($rHeading);
+                    $collection = collect($rHeading['values'])->map(function ($item) {
+                        return ['value' => $item];
+                    });
+                    $heading->values()->createMany($collection->toArray());
+                }
+            }
+        });
 
         $request->session()->flash('form_post', [
             'status' => true,

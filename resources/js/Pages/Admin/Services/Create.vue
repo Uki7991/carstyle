@@ -47,16 +47,24 @@
                     <div class="admin-service-tabs" v-if="form.tables.length">
                         <tabs ref="tabsComponent">
                             <tab :name="formTable.title" v-for="(formTable, index) in form.tables" :key="index" class="custom" :error="formTable.error">
-                                <vs-input
-                                    primary
-                                    label="Название таблицы"
-                                    v-model="formTable.title"
-                                    class="py-4"
-                                >
-                                    <template #message-danger style="height: unset!important;" v-if="form.error('tables.'+index+'.title')">
-                                        {{form.error('tables.'+index+'.title')}}
-                                    </template>
-                                </vs-input>
+                                <div class="flex items-center">
+                                    <vs-input
+                                        primary
+                                        label="Название таблицы"
+                                        v-model="formTable.title"
+                                        class="py-4"
+                                    >
+                                        <template #message-danger style="height: unset!important;" v-if="form.error('tables.'+index+'.title')">
+                                            {{form.error('tables.'+index+'.title')}}
+                                        </template>
+                                    </vs-input>
+                                    <vs-button
+                                        danger
+                                        @click="removeTable(index)"
+                                    >
+                                        <i class="bx bx-x"></i> Удалить таблицу
+                                    </vs-button>
+                                </div>
                                 <vs-table class="max-w-full">
                                     <template #thead>
                                         <vs-tr>
@@ -134,6 +142,9 @@
                     <vs-button @click="addTable">
                         Создать таблицу
                     </vs-button>
+                    <p v-if="form.error('tables')" class="text-red-500 text-xs">
+                        {{form.error('tables')}}
+                    </p>
                 </div>
             </admin-component-div>
         </div>
@@ -181,7 +192,7 @@
                     tables: [],
                 }, {
                     bag: 'default',
-                    resetOnSuccess: true,
+                    resetOnSuccess: false,
                 }),
             }
         },
@@ -213,7 +224,6 @@
             },
             addRow(formTable) {
                 for (let i = 0; i < formTable.headings.length; i++) {
-                    console.log(formTable.headings[i]);
                     formTable.headings[i].values.push('');
                 }
 
@@ -221,16 +231,16 @@
             filteredErrors(index) {
                 for (let key in this.$page.errors) {
                     let reg = new RegExp(`tables\.`+index, 'g');
-                    console.log(reg);
                     if (this.$page.errors.hasOwnProperty(key) && key.match(reg)) {
-                        console.log(true);
                         this.form.tables[index].error = true;
+                        document.querySelectorAll('[href="#'+this.form.tables[index].title+'"]')[0].parentElement.classList.add('error');
+
                         return true;
                     }
                 }
                 this.form.tables[index].error = false;
+                document.querySelectorAll('[href="#'+this.form.tables[index].title+'"]')[0].parentElement.classList.remove('error');
 
-                console.log(false);
                 return false;
             },
             removeColumn(headingIndex, index) {
@@ -240,13 +250,19 @@
                 this.form.tables[index].headings.forEach(item => {
                     item.values.splice(i, 1);
                 })
+            },
+            removeTable(index) {
+                this.form.tables.splice(index, 1);
+                if (document.getElementsByClassName('tabs-component-tab').length === 2) {
+                    document.getElementsByClassName('tabs-component-tab')[0].classList.add('is-active');
+                    document.getElementsByClassName('tabs-component-panel')[0].style.display = 'block';
+                }
             }
         },
         updated() {
             this.form.tables.forEach((item, index) => {
                 this.filteredErrors(index);
-            })
-            console.log(this.$refs.tabsComponent);
+            });
         }
     }
 </script>

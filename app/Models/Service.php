@@ -17,4 +17,9 @@ class Service extends Model
     public function getActiveAttribute($value) {
         return (bool)$value;
     }
+
+    public function tables()
+    {
+        return $this->hasMany(ServiceTable::class, 'service_id', 'id');
+    }
 }

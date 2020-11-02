@@ -20,6 +20,6 @@ class ServiceTable extends Model
 
     public function headings()
     {
-        $this->hasMany(ServiceTableHeading::class, 'service_table_id', 'id');
+        return $this->hasMany(ServiceTableHeading::class, 'service_table_id', 'id');
     }
 }
