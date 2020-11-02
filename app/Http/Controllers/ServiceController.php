@@ -49,6 +49,7 @@ class ServiceController extends Controller
      */
     public function store(StoreServiceRequest $request)
     {
+        dd($request->all());
         $service = Service::create($request->validated());
 
         $request->session()->flash('form_post', [

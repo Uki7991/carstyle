@@ -68,3 +68,25 @@ body {
     padding-top: 36px;
     padding-bottom: 36px;
 }
+.admin-service-tabs {
+    @apply max-w-full;
+}
+.admin-service-tabs .tabs-component {
+    @apply flex max-w-full;
+}
+.admin-service-tabs .tabs-component-tabs {
+    @apply flex flex-col;
+}
+.admin-service-tabs .tabs-component-tab {
+    @apply border transform relative transition duration-300 translate-x-1;
+}
+.admin-service-tabs .tabs-component-tab .tabs-component-tab-a {
+    @apply p-4 w-full flex;
+}
+.admin-service-tabs .tabs-component-tab.is-active {
+    @apply translate-x-px z-20;
+    border-right: 1px solid #fff;
+}
+.admin-service-tabs .tabs-component-panels {
+    @apply p-4 border max-w-full overflow-hidden relative z-10 bg-white;
+}

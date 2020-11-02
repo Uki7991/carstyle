@@ -7,6 +7,7 @@ import { InertiaForm } from 'laravel-jetstream';
 import PortalVue from 'portal-vue';
 import Vuesax from 'vuesax'
 import Link from "@/Mixins/Link";
+import Tabs from 'vue-tabs-component';
 
 import 'vuesax/dist/vuesax.css'
 
@@ -16,6 +17,7 @@ Vue.use(InertiaApp);
 Vue.use(InertiaForm);
 Vue.use(PortalVue);
 Vue.use(Vuesax);
+Vue.use(Tabs);
 
 const app = document.getElementById('app');
 export const bus = new Vue();
