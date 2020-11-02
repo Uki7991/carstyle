@@ -6,26 +6,42 @@
                     Car style
                 </div>
                 <ul class="flex menu">
-                    <li>Услуги</li>
-                    <li>Материалы</li>
-                    <li>Наши работы</li>
-                    <li>Контакты</li>
+                    <li>
+                        <a href="#services">Услуги</a>
+                    </li>
+                    <li>
+                        <a href="#materials">Материалы</a>
+                    </li>
+                    <li>
+                        <a href="#work">Наши работы</a>
+                    </li>
+                    <li>
+                        <a href="#contacts">Контакты</a>
+                    </li>
                 </ul>
 
                 <ul class="flex menu items-center ml-auto">
-                    <li class="icon">
-                        <img src="/assets/icons/instagram.svg" alt="">
+                    <li>
+                        <a href="" class="icon">
+                            <img src="/assets/icons/instagram.svg" alt="">
+                        </a>
                     </li>
-                    <li class="icon">
-                        <img src="/assets/icons/whatsapp.svg" alt="">
+                    <li>
+                        <a href="" class="icon">
+                            <img src="/assets/icons/whatsapp.svg" alt="">
+                        </a>
                     </li>
-                    <li class="icon flex">
-                        <img src="/assets/icons/map.svg" class="mr-1" alt="">
-                        <span>Краснобогатырская ул., 13, с1 </span>
+                    <li>
+                        <a href="" class="icon flex">
+                            <img src="/assets/icons/map.svg" class="mr-1" alt="">
+                            <span>Краснобогатырская ул., 13, с1 </span>
+                        </a>
                     </li>
-                    <li class="icon flex">
-                        <img src="/assets/icons/phone.svg" class="mr-1" alt="">
-                        <span>+74957556983</span>
+                    <li>
+                        <a href="" class="icon flex">
+                            <img src="/assets/icons/phone.svg" class="mr-1" alt="">
+                            <span>+74957556983</span>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -77,21 +93,25 @@
                 </div>
             </section>
 
-            <section class="third py-32">
+            <section id="services" class="third py-32">
                 <div class="container mx-auto">
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Услуги</p>
                     <p class="font-bold mb-5 text-4xl leading-tight">Каталог наших услуг</p>
-                    <div class="flex flex-wrap">
-                        <div class="w-3/12 px-5 my-6" v-for="(item, i) in services" :key="i">
-                            <p class="font-semibold text-lg text-gray-800">{{ item.title }}</p>
-                            <p class="text-sm text-gray-600 italic">{{ item.text }}</p>
-                            <img class="mt-4" :src="'/assets/images/' + item.image" alt="">
+                    <transition duration="200" name="fade">
+                        <div class="flex flex-wrap" v-if="!activeTab">
+                            <div class="w-3/12 px-5 my-6" v-for="(item, i) in services" :key="i" @click="activeService(item)">
+                                <p class="font-semibold text-lg text-gray-800">{{ item.title }}</p>
+                                <p class="text-sm text-gray-600 italic">{{ item.description }}</p>
+                                <img class="mt-4" :src="'/storage/medium/' + item.image" alt="">
+                            </div>
                         </div>
-                    </div>
+
+                        <custom-tabs :services="services" :tables="tables" v-else></custom-tabs>
+                    </transition>
                 </div>
             </section>
 
-            <section class="fourth py-32">
+            <section id="materials" class="fourth py-32">
                 <div class="container mx-auto">
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Материалы</p>
                     <p class="font-bold mb-5 text-4xl leading-tight">Характеристики используемых брендов</p>
@@ -100,49 +120,13 @@
                         <div class="w-full mb-7">
                             <p class="text-xl font-bold">Тонирование стекол</p>
                         </div>
-                        <div class="w-1/2 px-3">
+                        <div class="w-1/2 px-3" v-for="material in materials" :key="material.id">
                             <div class="bg-white rounded-3xl py-5 px-6">
-                                <img src="/assets/images/llumar.png" alt="">
+                                <img :src="'/storage/large/'+material.image" alt="">
                                 <div class="mt-4 text-sm leading-loose">
-                                    <div class="flex justify-between">
-                                        <p>Страна:</p>
-                                        <p class="font-medium">США</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Металлизированная:</p>
-                                        <p class="font-medium">3-слойная</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Отражение видимого света:</p>
-                                        <p class="font-medium">8%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Отражение солнечной энергии:</p>
-                                        <p class="font-medium">74%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Подавление бликов:</p>
-                                        <p class="font-medium">96%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Блокирование ультрафиолета:</p>
-                                        <p class="font-medium">99%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Цвет:</p>
-                                        <p class="font-medium">Угольно-черный</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Пропускание сета:</p>
-                                        <p class="font-medium">5%, 15%, 20%, 35%, 50%</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Устойчивость к царапинам:</p>
-                                        <p class="font-medium">Да</p>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <p>Гарантия:</p>
-                                        <p class="font-medium">Бессрочно</p>
+                                    <div class="flex justify-between" v-for="property in material.properties" :key="property.id">
+                                        <p>{{property.title}}:</p>
+                                        <p class="font-medium">{{property.value}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -297,7 +281,7 @@
                 </div>
             </section>
 
-            <section class="fifth py-32">
+            <section id="work" class="fifth py-32">
                 <div class="container mx-auto">
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Наши работы</p>
                     <div class="flex items-end justify-between">
@@ -337,7 +321,7 @@
                 </div>
             </section>
 
-            <section class="sixth py-32 relative">
+            <section id="contacts" class="sixth py-32 relative">
                 <div class="container mx-auto bg-transparent z-10 relative">
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Контакты</p>
                     <p class="font-bold mb-5 text-4xl leading-tight">Как нас найти?</p>
@@ -380,27 +364,37 @@
                         </div>
 
                         <ul class="flex menu">
-                            <li>Услуги</li>
-                            <li>Материалы</li>
-                            <li>Наши работы</li>
+                            <li>
+                                <a href="#services">Услуги</a>
+                            </li>
+                            <li>
+                                <a href="#materials">Материалы</a>
+                            </li>
+                            <li>
+                                <a href="#work">Наши работы</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="flex items-center justify-between">
                         <div class="flex space-x-9">
-                            <img src="/assets/icons/instagram.svg" alt="">
-                            <img src="/assets/icons/whatsapp.svg" alt="">
-                            <div class="flex space-x-1">
+                            <a href="">
+                                <img src="/assets/icons/instagram.svg" alt="">
+                            </a>
+                            <a href="">
+                                <img src="/assets/icons/whatsapp.svg" alt="">
+                            </a>
+                            <a href="" class="flex space-x-1">
                                 <img src="/assets/icons/phone.svg" alt="">
                                 <p>+74957556983</p>
-                            </div>
-                            <div class="flex space-x-1">
+                            </a>
+                            <a href="" class="flex space-x-1">
                                 <img src="/assets/icons/map.svg" alt="">
                                 <p>Краснобогатырская ул., 13, с1 </p>
-                            </div>
-                            <div class="flex space-x-1">
+                            </a>
+                            <a href="" class="flex space-x-1">
                                 <img src="/assets/icons/mail.svg" alt="">
                                 <p>carstyle@gmail.com</p>
-                            </div>
+                            </a>
                         </div>
                         <p class="text-sm text-gray-500">Все права защищены — 2020 © CAR STYLE</p>
                     </div>
@@ -412,9 +406,11 @@
 
 <script>
     import AppLayout from "../Layouts/AppLayout";
+    import CustomTabs from "@/Components/CustomTabs";
 
     export default {
         components: {
+            CustomTabs,
             AppLayout,
         },
         data() {
@@ -451,39 +447,35 @@
                         text: 'Скоротать время ожидания с кофе и бесплатным WI-FI'
                     },
                 ],
-                services: [
-                    {
-                        title: 'Атермальная тонировка',
-                        text: 'О атермальнной тонировке',
-                        image: '1.jpg',
-                    },
-                    {
-                        title: 'Тонирование стекол',
-                        text: 'О тонировании стекол',
-                        image: '2.jpg',
-                    },
-                    {
-                        title: 'Защита лобового стекла',
-                        text: 'О защите лобового стекла',
-                        image: '3.jpg',
-                    },
-                    {
-                        title: 'Антигравийная защита',
-                        text: 'О антигравийной защите',
-                        image: '4.jpg',
-                    },
-                    {
-                        title: 'Защита фар',
-                        text: 'О защите фар',
-                        image: '5.jpg',
-                    },
-                    {
-                        title: 'Антихром на авто',
-                        text: 'О антихроме',
-                        image: '6.jpg',
-                    },
-                ]
+                services: this.$page.services,
+                materials: this.$page.materials,
+                tables: this.$page.tables,
             }
+        },
+        computed: {
+            activeTab() {
+                let service = this.services.find(item => item.activeTab === true);
+                return service ? service.activeTab : false;
+            }
+        },
+        methods: {
+            activeService(service) {
+                this.services = this.services.map(item => {
+                    return {
+                        ...item,
+                        activeTab: item.id === service.id,
+                    }
+                });
+                let table = this.tables.find(item => item.service_id === service.id);
+                this.tables = this.tables.map(item => {
+                    return {
+                        ...item,
+                        active: table.id === item.id,
+                    }
+                })
+            }
+        },
+        mounted() {
         }
     }
 </script>

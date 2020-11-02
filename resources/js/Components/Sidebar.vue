@@ -177,7 +177,7 @@
         watch: {
             reduce: function(val) {
                 localStorage.setItem('sidebarReduce', this.reduce);
-                bus.$emit('sidebar-reduce', this.reduce);
+                bus.$emit('reduce', this.reduce);
             }
         },
         methods: {
@@ -195,6 +195,6 @@
             } else {
                 this.reduce = (localStorage.getItem('sidebarReduce') === 'true');
             }
-        }
+        },
     }
 </script>

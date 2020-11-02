@@ -100,3 +100,32 @@ body {
 .admin-service-tabs .tabs-component-panels {
     @apply p-4 border max-w-full overflow-hidden relative z-10 bg-white;
 }
+
+.custom-tabs-component {
+    @apply flex;
+}
+.custom-tabs-component-tab {
+    @apply mb-8;
+}
+.custom-tabs-component-tabs .custom-tabs-component-tab.active p {
+    @apply text-indigo-500;
+}
+.custom-tabs-component-tabs .custom-tabs-component-tab p {
+    @apply cursor-pointer;
+}
+.custom-tabs-component-tabs ul {
+    @apply pl-4;
+}
+.custom-tabs-component-tabs ul li {
+    @apply p-2 cursor-pointer;
+}
+.custom-tabs-component-tabs ul li.is-active {
+    @apply text-indigo-500;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+    opacity: 0;
+}

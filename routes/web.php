@@ -6,6 +6,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,7 @@ use App\Http\Controllers\GalleryController;
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 
-Route::get('/', function () {
-    return inertia('Welcome');
-});
+Route::get('/', [IndexController::class, 'home']);
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/dashboard', function () {

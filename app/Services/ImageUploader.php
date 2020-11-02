@@ -34,10 +34,10 @@ class ImageUploader
         }
         $img->stream($file->getClientOriginalExtension(), $quality);
         Storage::disk('local')->put('public/large/'.$filename, $img);
-        $img = self::resize($img, 500);
+        $img = self::resize($img, (int)$img->width() * 0.5);
         $img->stream($file->getClientOriginalExtension(), $quality);
         Storage::disk('local')->put('public/medium/'.$filename, $img);
-        $img = self::resize($img, 200);
+        $img = self::resize($img, (int)$img->width() * 0.2);
         $img->stream($file->getClientOriginalExtension(), $quality);
         Storage::disk('local')->put('public/small/'.$filename, $img);
         return $filename;

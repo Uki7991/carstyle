@@ -1963,6 +1963,96 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/CustomTabs.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/CustomTabs.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['tables', 'services'],
+  methods: {
+    showPanel: function showPanel(table) {
+      this.tables = this.tables.map(function (item) {
+        return _objectSpread(_objectSpread({}, item), {}, {
+          active: table.id === item.id
+        });
+      });
+      this.services = this.services.map(function (item) {
+        return _objectSpread(_objectSpread({}, item), {}, {
+          activeTab: table.service_id === item.id
+        });
+      });
+    },
+    activeService: function activeService(service) {
+      this.services = this.services.map(function (item) {
+        return _objectSpread(_objectSpread({}, item), {}, {
+          activeTab: item.id === service.id
+        });
+      });
+      var table = this.tables.find(function (item) {
+        return item.service_id === service.id;
+      });
+      this.tables = this.tables.map(function (item) {
+        return _objectSpread(_objectSpread({}, item), {}, {
+          active: table.id === item.id
+        });
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/NoData.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/NoData.vue?vue&type=script&lang=js& ***!
@@ -2203,7 +2293,7 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     reduce: function reduce(val) {
       localStorage.setItem('sidebarReduce', this.reduce);
-      _app__WEBPACK_IMPORTED_MODULE_1__["bus"].$emit('sidebar-reduce', this.reduce);
+      _app__WEBPACK_IMPORTED_MODULE_1__["bus"].$emit('reduce', this.reduce);
     }
   },
   methods: {
@@ -5765,12 +5855,13 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _Components_CustomTabs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/CustomTabs */ "./resources/js/Components/CustomTabs.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -6178,8 +6269,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
+    CustomTabs: _Components_CustomTabs__WEBPACK_IMPORTED_MODULE_1__["default"],
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
@@ -6209,33 +6302,37 @@ __webpack_require__.r(__webpack_exports__);
         title: 'Клиентская зона',
         text: 'Скоротать время ожидания с кофе и бесплатным WI-FI'
       }],
-      services: [{
-        title: 'Атермальная тонировка',
-        text: 'О атермальнной тонировке',
-        image: '1.jpg'
-      }, {
-        title: 'Тонирование стекол',
-        text: 'О тонировании стекол',
-        image: '2.jpg'
-      }, {
-        title: 'Защита лобового стекла',
-        text: 'О защите лобового стекла',
-        image: '3.jpg'
-      }, {
-        title: 'Антигравийная защита',
-        text: 'О антигравийной защите',
-        image: '4.jpg'
-      }, {
-        title: 'Защита фар',
-        text: 'О защите фар',
-        image: '5.jpg'
-      }, {
-        title: 'Антихром на авто',
-        text: 'О антихроме',
-        image: '6.jpg'
-      }]
+      services: this.$page.services,
+      materials: this.$page.materials,
+      tables: this.$page.tables
     };
-  }
+  },
+  computed: {
+    activeTab: function activeTab() {
+      var service = this.services.find(function (item) {
+        return item.activeTab === true;
+      });
+      return service ? service.activeTab : false;
+    }
+  },
+  methods: {
+    activeService: function activeService(service) {
+      this.services = this.services.map(function (item) {
+        return _objectSpread(_objectSpread({}, item), {}, {
+          activeTab: item.id === service.id
+        });
+      });
+      var table = this.tables.find(function (item) {
+        return item.service_id === service.id;
+      });
+      this.tables = this.tables.map(function (item) {
+        return _objectSpread(_objectSpread({}, item), {}, {
+          active: table.id === item.id
+        });
+      });
+    }
+  },
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -43267,6 +43364,196 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/CustomTabs.vue?vue&type=template&id=287f3f9a&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/CustomTabs.vue?vue&type=template&id=287f3f9a&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "custom-tabs-component" }, [
+    _c(
+      "ul",
+      { staticClass: "custom-tabs-component-tabs w-3/12" },
+      _vm._l(_vm.services, function(service) {
+        return _c(
+          "li",
+          {
+            key: service.id,
+            staticClass: "custom-tabs-component-tab",
+            class: { active: service.activeTab }
+          },
+          [
+            _c(
+              "p",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.activeService(service)
+                  }
+                }
+              },
+              [_vm._v(_vm._s(service.title))]
+            ),
+            _vm._v(" "),
+            _c("span", [_vm._v(_vm._s(service.description))]),
+            _vm._v(" "),
+            _c("transition", { attrs: { name: "fade", duration: "200" } }, [
+              _c(
+                "ul",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: service.activeTab,
+                      expression: "service.activeTab"
+                    }
+                  ]
+                },
+                _vm._l(
+                  _vm.tables.filter(function(item) {
+                    return item.service_id === service.id
+                  }),
+                  function(table) {
+                    return _c(
+                      "li",
+                      { key: table.id, class: { "is-active": table.active } },
+                      [
+                        _c(
+                          "span",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.showPanel(table)
+                              }
+                            }
+                          },
+                          [_vm._v(_vm._s(table.title))]
+                        )
+                      ]
+                    )
+                  }
+                ),
+                0
+              )
+            ])
+          ],
+          1
+        )
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "custom-tabs-component-panels w-9/12 flex justify-end" },
+      [
+        _c(
+          "transition-group",
+          { attrs: { duration: "200", name: "fade" } },
+          _vm._l(_vm.tables, function(table) {
+            return _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: table.active,
+                    expression: "table.active"
+                  }
+                ],
+                key: table.id,
+                staticClass: "custom-tabs-component-panel",
+                attrs: { "aria-hidden": "true", role: "tabpanel" }
+              },
+              [
+                _c("vs-table", {
+                  scopedSlots: _vm._u(
+                    [
+                      {
+                        key: "thead",
+                        fn: function() {
+                          return [
+                            _c(
+                              "vs-tr",
+                              _vm._l(table.headings, function(heading) {
+                                return _c("vs-th", { key: heading.id }, [
+                                  _vm._v(
+                                    "\n                                " +
+                                      _vm._s(heading.title) +
+                                      "\n                            "
+                                  )
+                                ])
+                              }),
+                              1
+                            )
+                          ]
+                        },
+                        proxy: true
+                      },
+                      {
+                        key: "tbody",
+                        fn: function() {
+                          return _vm._l(
+                            table.headings[0].values.length,
+                            function(item, i) {
+                              return _c(
+                                "vs-tr",
+                                { key: i },
+                                _vm._l(table.headings.length, function(
+                                  jtem,
+                                  j
+                                ) {
+                                  return _c("vs-td", { key: j }, [
+                                    _vm._v(
+                                      "\n                                " +
+                                        _vm._s(
+                                          table.headings[j].values[i].value
+                                        ) +
+                                        "\n                            "
+                                    )
+                                  ])
+                                }),
+                                1
+                              )
+                            }
+                          )
+                        },
+                        proxy: true
+                      }
+                    ],
+                    null,
+                    true
+                  )
+                })
+              ],
+              1
+            )
+          }),
+          0
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/NoData.vue?vue&type=template&id=d1cdacd4&scoped=true&":
 /*!*********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/NoData.vue?vue&type=template&id=d1cdacd4&scoped=true& ***!
@@ -50215,47 +50502,157 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("section", { staticClass: "third py-32" }, [
-        _c("div", { staticClass: "container mx-auto" }, [
-          _c(
-            "p",
-            { staticClass: "text-indigo-600 text-lg mb-3 font-semibold" },
-            [_vm._v("Услуги")]
-          ),
-          _vm._v(" "),
-          _c("p", { staticClass: "font-bold mb-5 text-4xl leading-tight" }, [
-            _vm._v("Каталог наших услуг")
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "flex flex-wrap" },
-            _vm._l(_vm.services, function(item, i) {
-              return _c("div", { key: i, staticClass: "w-3/12 px-5 my-6" }, [
-                _c(
-                  "p",
-                  { staticClass: "font-semibold text-lg text-gray-800" },
-                  [_vm._v(_vm._s(item.title))]
-                ),
-                _vm._v(" "),
-                _c("p", { staticClass: "text-sm text-gray-600 italic" }, [
-                  _vm._v(_vm._s(item.text))
-                ]),
-                _vm._v(" "),
-                _c("img", {
-                  staticClass: "mt-4",
-                  attrs: { src: "/assets/images/" + item.image, alt: "" }
-                })
-              ])
-            }),
-            0
-          )
-        ])
+      _c("section", { staticClass: "third py-32", attrs: { id: "services" } }, [
+        _c(
+          "div",
+          { staticClass: "container mx-auto" },
+          [
+            _c(
+              "p",
+              { staticClass: "text-indigo-600 text-lg mb-3 font-semibold" },
+              [_vm._v("Услуги")]
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "font-bold mb-5 text-4xl leading-tight" }, [
+              _vm._v("Каталог наших услуг")
+            ]),
+            _vm._v(" "),
+            _c(
+              "transition",
+              { attrs: { duration: "200", name: "fade" } },
+              [
+                !_vm.activeTab
+                  ? _c(
+                      "div",
+                      { staticClass: "flex flex-wrap" },
+                      _vm._l(_vm.services, function(item, i) {
+                        return _c(
+                          "div",
+                          {
+                            key: i,
+                            staticClass: "w-3/12 px-5 my-6",
+                            on: {
+                              click: function($event) {
+                                return _vm.activeService(item)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "p",
+                              {
+                                staticClass:
+                                  "font-semibold text-lg text-gray-800"
+                              },
+                              [_vm._v(_vm._s(item.title))]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "p",
+                              { staticClass: "text-sm text-gray-600 italic" },
+                              [_vm._v(_vm._s(item.description))]
+                            ),
+                            _vm._v(" "),
+                            _c("img", {
+                              staticClass: "mt-4",
+                              attrs: {
+                                src: "/storage/medium/" + item.image,
+                                alt: ""
+                              }
+                            })
+                          ]
+                        )
+                      }),
+                      0
+                    )
+                  : _c("custom-tabs", {
+                      attrs: { services: _vm.services, tables: _vm.tables }
+                    })
+              ],
+              1
+            )
+          ],
+          1
+        )
       ]),
       _vm._v(" "),
-      _vm._m(4),
+      _c(
+        "section",
+        { staticClass: "fourth py-32", attrs: { id: "materials" } },
+        [
+          _c("div", { staticClass: "container mx-auto" }, [
+            _c(
+              "p",
+              { staticClass: "text-indigo-600 text-lg mb-3 font-semibold" },
+              [_vm._v("Материалы")]
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "font-bold mb-5 text-4xl leading-tight" }, [
+              _vm._v("Характеристики используемых брендов")
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex py-5 flex-wrap" },
+              [
+                _vm._m(4),
+                _vm._v(" "),
+                _vm._l(_vm.materials, function(material) {
+                  return _c(
+                    "div",
+                    { key: material.id, staticClass: "w-1/2 px-3" },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "bg-white rounded-3xl py-5 px-6" },
+                        [
+                          _c("img", {
+                            attrs: {
+                              src: "/storage/large/" + material.image,
+                              alt: ""
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "mt-4 text-sm leading-loose" },
+                            _vm._l(material.properties, function(property) {
+                              return _c(
+                                "div",
+                                {
+                                  key: property.id,
+                                  staticClass: "flex justify-between"
+                                },
+                                [
+                                  _c("p", [
+                                    _vm._v(_vm._s(property.title) + ":")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("p", { staticClass: "font-medium" }, [
+                                    _vm._v(_vm._s(property.value))
+                                  ])
+                                ]
+                              )
+                            }),
+                            0
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                }),
+                _vm._v(" "),
+                _vm._m(5)
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _vm._m(6)
+          ])
+        ]
+      ),
       _vm._v(" "),
-      _c("section", { staticClass: "fifth py-32" }, [
+      _c("section", { staticClass: "fifth py-32", attrs: { id: "work" } }, [
         _c("div", { staticClass: "container mx-auto" }, [
           _c(
             "p",
@@ -50263,7 +50660,7 @@ var render = function() {
             [_vm._v("Наши работы")]
           ),
           _vm._v(" "),
-          _vm._m(5),
+          _vm._m(7),
           _vm._v(" "),
           _c(
             "div",
@@ -50317,9 +50714,9 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(6),
+      _vm._m(8),
       _vm._v(" "),
-      _vm._m(7)
+      _vm._m(9)
     ])
   ])
 }
@@ -50338,44 +50735,60 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("ul", { staticClass: "flex menu" }, [
-            _c("li", [_vm._v("Услуги")]),
+            _c("li", [
+              _c("a", { attrs: { href: "#services" } }, [_vm._v("Услуги")])
+            ]),
             _vm._v(" "),
-            _c("li", [_vm._v("Материалы")]),
+            _c("li", [
+              _c("a", { attrs: { href: "#materials" } }, [_vm._v("Материалы")])
+            ]),
             _vm._v(" "),
-            _c("li", [_vm._v("Наши работы")]),
+            _c("li", [
+              _c("a", { attrs: { href: "#work" } }, [_vm._v("Наши работы")])
+            ]),
             _vm._v(" "),
-            _c("li", [_vm._v("Контакты")])
+            _c("li", [
+              _c("a", { attrs: { href: "#contacts" } }, [_vm._v("Контакты")])
+            ])
           ]),
           _vm._v(" "),
           _c("ul", { staticClass: "flex menu items-center ml-auto" }, [
-            _c("li", { staticClass: "icon" }, [
-              _c("img", {
-                attrs: { src: "/assets/icons/instagram.svg", alt: "" }
-              })
+            _c("li", [
+              _c("a", { staticClass: "icon", attrs: { href: "" } }, [
+                _c("img", {
+                  attrs: { src: "/assets/icons/instagram.svg", alt: "" }
+                })
+              ])
             ]),
             _vm._v(" "),
-            _c("li", { staticClass: "icon" }, [
-              _c("img", {
-                attrs: { src: "/assets/icons/whatsapp.svg", alt: "" }
-              })
+            _c("li", [
+              _c("a", { staticClass: "icon", attrs: { href: "" } }, [
+                _c("img", {
+                  attrs: { src: "/assets/icons/whatsapp.svg", alt: "" }
+                })
+              ])
             ]),
             _vm._v(" "),
-            _c("li", { staticClass: "icon flex" }, [
-              _c("img", {
-                staticClass: "mr-1",
-                attrs: { src: "/assets/icons/map.svg", alt: "" }
-              }),
-              _vm._v(" "),
-              _c("span", [_vm._v("Краснобогатырская ул., 13, с1 ")])
+            _c("li", [
+              _c("a", { staticClass: "icon flex", attrs: { href: "" } }, [
+                _c("img", {
+                  staticClass: "mr-1",
+                  attrs: { src: "/assets/icons/map.svg", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("span", [_vm._v("Краснобогатырская ул., 13, с1 ")])
+              ])
             ]),
             _vm._v(" "),
-            _c("li", { staticClass: "icon flex" }, [
-              _c("img", {
-                staticClass: "mr-1",
-                attrs: { src: "/assets/icons/phone.svg", alt: "" }
-              }),
-              _vm._v(" "),
-              _c("span", [_vm._v("+74957556983")])
+            _c("li", [
+              _c("a", { staticClass: "icon flex", attrs: { href: "" } }, [
+                _c("img", {
+                  staticClass: "mr-1",
+                  attrs: { src: "/assets/icons/phone.svg", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("span", [_vm._v("+74957556983")])
+              ])
             ])
           ])
         ]
@@ -50511,324 +50924,236 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "fourth py-32" }, [
-      _c("div", { staticClass: "container mx-auto" }, [
-        _c("p", { staticClass: "text-indigo-600 text-lg mb-3 font-semibold" }, [
-          _vm._v("Материалы")
-        ]),
+    return _c("div", { staticClass: "w-full mb-7" }, [
+      _c("p", { staticClass: "text-xl font-bold" }, [
+        _vm._v("Тонирование стекол")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "w-1/2 px-3" }, [
+      _c("div", { staticClass: "bg-white rounded-3xl py-5 px-6" }, [
+        _c("img", { attrs: { src: "/assets/images/llumar.png", alt: "" } }),
         _vm._v(" "),
-        _c("p", { staticClass: "font-bold mb-5 text-4xl leading-tight" }, [
-          _vm._v("Характеристики используемых брендов")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex py-5 flex-wrap" }, [
-          _c("div", { staticClass: "w-full mb-7" }, [
-            _c("p", { staticClass: "text-xl font-bold" }, [
-              _vm._v("Тонирование стекол")
+        _c("div", { staticClass: "mt-4 text-sm leading-loose" }, [
+          _c("div", { staticClass: "flex justify-between" }, [
+            _c("p", [_vm._v("Страна:")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "font-medium" }, [_vm._v("США")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex justify-between" }, [
+            _c("p", [_vm._v("Металлизированная:")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "font-medium" }, [_vm._v("3-слойная")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex justify-between" }, [
+            _c("p", [_vm._v("Отражение видимого света:")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "font-medium" }, [_vm._v("8%")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex justify-between" }, [
+            _c("p", [_vm._v("Отражение солнечной энергии:")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "font-medium" }, [_vm._v("74%")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex justify-between" }, [
+            _c("p", [_vm._v("Подавление бликов:")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "font-medium" }, [_vm._v("96%")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex justify-between" }, [
+            _c("p", [_vm._v("Блокирование ультрафиолета:")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "font-medium" }, [_vm._v("99%")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex justify-between" }, [
+            _c("p", [_vm._v("Цвет:")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "font-medium" }, [_vm._v("Угольно-черный")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex justify-between" }, [
+            _c("p", [_vm._v("Пропускание сета:")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "font-medium" }, [
+              _vm._v("5%, 15%, 20%, 35%, 50%")
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "w-1/2 px-3" }, [
-            _c("div", { staticClass: "bg-white rounded-3xl py-5 px-6" }, [
-              _c("img", {
-                attrs: { src: "/assets/images/llumar.png", alt: "" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "mt-4 text-sm leading-loose" }, [
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Страна:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("США")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Металлизированная:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("3-слойная")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Отражение видимого света:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("8%")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Отражение солнечной энергии:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("74%")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Подавление бликов:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("96%")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Блокирование ультрафиолета:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("99%")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Цвет:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [
-                    _vm._v("Угольно-черный")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Пропускание сета:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [
-                    _vm._v("5%, 15%, 20%, 35%, 50%")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Устойчивость к царапинам:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("Да")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Гарантия:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("Бессрочно")])
-                ])
-              ])
-            ])
+          _c("div", { staticClass: "flex justify-between" }, [
+            _c("p", [_vm._v("Устойчивость к царапинам:")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "font-medium" }, [_vm._v("Да")])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "w-1/2 px-3" }, [
-            _c("div", { staticClass: "bg-white rounded-3xl py-5 px-6" }, [
-              _c("img", {
-                attrs: { src: "/assets/images/llumar.png", alt: "" }
-              }),
+          _c("div", { staticClass: "flex justify-between" }, [
+            _c("p", [_vm._v("Гарантия:")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "font-medium" }, [_vm._v("Бессрочно")])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex py-5 flex-wrap" }, [
+      _c("div", { staticClass: "w-full mb-7" }, [
+        _c("p", { staticClass: "text-xl font-bold" }, [
+          _vm._v("Антигравийная защита")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-1/2 px-3" }, [
+        _c("div", { staticClass: "bg-white rounded-3xl py-5 px-6" }, [
+          _c("img", { attrs: { src: "/assets/images/llumar.png", alt: "" } }),
+          _vm._v(" "),
+          _c("div", { staticClass: "mt-4 text-sm leading-loose" }, [
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Страна:")]),
               _vm._v(" "),
-              _c("div", { staticClass: "mt-4 text-sm leading-loose" }, [
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Страна:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("США")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Металлизированная:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("3-слойная")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Отражение видимого света:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("8%")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Отражение солнечной энергии:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("74%")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Подавление бликов:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("96%")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Блокирование ультрафиолета:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("99%")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Цвет:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [
-                    _vm._v("Угольно-черный")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Пропускание сета:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [
-                    _vm._v("5%, 15%, 20%, 35%, 50%")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Устойчивость к царапинам:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("Да")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Гарантия:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("Бессрочно")])
-                ])
+              _c("p", { staticClass: "font-medium" }, [_vm._v("США")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Металлизированная:")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-medium" }, [_vm._v("3-слойная")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Отражение видимого света:")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-medium" }, [_vm._v("8%")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Отражение солнечной энергии:")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-medium" }, [_vm._v("74%")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Подавление бликов:")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-medium" }, [_vm._v("96%")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Блокирование ультрафиолета:")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-medium" }, [_vm._v("99%")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Цвет:")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-medium" }, [
+                _vm._v("Угольно-черный")
               ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Пропускание сета:")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-medium" }, [
+                _vm._v("5%, 15%, 20%, 35%, 50%")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Устойчивость к царапинам:")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-medium" }, [_vm._v("Да")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Гарантия:")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-medium" }, [_vm._v("Бессрочно")])
             ])
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex py-5 flex-wrap" }, [
-          _c("div", { staticClass: "w-full mb-7" }, [
-            _c("p", { staticClass: "text-xl font-bold" }, [
-              _vm._v("Антигравийная защита")
-            ])
-          ]),
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-1/2 px-3" }, [
+        _c("div", { staticClass: "bg-white rounded-3xl py-5 px-6" }, [
+          _c("img", { attrs: { src: "/assets/images/llumar.png", alt: "" } }),
           _vm._v(" "),
-          _c("div", { staticClass: "w-1/2 px-3" }, [
-            _c("div", { staticClass: "bg-white rounded-3xl py-5 px-6" }, [
-              _c("img", {
-                attrs: { src: "/assets/images/llumar.png", alt: "" }
-              }),
+          _c("div", { staticClass: "mt-4 text-sm leading-loose" }, [
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Страна:")]),
               _vm._v(" "),
-              _c("div", { staticClass: "mt-4 text-sm leading-loose" }, [
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Страна:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("США")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Металлизированная:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("3-слойная")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Отражение видимого света:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("8%")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Отражение солнечной энергии:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("74%")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Подавление бликов:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("96%")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Блокирование ультрафиолета:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("99%")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Цвет:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [
-                    _vm._v("Угольно-черный")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Пропускание сета:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [
-                    _vm._v("5%, 15%, 20%, 35%, 50%")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Устойчивость к царапинам:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("Да")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Гарантия:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("Бессрочно")])
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "w-1/2 px-3" }, [
-            _c("div", { staticClass: "bg-white rounded-3xl py-5 px-6" }, [
-              _c("img", {
-                attrs: { src: "/assets/images/llumar.png", alt: "" }
-              }),
+              _c("p", { staticClass: "font-medium" }, [_vm._v("США")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Металлизированная:")]),
               _vm._v(" "),
-              _c("div", { staticClass: "mt-4 text-sm leading-loose" }, [
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Страна:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("США")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Металлизированная:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("3-слойная")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Отражение видимого света:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("8%")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Отражение солнечной энергии:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("74%")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Подавление бликов:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("96%")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Блокирование ультрафиолета:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("99%")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Цвет:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [
-                    _vm._v("Угольно-черный")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Пропускание сета:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [
-                    _vm._v("5%, 15%, 20%, 35%, 50%")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Устойчивость к царапинам:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("Да")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "flex justify-between" }, [
-                  _c("p", [_vm._v("Гарантия:")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "font-medium" }, [_vm._v("Бессрочно")])
-                ])
+              _c("p", { staticClass: "font-medium" }, [_vm._v("3-слойная")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Отражение видимого света:")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-medium" }, [_vm._v("8%")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Отражение солнечной энергии:")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-medium" }, [_vm._v("74%")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Подавление бликов:")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-medium" }, [_vm._v("96%")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Блокирование ультрафиолета:")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-medium" }, [_vm._v("99%")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Цвет:")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-medium" }, [
+                _vm._v("Угольно-черный")
               ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Пропускание сета:")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-medium" }, [
+                _vm._v("5%, 15%, 20%, 35%, 50%")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Устойчивость к царапинам:")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-medium" }, [_vm._v("Да")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex justify-between" }, [
+              _c("p", [_vm._v("Гарантия:")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-medium" }, [_vm._v("Бессрочно")])
             ])
           ])
         ])
@@ -50905,81 +51230,89 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "sixth py-32 relative" }, [
-      _c(
-        "div",
-        { staticClass: "container mx-auto bg-transparent z-10 relative" },
-        [
-          _c(
-            "p",
-            { staticClass: "text-indigo-600 text-lg mb-3 font-semibold" },
-            [_vm._v("Контакты")]
-          ),
-          _vm._v(" "),
-          _c("p", { staticClass: "font-bold mb-5 text-4xl leading-tight" }, [
-            _vm._v("Как нас найти?")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex flex-col space-y-5 py-5" }, [
-            _c("div", { staticClass: "flex" }, [
-              _c("img", {
-                staticClass: "mr-1",
-                attrs: { src: "/assets/icons/map.svg", alt: "" }
-              }),
-              _vm._v(" "),
-              _c("p", [_vm._v("Краснобогатырская ул., 13, с1 ")])
+    return _c(
+      "section",
+      { staticClass: "sixth py-32 relative", attrs: { id: "contacts" } },
+      [
+        _c(
+          "div",
+          { staticClass: "container mx-auto bg-transparent z-10 relative" },
+          [
+            _c(
+              "p",
+              { staticClass: "text-indigo-600 text-lg mb-3 font-semibold" },
+              [_vm._v("Контакты")]
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "font-bold mb-5 text-4xl leading-tight" }, [
+              _vm._v("Как нас найти?")
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "flex" }, [
-              _c("img", {
-                staticClass: "mr-1",
-                attrs: { src: "/assets/icons/mail.svg", alt: "" }
-              }),
+            _c("div", { staticClass: "flex flex-col space-y-5 py-5" }, [
+              _c("div", { staticClass: "flex" }, [
+                _c("img", {
+                  staticClass: "mr-1",
+                  attrs: { src: "/assets/icons/map.svg", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("p", [_vm._v("Краснобогатырская ул., 13, с1 ")])
+              ]),
               _vm._v(" "),
-              _c("p", [_vm._v("carstyle@gmail.com")])
+              _c("div", { staticClass: "flex" }, [
+                _c("img", {
+                  staticClass: "mr-1",
+                  attrs: { src: "/assets/icons/mail.svg", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("p", [_vm._v("carstyle@gmail.com")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex" }, [
+                _c("img", {
+                  staticClass: "mr-1",
+                  attrs: { src: "/assets/icons/phone.svg", alt: "" }
+                }),
+                _vm._v(" "),
+                _c("p", [_vm._v("+74957556983")])
+              ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "flex" }, [
+            _c("div", { staticClass: "flex space-x-5 py-5" }, [
               _c("img", {
-                staticClass: "mr-1",
-                attrs: { src: "/assets/icons/phone.svg", alt: "" }
+                staticClass: "w-9 cursor-pointer",
+                attrs: { src: "/assets/icons/instagram.svg", alt: "" }
               }),
               _vm._v(" "),
-              _c("p", [_vm._v("+74957556983")])
+              _c("img", {
+                staticClass: "w-9 cursor-pointer",
+                attrs: { src: "/assets/icons/whatsapp.svg", alt: "" }
+              })
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex space-x-5 py-5" }, [
-            _c("img", {
-              staticClass: "w-9 cursor-pointer",
-              attrs: { src: "/assets/icons/instagram.svg", alt: "" }
-            }),
-            _vm._v(" "),
-            _c("img", {
-              staticClass: "w-9 cursor-pointer",
-              attrs: { src: "/assets/icons/whatsapp.svg", alt: "" }
-            })
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "flex absolute top-0 w-full" }, [
-        _c("div", { staticClass: "w-5/12 bg-white absolute h-202" }),
+          ]
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "w-8/12 map-shadow absolute right-0 top-7" }, [
-          _c("iframe", {
-            staticStyle: { position: "relative" },
-            attrs: {
-              src: "https://yandex.ru/map-widget/v1/-/CCQ~nEg3tD",
-              width: "100%",
-              height: "566",
-              frameborder: "1",
-              allowfullscreen: "true"
-            }
-          })
+        _c("div", { staticClass: "flex absolute top-0 w-full" }, [
+          _c("div", { staticClass: "w-5/12 bg-white absolute h-202" }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "w-8/12 map-shadow absolute right-0 top-7" },
+            [
+              _c("iframe", {
+                staticStyle: { position: "relative" },
+                attrs: {
+                  src: "https://yandex.ru/map-widget/v1/-/CCQ~nEg3tD",
+                  width: "100%",
+                  height: "566",
+                  frameborder: "1",
+                  allowfullscreen: "true"
+                }
+              })
+            ]
+          )
         ])
-      ])
-    ])
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -50993,37 +51326,47 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("ul", { staticClass: "flex menu" }, [
-            _c("li", [_vm._v("Услуги")]),
+            _c("li", [
+              _c("a", { attrs: { href: "#services" } }, [_vm._v("Услуги")])
+            ]),
             _vm._v(" "),
-            _c("li", [_vm._v("Материалы")]),
+            _c("li", [
+              _c("a", { attrs: { href: "#materials" } }, [_vm._v("Материалы")])
+            ]),
             _vm._v(" "),
-            _c("li", [_vm._v("Наши работы")])
+            _c("li", [
+              _c("a", { attrs: { href: "#work" } }, [_vm._v("Наши работы")])
+            ])
           ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "flex items-center justify-between" }, [
           _c("div", { staticClass: "flex space-x-9" }, [
-            _c("img", {
-              attrs: { src: "/assets/icons/instagram.svg", alt: "" }
-            }),
+            _c("a", { attrs: { href: "" } }, [
+              _c("img", {
+                attrs: { src: "/assets/icons/instagram.svg", alt: "" }
+              })
+            ]),
             _vm._v(" "),
-            _c("img", {
-              attrs: { src: "/assets/icons/whatsapp.svg", alt: "" }
-            }),
+            _c("a", { attrs: { href: "" } }, [
+              _c("img", {
+                attrs: { src: "/assets/icons/whatsapp.svg", alt: "" }
+              })
+            ]),
             _vm._v(" "),
-            _c("div", { staticClass: "flex space-x-1" }, [
+            _c("a", { staticClass: "flex space-x-1", attrs: { href: "" } }, [
               _c("img", { attrs: { src: "/assets/icons/phone.svg", alt: "" } }),
               _vm._v(" "),
               _c("p", [_vm._v("+74957556983")])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "flex space-x-1" }, [
+            _c("a", { staticClass: "flex space-x-1", attrs: { href: "" } }, [
               _c("img", { attrs: { src: "/assets/icons/map.svg", alt: "" } }),
               _vm._v(" "),
               _c("p", [_vm._v("Краснобогатырская ул., 13, с1 ")])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "flex space-x-1" }, [
+            _c("a", { staticClass: "flex space-x-1", attrs: { href: "" } }, [
               _c("img", { attrs: { src: "/assets/icons/mail.svg", alt: "" } }),
               _vm._v(" "),
               _c("p", [_vm._v("carstyle@gmail.com")])
@@ -90898,6 +91241,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BackTo_vue_vue_type_template_id_44ac7f3b_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BackTo_vue_vue_type_template_id_44ac7f3b_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Components/CustomTabs.vue":
+/*!************************************************!*\
+  !*** ./resources/js/Components/CustomTabs.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CustomTabs_vue_vue_type_template_id_287f3f9a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CustomTabs.vue?vue&type=template&id=287f3f9a&scoped=true& */ "./resources/js/Components/CustomTabs.vue?vue&type=template&id=287f3f9a&scoped=true&");
+/* harmony import */ var _CustomTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CustomTabs.vue?vue&type=script&lang=js& */ "./resources/js/Components/CustomTabs.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CustomTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CustomTabs_vue_vue_type_template_id_287f3f9a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CustomTabs_vue_vue_type_template_id_287f3f9a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "287f3f9a",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Components/CustomTabs.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Components/CustomTabs.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/Components/CustomTabs.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./CustomTabs.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/CustomTabs.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Components/CustomTabs.vue?vue&type=template&id=287f3f9a&scoped=true&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/Components/CustomTabs.vue?vue&type=template&id=287f3f9a&scoped=true& ***!
+  \*******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomTabs_vue_vue_type_template_id_287f3f9a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./CustomTabs.vue?vue&type=template&id=287f3f9a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/CustomTabs.vue?vue&type=template&id=287f3f9a&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomTabs_vue_vue_type_template_id_287f3f9a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CustomTabs_vue_vue_type_template_id_287f3f9a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
