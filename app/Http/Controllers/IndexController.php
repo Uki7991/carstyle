@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gallery;
+use App\Models\GalleryCategory;
 use App\Models\Material;
 use App\Models\MaterialCategory;
 use App\Models\Service;
@@ -19,6 +20,12 @@ class IndexController extends Controller
             $query->with('properties')->where('active', true);
         })->with('materials.properties')->get();
         $galleries = Gallery::with('category')->get();
+        $galleryCategory = GalleryCategory::whereHas('galleries')->withCount('galleries')->get()->prepend(collect([
+            'title' => 'Все',
+            'id' => 0,
+            'galleries_count' => Gallery::all()->count(),
+            'active' => true,
+        ]));
         $tables = ServiceTable::with('headings.values')->whereIn('service_id', $services->pluck('id'))->get();
 
         $tables->map(function ($item, $index) {
@@ -35,6 +42,7 @@ class IndexController extends Controller
             'services' => $services,
             'materialCategories' => $materialCategories,
             'galleries' => $galleries,
+            'galleryCategories' => $galleryCategory,
             'tables' => $tables,
         ]);
     }

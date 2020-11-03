@@ -55,6 +55,13 @@ body {
     box-shadow: 0px 15px 33px -6px #D4D7E1;
 }
 
+.splide__arrow--next {
+    @apply -right-12 !important;
+}
+.splide__arrow--prev {
+    @apply -left-12 !important;
+}
+
 .dots_back {
     background-image: url("/assets/images/dots_back.png");
     @apply bg-no-repeat bg-cover absolute;

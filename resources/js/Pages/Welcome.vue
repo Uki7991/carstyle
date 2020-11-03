@@ -1,77 +1,79 @@
 <template>
     <div>
         <div class="fixed top-0 w-screen right-0 z-20 bg-white">
-            <div class="flex justify-between px-4 py-5">
+            <div class="flex justify-between items-center px-4 py-5">
                 <div class="text-logo uppercase">
                     Car style
                 </div>
-                <img @click="openMenu" v-if="!menuActive" src="/assets/icons/menu.svg" alt="">
+                <img @click="openMenu" class="w-12" v-if="!menuActive" src="/assets/icons/menu.svg" alt="">
             </div>
         </div>
-        <nav class="fixed lg:sticky top-0 bg-white w-screen lg:w-full h-screen lg:h-auto z-50" v-show="menuActive">
-            <div class="container py-5 flex pl-4 lg:pl-0 flex-col lg:flex-row lg:items-center mx-auto">
-                <div class="flex justify-between items-center">
-                    <div class="text-logo uppercase">
-                        Car style
+        <transition name="fade" mode="out-in" duration="300">
+            <nav class="fixed lg:sticky top-0 bg-white w-screen lg:w-full h-screen lg:h-auto z-50" v-show="menuActive">
+                <div class="container py-5 flex pl-4 lg:pl-0 flex-col lg:flex-row h-full justify-between lg:justify-start lg:items-center mx-auto">
+                    <div class="flex justify-between items-center">
+                        <div class="text-logo uppercase">
+                            Car style
+                        </div>
+                        <img @click="closeMenu" class="block lg:hidden w-12" v-if="menuActive" src="/assets/icons/close.svg" alt="">
+
                     </div>
-                    <img @click="closeMenu" class="block lg:hidden w-12" v-if="menuActive" src="/assets/icons/close.svg" alt="">
+                    <ul class="flex pl-0 lg:pl-9 lg:space-x-9 menu font-bold lg:font-normal text-4xl lg:text-base flex-col lg:flex-row">
+                        <li>
+                            <a href="#services">Услуги</a>
+                        </li>
+                        <li>
+                            <a href="#materials">Материалы</a>
+                        </li>
+                        <li>
+                            <a href="#work">Наши работы</a>
+                        </li>
+                        <li>
+                            <a href="#contacts">Контакты</a>
+                        </li>
+                    </ul>
 
+                    <ul class="flex menu lg:space-x-9 flex-col lg:flex-row lg:items-center lg:ml-auto flex-col-reverse">
+                        <li class="">
+                            <ul class="flex bottom-0 left-0 mt-5 lg:mt-0 space-x-9">
+                                <li>
+                                    <a href="" class="icon">
+                                        <img class="w-6 lg:w-auto" src="/assets/icons/instagram.svg" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" class="icon">
+                                        <img class="w-6 lg:w-auto" src="/assets/icons/whatsapp.svg" alt="">
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="flex flex-col lg:items-center lg:space-x-9 space-y-3 lg:space-y-0 lg:flex-row">
+                                <li>
+                                    <a href="" class="icon flex">
+                                        <img src="/assets/icons/map.svg" class="mr-1" alt="">
+                                        <span>Краснобогатырская ул., 13, с1 </span>
+                                    </a>
+                                </li>
+                                <li class="lg:hidden block">
+                                    <a href="" class="icon flex">
+                                        <img src="/assets/icons/mail.svg" class="mr-1" alt="">
+                                        <span>carstyle@gmail.com</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" class="icon flex">
+                                        <img src="/assets/icons/phone.svg" class="mr-1" alt="">
+                                        <span>+74957556983</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
-                <ul class="flex pl-0 lg:pl-9 lg:space-x-9 py-16 lg:py-0 menu font-bold lg:font-normal text-4xl lg:text-base flex-col lg:flex-row">
-                    <li>
-                        <a href="#services">Услуги</a>
-                    </li>
-                    <li>
-                        <a href="#materials">Материалы</a>
-                    </li>
-                    <li>
-                        <a href="#work">Наши работы</a>
-                    </li>
-                    <li>
-                        <a href="#contacts">Контакты</a>
-                    </li>
-                </ul>
-
-                <ul class="flex menu lg:space-x-9 flex-col lg:flex-row lg:items-center lg:ml-auto flex-col-reverse">
-                    <li class="pt-9 lg:pt-0">
-                        <ul class="flex bottom-0 left-0 mt-5 lg:mt-0 space-x-9">
-                            <li>
-                                <a href="" class="icon">
-                                    <img class="w-6 lg:w-auto" src="/assets/icons/instagram.svg" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="" class="icon">
-                                    <img class="w-6 lg:w-auto" src="/assets/icons/whatsapp.svg" alt="">
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <ul class="flex flex-col lg:items-center lg:space-x-9 space-y-3 lg:space-y-0 lg:flex-row">
-                            <li>
-                                <a href="" class="icon flex">
-                                    <img src="/assets/icons/map.svg" class="mr-1" alt="">
-                                    <span>Краснобогатырская ул., 13, с1 </span>
-                                </a>
-                            </li>
-                            <li class="lg:hidden block">
-                                <a href="" class="icon flex">
-                                    <img src="/assets/icons/mail.svg" class="mr-1" alt="">
-                                    <span>carstyle@gmail.com</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="" class="icon flex">
-                                    <img src="/assets/icons/phone.svg" class="mr-1" alt="">
-                                    <span>+74957556983</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+            </nav>
+        </transition>
 
         <main>
             <section class="first py-32 relative px-4">
@@ -166,37 +168,34 @@
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Наши работы</p>
                     <div class="flex flex-col lg:flex-row items-end justify-between">
                         <p class="font-bold mb-5 text-4xl text-2xl leading-tight">Фотографии работ</p>
-                        <div class="lg:flex mb-5 hidden">
-                            <img src="/assets/icons/left_arrow.svg" alt="">
-                            <div class="mx-3 px-3 flex">
-                                <div class="relative mr-6">
-                                    <span class="text-xs text-indigo-600 absolute -top-1 -right-4">421</span>
-                                    <p>Все</p>
-                                </div>
-                                <div class="relative mr-6">
-                                    <span class="text-xs text-indigo-600 absolute -top-1 -right-4">23</span>
-                                    <p>Атермальная тонировка</p>
-                                </div>
-                                <div class="relative mr-6">
-                                    <span class="text-xs text-indigo-600 absolute -top-1 -right-4">121</span>
-                                    <p>Тонирование стекол</p>
-                                </div>
-                                <div class="relative mr-6">
-                                    <span class="text-xs text-indigo-600 absolute -top-1 -right-4">72</span>
-                                    <p>Защита лобового стекла</p>
-                                </div>
-                            </div>
-                            <img src="/assets/icons/right_arrow.svg" alt="">
+                        <div class="block justify-center relative mb-5 lg:w-5/12 w-full">
+                            <splide :options="slideOptions" :slides="galleryCategories">
+                                <splide-slide v-for="category in galleryCategories" :key="category.id">
+                                    <span class="text-xs text-indigo-600 absolute -top-1 -right-2">{{category.galleries_count}}</span>
+                                    <p class="cursor-pointer py-1" :class="{'active font-bold': category.active}" @click.stop="galleryCategoriesActive(category)">{{category.title}}</p>
+                                </splide-slide>
+                            </splide>
                         </div>
+
                     </div>
 
                     <div class="hidden lg:grid grid-cols-3 grid-rows-2 gap-3 h-80">
-                        <div :class="{'row-span-2': i===1 || i===2, 'row-span-1': i===3 || i===4, 'relative': true}" v-for="i in 4" :key="i">
-                            <div v-if="i===4" class="h-full w-full absolute rounded-2xl bg-gray-100 opacity-75"></div>
-                            <div v-if="i===4" class="h-full w-full absolute rounded-2xl backdrop-blur-3"></div>
-                            <button v-if="i===4" class="border border-indigo-100 text-gray-600 text-sm bg-indigo-200 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-2 px-5">Смотреть все</button>
-                            <img class="w-full h-full object-cover rounded-2xl" :src="'/assets/images/'+i+'.jpg'" alt="">
+                        <div :class="{'row-span-2': i===0 || i===1, 'row-span-1': i===3 || i===4, 'relative': true}" v-for="(gallery, i) in filteredImages.slice(0, 4)" :key="gallery.id">
+                            <div v-if="i===3 || filteredImages.slice(0, 4).length - 1 === i" class="h-full w-full absolute rounded-2xl bg-gray-100 opacity-75"></div>
+                            <div v-if="i===3 || filteredImages.slice(0, 4).length - 1 === i" class="h-full w-full absolute rounded-2xl backdrop-blur-3"></div>
+                            <button v-if="i===3 || filteredImages.slice(0, 4).length - 1 === i" class="border border-indigo-100 text-gray-600 text-sm bg-indigo-200 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-2 px-5">Смотреть все</button>
+                            <img class="w-full h-full object-cover rounded-2xl" :src="'/storage/medium/'+gallery.image" alt="">
                         </div>
+                    </div>
+                    <div class="lg:hidden">
+                        <splide :options="imageSlideOptions" :slides="filteredImages.slice(0, 5)">
+                            <splide-slide v-for="(image, i) in filteredImages.slice(0, 5)" :key="image.id">
+                                <div v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i" class="h-full w-full absolute rounded-2xl bg-gray-100 opacity-75"></div>
+                                <div v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i" class="h-full w-full absolute rounded-2xl backdrop-blur-3"></div>
+                                <button v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i" class="border border-indigo-100 text-gray-600 text-sm bg-indigo-200 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-2 px-5">Смотреть все</button>
+                                <img :src="'/storage/medium/'+image.image" alt="">
+                            </splide-slide>
+                        </splide>
                     </div>
                 </div>
             </section>
@@ -233,7 +232,7 @@
                 <div class="flex lg:absolute top-0 min-w-full">
                     <div class="lg:w-5/12 w-full bg-white lg:block hidden lg:absolute h-202">
                     </div>
-                    <div class="lg:w-8/12 w-full map-shadow lg:absolute right-0 top-7">
+                    <div class="lg:w-8/12 w-full lg:map-shadow lg:absolute right-0 top-7">
                         <iframe src="" class="lg:h-202 h-72" width="100%" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
                     </div>
                 </div>
@@ -300,6 +299,49 @@
         },
         data() {
             return {
+                slideOptions: {
+                    // type: 'loop',
+                    rewind: true,
+                    arrows: 'slider',
+                    perPage: 3,
+                    perMove: 1,
+                    autoWidth: true,
+                    gap: 40,
+                    pagination: false,
+                    width: '90%',
+                    padding: {
+                        left: '1rem',
+                        right: '1rem',
+                    },
+                    breakpoints: {
+                        640: {
+                            arrows: false,
+                            width: '100%',
+                        }
+                    }
+                },
+                imageSlideOptions: {
+                    // type: 'loop',
+                    rewind: true,
+                    arrows: 'slider',
+                    perPage: 1,
+                    fixedHeight: '182px',
+                    gap: 10,
+                    cover: true,
+                    perMove: 1,
+                    pagination: false,
+                    width: '90%',
+                    padding: {
+                        left: '1rem',
+                        right: '1rem',
+                    },
+                    breakpoints: {
+                        640: {
+                            arrows: false,
+                            width: '100%',
+                        }
+                    }
+                },
                 advantages: [
                     {
                         icon: 'warranty.svg',
@@ -336,12 +378,24 @@
                 materialCategories: this.$page.materialCategories,
                 tables: this.$page.tables,
                 menuActive: false,
+                galleries: this.$page.galleries,
+                galleryCategories: this.$page.galleryCategories,
             }
         },
         computed: {
             activeTab() {
                 let service = this.services.find(item => item.activeTab === true);
                 return service ? service.activeTab : false;
+            },
+            filteredImages() {
+                return this.galleries.filter(item => {
+                    if (this.galleryCategories.filter(cat => cat.active ?? cat)[0].id === 0) {
+                        return item;
+                    }
+                    if (item.gallery_category_id === this.galleryCategories.filter(cat => cat.active ?? cat)[0].id) {
+                        return item;
+                    }
+                });
             }
         },
         methods: {
@@ -359,6 +413,13 @@
                         active: table.id === item.id,
                     }
                 })
+            },
+            galleryCategoriesActive(category) {
+                this.galleryCategories = this.galleryCategories.map(cat => {
+                    cat.active = false
+                    return cat;
+                });
+                category.active = true;
             },
             openMenu() {
                 document.getElementsByTagName('body')[0].classList.add('overflow-hidden');

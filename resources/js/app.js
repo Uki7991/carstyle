@@ -8,7 +8,8 @@ import PortalVue from 'portal-vue';
 import Vuesax from 'vuesax'
 import Link from "@/Mixins/Link";
 import Tabs from 'vue-tabs-component';
-
+import VueSplide from '@splidejs/vue-splide';
+import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 import 'vuesax/dist/vuesax.css'
 
 Vue.mixin({ methods: { route } });
@@ -18,6 +19,7 @@ Vue.use(InertiaForm);
 Vue.use(PortalVue);
 Vue.use(Vuesax);
 Vue.use(Tabs);
+Vue.use(VueSplide);
 
 const app = document.getElementById('app');
 export const bus = new Vue();
