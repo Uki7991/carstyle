@@ -1,11 +1,23 @@
 <template>
     <div>
-        <nav class="sticky top-0 bg-white z-50">
-            <div class="container nav-header flex items-center mx-auto">
+        <div class="fixed top-0 w-screen right-0 z-20 bg-white">
+            <div class="flex justify-between px-4 py-5">
                 <div class="text-logo uppercase">
                     Car style
                 </div>
-                <ul class="flex menu">
+                <img @click="openMenu" v-if="!menuActive" src="/assets/icons/menu.svg" alt="">
+            </div>
+        </div>
+        <nav class="fixed lg:sticky top-0 bg-white w-screen lg:w-full h-screen lg:h-auto z-50" v-show="menuActive">
+            <div class="container py-5 flex pl-4 lg:pl-0 flex-col lg:flex-row lg:items-center mx-auto">
+                <div class="flex justify-between items-center">
+                    <div class="text-logo uppercase">
+                        Car style
+                    </div>
+                    <img @click="closeMenu" class="block lg:hidden w-12" v-if="menuActive" src="/assets/icons/close.svg" alt="">
+
+                </div>
+                <ul class="flex pl-0 lg:pl-9 lg:space-x-9 py-16 lg:py-0 menu font-bold lg:font-normal text-4xl lg:text-base flex-col lg:flex-row">
                     <li>
                         <a href="#services">Услуги</a>
                     </li>
@@ -20,56 +32,70 @@
                     </li>
                 </ul>
 
-                <ul class="flex menu items-center ml-auto">
-                    <li>
-                        <a href="" class="icon">
-                            <img src="/assets/icons/instagram.svg" alt="">
-                        </a>
+                <ul class="flex menu lg:space-x-9 flex-col lg:flex-row lg:items-center lg:ml-auto flex-col-reverse">
+                    <li class="pt-9 lg:pt-0">
+                        <ul class="flex bottom-0 left-0 mt-5 lg:mt-0 space-x-9">
+                            <li>
+                                <a href="" class="icon">
+                                    <img class="w-6 lg:w-auto" src="/assets/icons/instagram.svg" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" class="icon">
+                                    <img class="w-6 lg:w-auto" src="/assets/icons/whatsapp.svg" alt="">
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="" class="icon">
-                            <img src="/assets/icons/whatsapp.svg" alt="">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" class="icon flex">
-                            <img src="/assets/icons/map.svg" class="mr-1" alt="">
-                            <span>Краснобогатырская ул., 13, с1 </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" class="icon flex">
-                            <img src="/assets/icons/phone.svg" class="mr-1" alt="">
-                            <span>+74957556983</span>
-                        </a>
+                        <ul class="flex flex-col lg:items-center lg:space-x-9 space-y-3 lg:space-y-0 lg:flex-row">
+                            <li>
+                                <a href="" class="icon flex">
+                                    <img src="/assets/icons/map.svg" class="mr-1" alt="">
+                                    <span>Краснобогатырская ул., 13, с1 </span>
+                                </a>
+                            </li>
+                            <li class="lg:hidden block">
+                                <a href="" class="icon flex">
+                                    <img src="/assets/icons/mail.svg" class="mr-1" alt="">
+                                    <span>carstyle@gmail.com</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" class="icon flex">
+                                    <img src="/assets/icons/phone.svg" class="mr-1" alt="">
+                                    <span>+74957556983</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
         </nav>
 
         <main>
-            <section class="first py-32 relative">
+            <section class="first py-32 relative px-4">
                 <div class="dots_back w-10/12 h-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-50"></div>
-                <div class="container mx-auto flex justify-end z-10 relative">
-                    <div class="w-6/12">
-                        <p class="font-bold text-6xl mb-5 leading-tight">Тонирование <br> и оклейка авто</p>
-                        <p class="leading-6 mb-10">Качественное тонирование и оклеивание  вашего автомобиля <br> нашими специалистами.
-                            Высококачественные пленки от <br> проверенных поставщиков с гарантией выполненной работы 3 <br> года.
+                <div class="container mx-auto flex flex-col lg:flex-row space-y-9 lg:space-y-0 justify-end z-10 relative">
+                    <div class="lg:w-6/12 text-center w-full">
+                        <p class="font-bold lg:text-6xl text-4xl mb-5 leading-tight">Тонирование <br> и оклейка авто</p>
+                        <p class="leading-6 text-sm lg:text-base mb-10">Качественное тонирование и оклеивание  вашего автомобиля <!--<br>--> нашими специалистами.
+                            Высококачественные пленки от <!--<br>--> проверенных поставщиков с гарантией выполненной работы 3 <!--<br>--> года.
                             Записывайтесь и получайте <span class="font-bold text-indigo-600">скидку 5%</span>.</p>
-                        <form class="flex items-center bg-white py-3 px-3 rounded-xl">
-                            <div class="flex px-5">
+                        <form class="flex flex-col lg:flex-row items-center bg-white py-3 px-3 rounded-xl">
+                            <div class="flex lg:px-5 py-5">
                                 <img src="/assets/icons/person.svg" alt="">
                                 <input placeholder="Имя" class="w-full ml-2 focus:outline-none" type="text">
                             </div>
-                            <div class="flex px-5">
+                            <div class="flex lg:px-5 py-5">
                                 <img src="/assets/icons/phone_black.svg" alt="">
                                 <input placeholder="Номер" class="w-full ml-2 focus:outline-none" type="text">
                             </div>
-                            <button class="bg-blue-600 py-3 px-9 text-white rounded-md">Записаться</button>
+                            <button class="bg-blue-600 py-3 px-9 mt-4 lg:mt-0 text-white rounded-md">Записаться</button>
                         </form>
                     </div>
-                    <div class="w-6/12">
-                        <img src="/assets/images/car.png" class="max-w-none" alt="">
+                    <div class="lg:w-6/12 w-full">
+                        <img src="/assets/images/car.png" class="max-w-full lg:max-w-none" alt="">
                     </div>
                 </div>
             </section>
@@ -78,11 +104,11 @@
                 <div class="absolute w-1/2 top-0 left-1/2 transform -translate-x-1/2">
                     <img class="w-full" src="/assets/images/styler.png" alt="">
                 </div>
-                <div class="container mx-auto">
+                <div class="container px-4 lg:px-0 mx-auto">
                     <p class="text-indigo-600 text-lg mb-3 font-semibold text-center">Почему мы?</p>
-                    <p class="font-bold mb-5 text-4xl text-center leading-tight">Более 2000 автомобилей было <br> затонированно и оклеено за время работы <br> нашей студии.</p>
-                    <div class="flex w-9/12 mx-auto flex-wrap justify-center">
-                        <div v-for="(item, i) in advantages" :data-id="i" class="w-4/12 text-center py-7 px-6" :key="i">
+                    <p class="font-bold mb-5 lg:text-4xl text-2xl text-center leading-tight">Более 2000 автомобилей было <br> затонированно и оклеено за время работы <br> нашей студии.</p>
+                    <div class="flex lg:w-9/12 w-full mx-auto flex-wrap justify-center">
+                        <div v-for="(item, i) in advantages" :data-id="i" class="lg:w-4/12 w-full text-center py-7 px-6" :key="i">
                             <div class="rounded-2xl border-2 border-white shadow-2xl w-21 h-21 flex items-center mx-auto justify-center">
                                 <img :src="'/assets/icons/' + item.icon" alt="">
                             </div>
@@ -94,12 +120,12 @@
             </section>
 
             <section id="services" class="third py-32">
-                <div class="container mx-auto">
+                <div class="container px-4 lg:px-0 mx-auto">
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Услуги</p>
-                    <p class="font-bold mb-5 text-4xl leading-tight">Каталог наших услуг</p>
+                    <p class="font-bold mb-5 lg:text-4xl text-2xl leading-tight">Каталог наших услуг</p>
                     <transition duration="200" name="fade">
                         <div class="flex flex-wrap" v-if="!activeTab">
-                            <div class="w-3/12 px-5 my-6" v-for="(item, i) in services" :key="i" @click="activeService(item)">
+                            <div class="lg:w-3/12 w-full px-5 my-6" v-for="(item, i) in services" :key="i" @click="activeService(item)">
                                 <p class="font-semibold text-lg text-gray-800">{{ item.title }}</p>
                                 <p class="text-sm text-gray-600 italic">{{ item.description }}</p>
                                 <img class="mt-4" :src="'/storage/large/' + item.image" alt="">
@@ -112,19 +138,19 @@
             </section>
 
             <section id="materials" class="fourth py-32">
-                <div class="container mx-auto">
+                <div class="container px-4 lg:px-4 mx-auto">
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Материалы</p>
-                    <p class="font-bold mb-5 text-4xl leading-tight">Характеристики используемых брендов</p>
+                    <p class="font-bold mb-5 lg:text-4xl text-2xl leading-tight">Характеристики используемых брендов</p>
 
                     <div class="flex py-5 flex-wrap" v-for="materialCategory in materialCategories" :key="materialCategory.id">
                         <div class="w-full mb-7">
                             <p class="text-xl font-bold">{{materialCategory.title}}</p>
                         </div>
-                        <div class="w-1/2 px-3 mb-4" v-for="material in materialCategory.materials" :key="material.id">
+                        <div class="lg:w-1/2 w-full px-3 mb-4" v-for="material in materialCategory.materials" :key="material.id">
                             <div class="bg-white rounded-3xl py-5 px-6">
                                 <img class="h-12 object-cover" :src="'/storage/small/'+material.image" alt="">
-                                <div class="mt-4 text-sm leading-loose">
-                                    <div class="flex justify-between" v-for="property in material.properties" :key="property.id">
+                                <div class="mt-4 text-sm leading-loose divide-y divide-gray-200 lg:divide-y-0">
+                                    <div class="flex flex-col lg:flex-row justify-between" v-for="property in material.properties" :key="property.id">
                                         <p>{{property.title}}:</p>
                                         <p class="font-medium">{{property.value}}</p>
                                     </div>
@@ -136,11 +162,11 @@
             </section>
 
             <section id="work" class="fifth py-32">
-                <div class="container mx-auto">
+                <div class="container px-4 lg:px-0 mx-auto">
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Наши работы</p>
-                    <div class="flex items-end justify-between">
-                        <p class="font-bold mb-5 text-4xl leading-tight">Фотографии работ</p>
-                        <div class="flex mb-5">
+                    <div class="flex flex-col lg:flex-row items-end justify-between">
+                        <p class="font-bold mb-5 text-4xl text-2xl leading-tight">Фотографии работ</p>
+                        <div class="lg:flex mb-5 hidden">
                             <img src="/assets/icons/left_arrow.svg" alt="">
                             <div class="mx-3 px-3 flex">
                                 <div class="relative mr-6">
@@ -164,7 +190,7 @@
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-3 grid-rows-2 gap-3 h-80">
+                    <div class="hidden lg:grid grid-cols-3 grid-rows-2 gap-3 h-80">
                         <div :class="{'row-span-2': i===1 || i===2, 'row-span-1': i===3 || i===4, 'relative': true}" v-for="i in 4" :key="i">
                             <div v-if="i===4" class="h-full w-full absolute rounded-2xl bg-gray-100 opacity-75"></div>
                             <div v-if="i===4" class="h-full w-full absolute rounded-2xl backdrop-blur-3"></div>
@@ -175,10 +201,10 @@
                 </div>
             </section>
 
-            <section id="contacts" class="sixth py-32 relative">
-                <div class="container mx-auto bg-transparent z-10 relative">
+            <section id="contacts" class="sixth bg-white lg:bg-transparent py-32 relative">
+                <div class="container px-4 lg:px-0 mx-auto bg-transparent z-10 relative">
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Контакты</p>
-                    <p class="font-bold mb-5 text-4xl leading-tight">Как нас найти?</p>
+                    <p class="font-bold mb-5 lg:text-4xl text-2xl leading-tight">Как нас найти?</p>
 
                     <div class="flex flex-col space-y-5 py-5">
                         <a href="" class="flex">
@@ -197,31 +223,31 @@
 
                     <div class="flex space-x-5 py-5">
                         <a href="">
-                            <img class="w-9 cursor-pointer" src="/assets/icons/instagram.svg" alt="">
+                            <img class="lg:w-9 w-6 cursor-pointer" src="/assets/icons/instagram.svg" alt="">
                         </a>
                         <a href="">
-                            <img class="w-9 cursor-pointer" src="/assets/icons/whatsapp.svg" alt="">
+                            <img class="lg:w-9 w-6 cursor-pointer" src="/assets/icons/whatsapp.svg" alt="">
                         </a>
                     </div>
                 </div>
-                <div class="flex absolute top-0 w-full">
-                    <div class="w-5/12 bg-white absolute h-202">
+                <div class="flex lg:absolute top-0 min-w-full">
+                    <div class="lg:w-5/12 w-full bg-white hidden lg:absolute h-202">
                     </div>
-                    <div class="w-8/12 map-shadow absolute right-0 top-7">
-                        <iframe src="https://yandex.ru/map-widget/v1/-/CCQ~nEg3tD" width="100%" height="566" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
+                    <div class="lg:w-8/12 w-full map-shadow lg:absolute right-0 top-7">
+                        <iframe src="https://yandex.ru/map-widget/v1/-/CCQ~nEg3tD" class="lg:h-202 h-72" width="100%" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
                     </div>
                 </div>
 
             </section>
 
             <footer class="pb-12 pt-24">
-                <div class="container mx-auto">
-                    <div class="flex items-center mb-5">
-                        <div class="text-logo uppercase">
+                <div class="container flex lg:block justify-between items-center px-4 lg:px-4 mx-auto">
+                    <div class="flex  items-center lg:mb-5">
+                        <div class="text-logo lg:mr-9 uppercase">
                             Car style
                         </div>
 
-                        <ul class="flex menu">
+                        <ul class="menu lg:space-x-9 hidden lg:flex">
                             <li>
                                 <a href="#services">Услуги</a>
                             </li>
@@ -233,30 +259,31 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="flex items-center justify-between">
-                        <div class="flex space-x-9">
-                            <a href="">
+                    <div class="flex flex-col lg:flex-row items-center justify-between">
+                        <div class="flex lg:space-x-9">
+                            <a href="" class=" hidden lg:block">
                                 <img src="/assets/icons/instagram.svg" alt="">
                             </a>
-                            <a href="">
+                            <a href="" class=" hidden lg:block">
                                 <img src="/assets/icons/whatsapp.svg" alt="">
                             </a>
                             <a href="" class="flex space-x-1">
                                 <img src="/assets/icons/phone.svg" alt="">
                                 <p>+74957556983</p>
                             </a>
-                            <a href="" class="flex space-x-1">
+                            <a href="" class=" space-x-1 hidden lg:flex">
                                 <img src="/assets/icons/map.svg" alt="">
                                 <p>Краснобогатырская ул., 13, с1 </p>
                             </a>
-                            <a href="" class="flex space-x-1">
+                            <a href="" class=" space-x-1 hidden lg:flex">
                                 <img src="/assets/icons/mail.svg" alt="">
                                 <p>carstyle@gmail.com</p>
                             </a>
                         </div>
-                        <p class="text-sm text-gray-500">Все права защищены — 2020 © CAR STYLE</p>
+                        <p class="hidden lg:block lg:text-sm text-xs text-center text-gray-500">Все права защищены — 2020 © CAR STYLE</p>
                     </div>
                 </div>
+                <p class="lg:text-sm mt-4 lg:hidden text-xs text-center text-gray-500">Все права защищены — 2020 © CAR STYLE</p>
             </footer>
         </main>
     </div>
@@ -308,6 +335,7 @@
                 services: this.$page.services,
                 materialCategories: this.$page.materialCategories,
                 tables: this.$page.tables,
+                menuActive: false,
             }
         },
         computed: {
@@ -331,9 +359,20 @@
                         active: table.id === item.id,
                     }
                 })
+            },
+            openMenu() {
+                document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
+                this.menuActive = true;
+            },
+            closeMenu() {
+                document.getElementsByTagName('body')[0].classList.remove('overflow-hidden');
+                this.menuActive = false;
             }
         },
         mounted() {
+            if (window.innerWidth > 1024) {
+                this.menuActive = true;
+            }
         }
     }
 </script>

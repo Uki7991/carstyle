@@ -59,15 +59,6 @@ body {
     background-image: url("/assets/images/dots_back.png");
     @apply bg-no-repeat bg-cover absolute;
 }
-
-.menu li {
-    margin-left: 35px;
-}
-
-.nav-header {
-    padding-top: 36px;
-    padding-bottom: 36px;
-}
 .vs-input__message.vs-input__message--danger.v-enter-to {
     height: unset!important;
 }

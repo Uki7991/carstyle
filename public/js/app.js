@@ -6256,6 +6256,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6292,7 +6319,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }],
       services: this.$page.services,
       materialCategories: this.$page.materialCategories,
-      tables: this.$page.tables
+      tables: this.$page.tables,
+      menuActive: false
     };
   },
   computed: {
@@ -6318,9 +6346,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           active: table.id === item.id
         });
       });
+    },
+    openMenu: function openMenu() {
+      document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
+      this.menuActive = true;
+    },
+    closeMenu: function closeMenu() {
+      document.getElementsByTagName('body')[0].classList.remove('overflow-hidden');
+      this.menuActive = false;
     }
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    if (window.innerWidth > 1024) {
+      this.menuActive = true;
+    }
+  }
 });
 
 /***/ }),
@@ -50669,15 +50709,72 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c("div", { staticClass: "fixed top-0 w-screen right-0 z-20 bg-white" }, [
+      _c("div", { staticClass: "flex justify-between px-4 py-5" }, [
+        _c("div", { staticClass: "text-logo uppercase" }, [
+          _vm._v("\n                Car style\n            ")
+        ]),
+        _vm._v(" "),
+        !_vm.menuActive
+          ? _c("img", {
+              attrs: { src: "/assets/icons/menu.svg", alt: "" },
+              on: { click: _vm.openMenu }
+            })
+          : _vm._e()
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "nav",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.menuActive,
+            expression: "menuActive"
+          }
+        ],
+        staticClass:
+          "fixed lg:sticky top-0 bg-white w-screen lg:w-full h-screen lg:h-auto z-50"
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass:
+              "container py-5 flex pl-4 lg:pl-0 flex-col lg:flex-row lg:items-center mx-auto"
+          },
+          [
+            _c("div", { staticClass: "flex justify-between items-center" }, [
+              _c("div", { staticClass: "text-logo uppercase" }, [
+                _vm._v("\n                    Car style\n                ")
+              ]),
+              _vm._v(" "),
+              _vm.menuActive
+                ? _c("img", {
+                    staticClass: "block lg:hidden w-12",
+                    attrs: { src: "/assets/icons/close.svg", alt: "" },
+                    on: { click: _vm.closeMenu }
+                  })
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1)
+          ]
+        )
+      ]
+    ),
     _vm._v(" "),
     _c("main", [
-      _vm._m(1),
+      _vm._m(2),
       _vm._v(" "),
       _c("section", { staticClass: "second py-32 relative" }, [
-        _vm._m(2),
+        _vm._m(3),
         _vm._v(" "),
-        _c("div", { staticClass: "container mx-auto" }, [
+        _c("div", { staticClass: "container px-4 lg:px-0 mx-auto" }, [
           _c(
             "p",
             {
@@ -50687,17 +50784,20 @@ var render = function() {
             [_vm._v("Почему мы?")]
           ),
           _vm._v(" "),
-          _vm._m(3),
+          _vm._m(4),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "flex w-9/12 mx-auto flex-wrap justify-center" },
+            {
+              staticClass:
+                "flex lg:w-9/12 w-full mx-auto flex-wrap justify-center"
+            },
             _vm._l(_vm.advantages, function(item, i) {
               return _c(
                 "div",
                 {
                   key: i,
-                  staticClass: "w-4/12 text-center py-7 px-6",
+                  staticClass: "lg:w-4/12 w-full text-center py-7 px-6",
                   attrs: { "data-id": i }
                 },
                 [
@@ -50730,7 +50830,7 @@ var render = function() {
       _c("section", { staticClass: "third py-32", attrs: { id: "services" } }, [
         _c(
           "div",
-          { staticClass: "container mx-auto" },
+          { staticClass: "container px-4 lg:px-0 mx-auto" },
           [
             _c(
               "p",
@@ -50738,9 +50838,13 @@ var render = function() {
               [_vm._v("Услуги")]
             ),
             _vm._v(" "),
-            _c("p", { staticClass: "font-bold mb-5 text-4xl leading-tight" }, [
-              _vm._v("Каталог наших услуг")
-            ]),
+            _c(
+              "p",
+              {
+                staticClass: "font-bold mb-5 lg:text-4xl text-2xl leading-tight"
+              },
+              [_vm._v("Каталог наших услуг")]
+            ),
             _vm._v(" "),
             _c(
               "transition",
@@ -50755,7 +50859,7 @@ var render = function() {
                           "div",
                           {
                             key: i,
-                            staticClass: "w-3/12 px-5 my-6",
+                            staticClass: "lg:w-3/12 w-full px-5 my-6",
                             on: {
                               click: function($event) {
                                 return _vm.activeService(item)
@@ -50807,7 +50911,7 @@ var render = function() {
         [
           _c(
             "div",
-            { staticClass: "container mx-auto" },
+            { staticClass: "container px-4 lg:px-4 mx-auto" },
             [
               _c(
                 "p",
@@ -50817,7 +50921,10 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "p",
-                { staticClass: "font-bold mb-5 text-4xl leading-tight" },
+                {
+                  staticClass:
+                    "font-bold mb-5 lg:text-4xl text-2xl leading-tight"
+                },
                 [_vm._v("Характеристики используемых брендов")]
               ),
               _vm._v(" "),
@@ -50838,7 +50945,10 @@ var render = function() {
                     _vm._l(materialCategory.materials, function(material) {
                       return _c(
                         "div",
-                        { key: material.id, staticClass: "w-1/2 px-3 mb-4" },
+                        {
+                          key: material.id,
+                          staticClass: "lg:w-1/2 w-full px-3 mb-4"
+                        },
                         [
                           _c(
                             "div",
@@ -50854,13 +50964,17 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "div",
-                                { staticClass: "mt-4 text-sm leading-loose" },
+                                {
+                                  staticClass:
+                                    "mt-4 text-sm leading-loose divide-y divide-gray-200 lg:divide-y-0"
+                                },
                                 _vm._l(material.properties, function(property) {
                                   return _c(
                                     "div",
                                     {
                                       key: property.id,
-                                      staticClass: "flex justify-between"
+                                      staticClass:
+                                        "flex flex-col lg:flex-row justify-between"
                                     },
                                     [
                                       _c("p", [
@@ -50891,18 +51005,20 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("section", { staticClass: "fifth py-32", attrs: { id: "work" } }, [
-        _c("div", { staticClass: "container mx-auto" }, [
+        _c("div", { staticClass: "container px-4 lg:px-0 mx-auto" }, [
           _c(
             "p",
             { staticClass: "text-indigo-600 text-lg mb-3 font-semibold" },
             [_vm._v("Наши работы")]
           ),
           _vm._v(" "),
-          _vm._m(4),
+          _vm._m(5),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "grid grid-cols-3 grid-rows-2 gap-3 h-80" },
+            {
+              staticClass: "hidden lg:grid grid-cols-3 grid-rows-2 gap-3 h-80"
+            },
             _vm._l(4, function(i) {
               return _c(
                 "div",
@@ -50952,9 +51068,9 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(5),
+      _vm._m(6),
       _vm._v(" "),
-      _vm._m(6)
+      _vm._m(7)
     ])
   ])
 }
@@ -50963,81 +51079,119 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("nav", { staticClass: "sticky top-0 bg-white z-50" }, [
-      _c(
-        "div",
-        { staticClass: "container nav-header flex items-center mx-auto" },
-        [
-          _c("div", { staticClass: "text-logo uppercase" }, [
-            _vm._v("\n                Car style\n            ")
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "flex menu" }, [
-            _c("li", [
-              _c("a", { attrs: { href: "#services" } }, [_vm._v("Услуги")])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#materials" } }, [_vm._v("Материалы")])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#work" } }, [_vm._v("Наши работы")])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#contacts" } }, [_vm._v("Контакты")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "flex menu items-center ml-auto" }, [
-            _c("li", [
-              _c("a", { staticClass: "icon", attrs: { href: "" } }, [
-                _c("img", {
-                  attrs: { src: "/assets/icons/instagram.svg", alt: "" }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { staticClass: "icon", attrs: { href: "" } }, [
-                _c("img", {
-                  attrs: { src: "/assets/icons/whatsapp.svg", alt: "" }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { staticClass: "icon flex", attrs: { href: "" } }, [
-                _c("img", {
-                  staticClass: "mr-1",
-                  attrs: { src: "/assets/icons/map.svg", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("span", [_vm._v("Краснобогатырская ул., 13, с1 ")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { staticClass: "icon flex", attrs: { href: "" } }, [
-                _c("img", {
-                  staticClass: "mr-1",
-                  attrs: { src: "/assets/icons/phone.svg", alt: "" }
-                }),
-                _vm._v(" "),
-                _c("span", [_vm._v("+74957556983")])
-              ])
-            ])
-          ])
-        ]
-      )
-    ])
+    return _c(
+      "ul",
+      {
+        staticClass:
+          "flex pl-0 lg:pl-9 lg:space-x-9 py-16 lg:py-0 menu font-bold lg:font-normal text-4xl lg:text-base flex-col lg:flex-row"
+      },
+      [
+        _c("li", [
+          _c("a", { attrs: { href: "#services" } }, [_vm._v("Услуги")])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "#materials" } }, [_vm._v("Материалы")])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "#work" } }, [_vm._v("Наши работы")])
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("a", { attrs: { href: "#contacts" } }, [_vm._v("Контакты")])
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "first py-32 relative" }, [
+    return _c(
+      "ul",
+      {
+        staticClass:
+          "flex menu lg:space-x-9 flex-col lg:flex-row lg:items-center lg:ml-auto flex-col-reverse"
+      },
+      [
+        _c("li", { staticClass: "pt-9 lg:pt-0" }, [
+          _c(
+            "ul",
+            { staticClass: "flex bottom-0 left-0 mt-5 lg:mt-0 space-x-9" },
+            [
+              _c("li", [
+                _c("a", { staticClass: "icon", attrs: { href: "" } }, [
+                  _c("img", {
+                    staticClass: "w-6 lg:w-auto",
+                    attrs: { src: "/assets/icons/instagram.svg", alt: "" }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("a", { staticClass: "icon", attrs: { href: "" } }, [
+                  _c("img", {
+                    staticClass: "w-6 lg:w-auto",
+                    attrs: { src: "/assets/icons/whatsapp.svg", alt: "" }
+                  })
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "ul",
+            {
+              staticClass:
+                "flex flex-col lg:items-center lg:space-x-9 space-y-3 lg:space-y-0 lg:flex-row"
+            },
+            [
+              _c("li", [
+                _c("a", { staticClass: "icon flex", attrs: { href: "" } }, [
+                  _c("img", {
+                    staticClass: "mr-1",
+                    attrs: { src: "/assets/icons/map.svg", alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Краснобогатырская ул., 13, с1 ")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "lg:hidden block" }, [
+                _c("a", { staticClass: "icon flex", attrs: { href: "" } }, [
+                  _c("img", {
+                    staticClass: "mr-1",
+                    attrs: { src: "/assets/icons/mail.svg", alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("carstyle@gmail.com")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("a", { staticClass: "icon flex", attrs: { href: "" } }, [
+                  _c("img", {
+                    staticClass: "mr-1",
+                    attrs: { src: "/assets/icons/phone.svg", alt: "" }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("+74957556983")])
+                ])
+              ])
+            ]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "first py-32 relative px-4" }, [
       _c("div", {
         staticClass:
           "dots_back w-10/12 h-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-50"
@@ -51045,28 +51199,30 @@ var staticRenderFns = [
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "container mx-auto flex justify-end z-10 relative" },
+        {
+          staticClass:
+            "container mx-auto flex flex-col lg:flex-row space-y-9 lg:space-y-0 justify-end z-10 relative"
+        },
         [
-          _c("div", { staticClass: "w-6/12" }, [
-            _c("p", { staticClass: "font-bold text-6xl mb-5 leading-tight" }, [
-              _vm._v("Тонирование "),
-              _c("br"),
-              _vm._v(" и оклейка авто")
-            ]),
+          _c("div", { staticClass: "lg:w-6/12 text-center w-full" }, [
+            _c(
+              "p",
+              {
+                staticClass: "font-bold lg:text-6xl text-4xl mb-5 leading-tight"
+              },
+              [_vm._v("Тонирование "), _c("br"), _vm._v(" и оклейка авто")]
+            ),
             _vm._v(" "),
-            _c("p", { staticClass: "leading-6 mb-10" }, [
+            _c("p", { staticClass: "leading-6 text-sm lg:text-base mb-10" }, [
               _vm._v(
                 "Качественное тонирование и оклеивание  вашего автомобиля "
               ),
-              _c("br"),
               _vm._v(
                 " нашими специалистами.\n                        Высококачественные пленки от "
               ),
-              _c("br"),
               _vm._v(
                 " проверенных поставщиков с гарантией выполненной работы 3 "
               ),
-              _c("br"),
               _vm._v(
                 " года.\n                        Записывайтесь и получайте "
               ),
@@ -51079,10 +51235,11 @@ var staticRenderFns = [
             _c(
               "form",
               {
-                staticClass: "flex items-center bg-white py-3 px-3 rounded-xl"
+                staticClass:
+                  "flex flex-col lg:flex-row items-center bg-white py-3 px-3 rounded-xl"
               },
               [
-                _c("div", { staticClass: "flex px-5" }, [
+                _c("div", { staticClass: "flex lg:px-5 py-5" }, [
                   _c("img", {
                     attrs: { src: "/assets/icons/person.svg", alt: "" }
                   }),
@@ -51093,7 +51250,7 @@ var staticRenderFns = [
                   })
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "flex px-5" }, [
+                _c("div", { staticClass: "flex lg:px-5 py-5" }, [
                   _c("img", {
                     attrs: { src: "/assets/icons/phone_black.svg", alt: "" }
                   }),
@@ -51107,7 +51264,8 @@ var staticRenderFns = [
                 _c(
                   "button",
                   {
-                    staticClass: "bg-blue-600 py-3 px-9 text-white rounded-md"
+                    staticClass:
+                      "bg-blue-600 py-3 px-9 mt-4 lg:mt-0 text-white rounded-md"
                   },
                   [_vm._v("Записаться")]
                 )
@@ -51115,9 +51273,9 @@ var staticRenderFns = [
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "w-6/12" }, [
+          _c("div", { staticClass: "lg:w-6/12 w-full" }, [
             _c("img", {
-              staticClass: "max-w-none",
+              staticClass: "max-w-full lg:max-w-none",
               attrs: { src: "/assets/images/car.png", alt: "" }
             })
           ])
@@ -51148,7 +51306,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "p",
-      { staticClass: "font-bold mb-5 text-4xl text-center leading-tight" },
+      {
+        staticClass:
+          "font-bold mb-5 lg:text-4xl text-2xl text-center leading-tight"
+      },
       [
         _vm._v("Более 2000 автомобилей было "),
         _c("br"),
@@ -51162,67 +51323,81 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex items-end justify-between" }, [
-      _c("p", { staticClass: "font-bold mb-5 text-4xl leading-tight" }, [
-        _vm._v("Фотографии работ")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "flex mb-5" }, [
-        _c("img", { attrs: { src: "/assets/icons/left_arrow.svg", alt: "" } }),
+    return _c(
+      "div",
+      { staticClass: "flex flex-col lg:flex-row items-end justify-between" },
+      [
+        _c(
+          "p",
+          { staticClass: "font-bold mb-5 text-4xl text-2xl leading-tight" },
+          [_vm._v("Фотографии работ")]
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "mx-3 px-3 flex" }, [
-          _c("div", { staticClass: "relative mr-6" }, [
-            _c(
-              "span",
-              {
-                staticClass: "text-xs text-indigo-600 absolute -top-1 -right-4"
-              },
-              [_vm._v("421")]
-            ),
+        _c("div", { staticClass: "lg:flex mb-5 hidden" }, [
+          _c("img", {
+            attrs: { src: "/assets/icons/left_arrow.svg", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "mx-3 px-3 flex" }, [
+            _c("div", { staticClass: "relative mr-6" }, [
+              _c(
+                "span",
+                {
+                  staticClass:
+                    "text-xs text-indigo-600 absolute -top-1 -right-4"
+                },
+                [_vm._v("421")]
+              ),
+              _vm._v(" "),
+              _c("p", [_vm._v("Все")])
+            ]),
             _vm._v(" "),
-            _c("p", [_vm._v("Все")])
+            _c("div", { staticClass: "relative mr-6" }, [
+              _c(
+                "span",
+                {
+                  staticClass:
+                    "text-xs text-indigo-600 absolute -top-1 -right-4"
+                },
+                [_vm._v("23")]
+              ),
+              _vm._v(" "),
+              _c("p", [_vm._v("Атермальная тонировка")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "relative mr-6" }, [
+              _c(
+                "span",
+                {
+                  staticClass:
+                    "text-xs text-indigo-600 absolute -top-1 -right-4"
+                },
+                [_vm._v("121")]
+              ),
+              _vm._v(" "),
+              _c("p", [_vm._v("Тонирование стекол")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "relative mr-6" }, [
+              _c(
+                "span",
+                {
+                  staticClass:
+                    "text-xs text-indigo-600 absolute -top-1 -right-4"
+                },
+                [_vm._v("72")]
+              ),
+              _vm._v(" "),
+              _c("p", [_vm._v("Защита лобового стекла")])
+            ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "relative mr-6" }, [
-            _c(
-              "span",
-              {
-                staticClass: "text-xs text-indigo-600 absolute -top-1 -right-4"
-              },
-              [_vm._v("23")]
-            ),
-            _vm._v(" "),
-            _c("p", [_vm._v("Атермальная тонировка")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "relative mr-6" }, [
-            _c(
-              "span",
-              {
-                staticClass: "text-xs text-indigo-600 absolute -top-1 -right-4"
-              },
-              [_vm._v("121")]
-            ),
-            _vm._v(" "),
-            _c("p", [_vm._v("Тонирование стекол")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "relative mr-6" }, [
-            _c(
-              "span",
-              {
-                staticClass: "text-xs text-indigo-600 absolute -top-1 -right-4"
-              },
-              [_vm._v("72")]
-            ),
-            _vm._v(" "),
-            _c("p", [_vm._v("Защита лобового стекла")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("img", { attrs: { src: "/assets/icons/right_arrow.svg", alt: "" } })
-      ])
-    ])
+          _c("img", {
+            attrs: { src: "/assets/icons/right_arrow.svg", alt: "" }
+          })
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -51230,11 +51405,17 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "section",
-      { staticClass: "sixth py-32 relative", attrs: { id: "contacts" } },
+      {
+        staticClass: "sixth bg-white lg:bg-transparent py-32 relative",
+        attrs: { id: "contacts" }
+      },
       [
         _c(
           "div",
-          { staticClass: "container mx-auto bg-transparent z-10 relative" },
+          {
+            staticClass:
+              "container px-4 lg:px-0 mx-auto bg-transparent z-10 relative"
+          },
           [
             _c(
               "p",
@@ -51242,9 +51423,13 @@ var staticRenderFns = [
               [_vm._v("Контакты")]
             ),
             _vm._v(" "),
-            _c("p", { staticClass: "font-bold mb-5 text-4xl leading-tight" }, [
-              _vm._v("Как нас найти?")
-            ]),
+            _c(
+              "p",
+              {
+                staticClass: "font-bold mb-5 lg:text-4xl text-2xl leading-tight"
+              },
+              [_vm._v("Как нас найти?")]
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "flex flex-col space-y-5 py-5" }, [
               _c("a", { staticClass: "flex", attrs: { href: "" } }, [
@@ -51278,14 +51463,14 @@ var staticRenderFns = [
             _c("div", { staticClass: "flex space-x-5 py-5" }, [
               _c("a", { attrs: { href: "" } }, [
                 _c("img", {
-                  staticClass: "w-9 cursor-pointer",
+                  staticClass: "lg:w-9 w-6 cursor-pointer",
                   attrs: { src: "/assets/icons/instagram.svg", alt: "" }
                 })
               ]),
               _vm._v(" "),
               _c("a", { attrs: { href: "" } }, [
                 _c("img", {
-                  staticClass: "w-9 cursor-pointer",
+                  staticClass: "lg:w-9 w-6 cursor-pointer",
                   attrs: { src: "/assets/icons/whatsapp.svg", alt: "" }
                 })
               ])
@@ -51293,19 +51478,24 @@ var staticRenderFns = [
           ]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "flex absolute top-0 w-full" }, [
-          _c("div", { staticClass: "w-5/12 bg-white absolute h-202" }),
+        _c("div", { staticClass: "flex lg:absolute top-0 min-w-full" }, [
+          _c("div", {
+            staticClass: "lg:w-5/12 w-full bg-white hidden lg:absolute h-202"
+          }),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "w-8/12 map-shadow absolute right-0 top-7" },
+            {
+              staticClass:
+                "lg:w-8/12 w-full map-shadow lg:absolute right-0 top-7"
+            },
             [
               _c("iframe", {
+                staticClass: "lg:h-202 h-72",
                 staticStyle: { position: "relative" },
                 attrs: {
                   src: "https://yandex.ru/map-widget/v1/-/CCQ~nEg3tD",
                   width: "100%",
-                  height: "566",
                   frameborder: "1",
                   allowfullscreen: "true"
                 }
@@ -51321,65 +51511,129 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("footer", { staticClass: "pb-12 pt-24" }, [
-      _c("div", { staticClass: "container mx-auto" }, [
-        _c("div", { staticClass: "flex items-center mb-5" }, [
-          _c("div", { staticClass: "text-logo uppercase" }, [
-            _vm._v("\n                        Car style\n                    ")
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "flex menu" }, [
-            _c("li", [
-              _c("a", { attrs: { href: "#services" } }, [_vm._v("Услуги")])
+      _c(
+        "div",
+        {
+          staticClass:
+            "container flex lg:block justify-between items-center px-4 lg:px-4 mx-auto"
+        },
+        [
+          _c("div", { staticClass: "flex  items-center lg:mb-5" }, [
+            _c("div", { staticClass: "text-logo lg:mr-9 uppercase" }, [
+              _vm._v(
+                "\n                        Car style\n                    "
+              )
             ]),
             _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#materials" } }, [_vm._v("Материалы")])
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#work" } }, [_vm._v("Наши работы")])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex items-center justify-between" }, [
-          _c("div", { staticClass: "flex space-x-9" }, [
-            _c("a", { attrs: { href: "" } }, [
-              _c("img", {
-                attrs: { src: "/assets/icons/instagram.svg", alt: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("a", { attrs: { href: "" } }, [
-              _c("img", {
-                attrs: { src: "/assets/icons/whatsapp.svg", alt: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "flex space-x-1", attrs: { href: "" } }, [
-              _c("img", { attrs: { src: "/assets/icons/phone.svg", alt: "" } }),
+            _c("ul", { staticClass: "menu lg:space-x-9 hidden lg:flex" }, [
+              _c("li", [
+                _c("a", { attrs: { href: "#services" } }, [_vm._v("Услуги")])
+              ]),
               _vm._v(" "),
-              _c("p", [_vm._v("+74957556983")])
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "flex space-x-1", attrs: { href: "" } }, [
-              _c("img", { attrs: { src: "/assets/icons/map.svg", alt: "" } }),
+              _c("li", [
+                _c("a", { attrs: { href: "#materials" } }, [
+                  _vm._v("Материалы")
+                ])
+              ]),
               _vm._v(" "),
-              _c("p", [_vm._v("Краснобогатырская ул., 13, с1 ")])
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "flex space-x-1", attrs: { href: "" } }, [
-              _c("img", { attrs: { src: "/assets/icons/mail.svg", alt: "" } }),
-              _vm._v(" "),
-              _c("p", [_vm._v("carstyle@gmail.com")])
+              _c("li", [
+                _c("a", { attrs: { href: "#work" } }, [_vm._v("Наши работы")])
+              ])
             ])
           ]),
           _vm._v(" "),
-          _c("p", { staticClass: "text-sm text-gray-500" }, [
-            _vm._v("Все права защищены — 2020 © CAR STYLE")
-          ])
-        ])
-      ])
+          _c(
+            "div",
+            {
+              staticClass:
+                "flex flex-col lg:flex-row items-center justify-between"
+            },
+            [
+              _c("div", { staticClass: "flex lg:space-x-9" }, [
+                _c(
+                  "a",
+                  { staticClass: " hidden lg:block", attrs: { href: "" } },
+                  [
+                    _c("img", {
+                      attrs: { src: "/assets/icons/instagram.svg", alt: "" }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: " hidden lg:block", attrs: { href: "" } },
+                  [
+                    _c("img", {
+                      attrs: { src: "/assets/icons/whatsapp.svg", alt: "" }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "flex space-x-1", attrs: { href: "" } },
+                  [
+                    _c("img", {
+                      attrs: { src: "/assets/icons/phone.svg", alt: "" }
+                    }),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("+74957556983")])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: " space-x-1 hidden lg:flex",
+                    attrs: { href: "" }
+                  },
+                  [
+                    _c("img", {
+                      attrs: { src: "/assets/icons/map.svg", alt: "" }
+                    }),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("Краснобогатырская ул., 13, с1 ")])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: " space-x-1 hidden lg:flex",
+                    attrs: { href: "" }
+                  },
+                  [
+                    _c("img", {
+                      attrs: { src: "/assets/icons/mail.svg", alt: "" }
+                    }),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("carstyle@gmail.com")])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "p",
+                {
+                  staticClass:
+                    "hidden lg:block lg:text-sm text-xs text-center text-gray-500"
+                },
+                [_vm._v("Все права защищены — 2020 © CAR STYLE")]
+              )
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "p",
+        {
+          staticClass:
+            "lg:text-sm mt-4 lg:hidden text-xs text-center text-gray-500"
+        },
+        [_vm._v("Все права защищены — 2020 © CAR STYLE")]
+      )
     ])
   }
 ]
