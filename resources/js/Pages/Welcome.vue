@@ -77,17 +77,17 @@
             <section class="first py-32 relative px-4">
                 <div class="dots_back w-10/12 h-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-50"></div>
                 <div class="container mx-auto flex flex-col lg:flex-row space-y-9 lg:space-y-0 justify-end z-10 relative">
-                    <div class="lg:w-6/12 text-center w-full">
+                    <div class="lg:w-6/12 text-center lg:text-left w-full">
                         <p class="font-bold lg:text-6xl text-4xl mb-5 leading-tight">Тонирование <br> и оклейка авто</p>
                         <p class="leading-6 text-sm lg:text-base mb-10">Качественное тонирование и оклеивание  вашего автомобиля <!--<br>--> нашими специалистами.
                             Высококачественные пленки от <!--<br>--> проверенных поставщиков с гарантией выполненной работы 3 <!--<br>--> года.
                             Записывайтесь и получайте <span class="font-bold text-indigo-600">скидку 5%</span>.</p>
                         <form class="flex flex-col lg:flex-row items-center bg-white py-3 px-3 rounded-xl">
-                            <div class="flex lg:px-5 py-5">
+                            <div class="flex lg:px-5 lg:py-0 py-5">
                                 <img src="/assets/icons/person.svg" alt="">
                                 <input placeholder="Имя" class="w-full ml-2 focus:outline-none" type="text">
                             </div>
-                            <div class="flex lg:px-5 py-5">
+                            <div class="flex lg:px-5 lg:py-0 py-5">
                                 <img src="/assets/icons/phone_black.svg" alt="">
                                 <input placeholder="Номер" class="w-full ml-2 focus:outline-none" type="text">
                             </div>
@@ -231,7 +231,7 @@
                     </div>
                 </div>
                 <div class="flex lg:absolute top-0 min-w-full">
-                    <div class="lg:w-5/12 w-full bg-white hidden lg:absolute h-202">
+                    <div class="lg:w-5/12 w-full bg-white lg:block hidden lg:absolute h-202">
                     </div>
                     <div class="lg:w-8/12 w-full map-shadow lg:absolute right-0 top-7">
                         <iframe src="" class="lg:h-202 h-72" width="100%" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
