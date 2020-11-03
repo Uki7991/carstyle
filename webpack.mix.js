@@ -12,6 +12,12 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .version()
+    .webpackConfig({
+        output: {
+            chunkFilename: 'js/chunks/[name].js?id=[chunkhash]',
+        }
+    })
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),
         require('tailwindcss'),

@@ -234,7 +234,7 @@
                     <div class="lg:w-5/12 w-full bg-white hidden lg:absolute h-202">
                     </div>
                     <div class="lg:w-8/12 w-full map-shadow lg:absolute right-0 top-7">
-                        <iframe src="https://yandex.ru/map-widget/v1/-/CCQ~nEg3tD" class="lg:h-202 h-72" width="100%" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
+                        <iframe src="" class="lg:h-202 h-72" width="100%" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
                     </div>
                 </div>
 
@@ -373,7 +373,10 @@
             if (window.innerWidth > 1024) {
                 this.menuActive = true;
             }
-        }
+            this.$nextTick(function () {
+                document.getElementsByTagName('iframe')[0].setAttribute('src', 'https://yandex.ru/map-widget/v1/-/CCQ~nEg3tD');
+            });
+        },
     }
 </script>
 
