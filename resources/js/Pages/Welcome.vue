@@ -434,9 +434,21 @@
             if (window.innerWidth > 1024) {
                 this.menuActive = true;
             }
-            this.$nextTick(function () {
-                document.getElementsByTagName('iframe')[0].setAttribute('src', 'https://yandex.ru/map-widget/v1/-/CCQ~nEg3tD');
+
+            let last_known_scroll_position = 0;
+            let contactsTop = 0;
+            let isSet = false;
+            window.addEventListener('scroll', function(e) {
+                last_known_scroll_position = window.scrollY;
+                contactsTop = document.getElementById('contacts').offsetTop;
+                if (last_known_scroll_position > contactsTop - 500) {
+                    if (!isSet) {
+                        document.getElementsByTagName('iframe')[0].setAttribute('src', 'https://yandex.ru/map-widget/v1/-/CCQ~nEg3tD');
+                        isSet = true;
+                    }
+                }
             });
+
         },
     }
 </script>

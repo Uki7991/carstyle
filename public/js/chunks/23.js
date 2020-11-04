@@ -548,8 +548,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.menuActive = true;
     }
 
-    this.$nextTick(function () {
-      document.getElementsByTagName('iframe')[0].setAttribute('src', 'https://yandex.ru/map-widget/v1/-/CCQ~nEg3tD');
+    var last_known_scroll_position = 0;
+    var contactsTop = 0;
+    var isSet = false;
+    window.addEventListener('scroll', function (e) {
+      last_known_scroll_position = window.scrollY;
+      contactsTop = document.getElementById('contacts').offsetTop;
+
+      if (last_known_scroll_position > contactsTop - 500) {
+        if (!isSet) {
+          document.getElementsByTagName('iframe')[0].setAttribute('src', 'https://yandex.ru/map-widget/v1/-/CCQ~nEg3tD');
+          isSet = true;
+        }
+      }
     });
   }
 });
