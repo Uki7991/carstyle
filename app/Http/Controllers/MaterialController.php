@@ -111,12 +111,9 @@ class MaterialController extends Controller
         $material->update($request->all());
 
         foreach ($request->properties as $property) {
-            if (array_key_exists('id', $property)) {
-                $property = MaterialProperty::find($property['id']);
-                $material->properties()->save($property);
-                continue;
-            }
-            $material->properties()->create($property);
+            $material->properties()->updateOrCreate([
+                'id' => array_key_exists('id', $property) ? $property['id'] : 0
+            ], $property);
         }
 
         if ($request->has('image') && $material->wasChanged('image') && $previousImage) {

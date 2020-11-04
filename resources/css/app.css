@@ -74,13 +74,14 @@ body {
 }
 
 .admin-service-tabs {
-    @apply max-w-full;
+    @apply max-w-full min-w-full;
 }
 .admin-service-tabs .tabs-component {
     @apply flex max-w-full;
 }
 .admin-service-tabs .tabs-component-tabs {
     @apply flex flex-col;
+    max-width: 215px;
 }
 .admin-service-tabs .tabs-component-tab {
     @apply border transform relative transition duration-300 translate-x-1;

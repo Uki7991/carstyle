@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gallery;
 use App\Models\GalleryCategory;
+use App\Services\ImageUploader;
 use Illuminate\Http\Request;
 
 class GalleryController extends Controller
@@ -70,12 +71,15 @@ class GalleryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Gallery  $gallery
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response|\Inertia\ResponseFactory
      */
     public function edit(Gallery $gallery)
     {
+        $categories = GalleryCategory::all();
+
         return inertia('Admin/Galleries/Edit', [
-            'gallery' => $gallery,
+            'categories' => $categories,
+            'gallery' => $gallery->load('category'),
         ]);
     }
 
@@ -84,11 +88,21 @@ class GalleryController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Gallery  $gallery
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Gallery $gallery)
     {
+        $category = GalleryCategory::where('title', $request->gallery_category['title'])->first();
+
+        if (!$category) {
+            $category = GalleryCategory::create(['title' => $request->gallery_category['title']]);
+        }
+        if ($request->has('image')) {
+            ImageUploader::delete($gallery->image);
+        }
+
         $gallery->update($request->all());
+        $category->galleries()->save($gallery);
 
         return redirect()->route('galleries.index');
     }
@@ -101,6 +115,7 @@ class GalleryController extends Controller
      */
     public function destroy(Gallery $gallery)
     {
+        ImageUploader::delete($gallery->image);
         $gallery->delete();
 
         return redirect()->route('galleries.index');

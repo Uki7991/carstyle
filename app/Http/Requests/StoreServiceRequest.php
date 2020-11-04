@@ -32,7 +32,7 @@ class StoreServiceRequest extends FormRequest
             'tables.*.headings' => 'array|min:1',
             'tables.*.headings.*.title' => 'required|string',
             'tables.*.headings.*.values' => 'array|min:1',
-            'tables.*.headings.*.values.*' => 'required|string',
+            'tables.*.headings.*.values.*.value' => 'required|string',
         ];
     }
 }

@@ -232,7 +232,7 @@
                 <div class="flex lg:absolute top-0 min-w-full">
                     <div class="lg:w-5/12 w-full bg-white lg:block hidden lg:absolute h-202">
                     </div>
-                    <div class="lg:w-8/12 w-full lg:map-shadow lg:absolute right-0 top-7">
+                    <div class="lg:w-8/12 z-10 w-full lg:map-shadow lg:absolute right-0 top-7">
                         <iframe src="" class="lg:h-202 h-72" width="100%" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
                     </div>
                 </div>

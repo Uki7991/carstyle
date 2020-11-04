@@ -25,7 +25,7 @@
                         <template #tbody>
                             <vs-tr v-for="material in $page.materials" :key="material.id">
                                 <vs-td>{{material.title}}</vs-td>
-                                <vs-td><img :src="'/storage/small/'+material.image" alt=""></vs-td>
+                                <vs-td><img class="h-12 object-cover" :src="'/storage/small/'+material.image" alt=""></vs-td>
                                 <vs-td>
                                     <div class="w-8">
                                         <vs-switch :val="1" :not-value="0" @input="switchChanged($event, material)" v-model="material.active"></vs-switch>

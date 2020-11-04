@@ -1665,7 +1665,7 @@ var staticRenderFns = [
             "div",
             {
               staticClass:
-                "lg:w-8/12 w-full lg:map-shadow lg:absolute right-0 top-7"
+                "lg:w-8/12 z-10 w-full lg:map-shadow lg:absolute right-0 top-7"
             },
             [
               _c("iframe", {

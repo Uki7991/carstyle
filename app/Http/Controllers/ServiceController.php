@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateServiceRequest;
 use App\Http\Requests\StoreServiceRequest;
 use App\Models\Service;
+use App\Models\ServiceTable;
+use App\Models\ServiceTableBody;
 use App\Services\ImageUploader;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -57,10 +59,7 @@ class ServiceController extends Controller
                 $table = $service->tables()->create($rTable);
                 foreach ($rTable['headings'] as $rHeading) {
                     $heading = $table->headings()->create($rHeading);
-                    $collection = collect($rHeading['values'])->map(function ($item) {
-                        return ['value' => $item];
-                    });
-                    $heading->values()->createMany($collection->toArray());
+                    $heading->values()->createMany($rHeading['values']);
                 }
             }
         });
@@ -94,7 +93,7 @@ class ServiceController extends Controller
     public function edit(Service $service)
     {
         return inertia('Admin/Services/Edit', [
-            'service' => $service,
+            'service' => $service->load('tables.headings.values'),
         ]);
     }
 
@@ -107,11 +106,32 @@ class ServiceController extends Controller
      */
     public function update(UpdateServiceRequest $request, Service $service)
     {
-        if ($request->has('image')) {
-            ImageUploader::delete($service->image);
-        }
+        $previousImage = $service->image;
 
-        $service->update($request->all());
+        DB::transaction(function () use ($request, $service) {
+            $service->update($request->validated());
+
+            foreach ($request->tables as $rTable) {
+                $table = $service->tables()->updateOrCreate([
+                    'id' => array_key_exists('id', $rTable) ? $rTable['id'] : 0,
+                ], $rTable);
+                foreach ($rTable['headings'] as $rHeading) {
+                    $heading = $table->headings()->updateOrCreate([
+                        'id' => array_key_exists('id', $rHeading) ? $rHeading['id'] : 0,
+                    ], $rHeading);
+
+                    foreach ($rHeading['values'] as $value) {
+                        $heading->values()->updateOrCreate([
+                            'id' => array_key_exists('id', $value) ? $value['id'] : 0,
+                        ], $value);
+                    }
+                }
+            }
+        });
+
+        if ($request->has('image') && $service->wasChanged('image') && $previousImage) {
+            ImageUploader::delete($previousImage);
+        }
 
         $request->session()->flash('form_post', [
             'status' => true,
@@ -130,6 +150,7 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
+        ImageUploader::delete($service->image);
         $service->delete();
 
         return redirect()->route('services.index');

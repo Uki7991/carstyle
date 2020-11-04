@@ -26,13 +26,12 @@ class UpdateServiceRequest extends FormRequest
         return [
             'title' => 'required|string',
             'description' => 'required|string',
-            'image' => 'required',
             'tables' => 'array|min:1',
             'tables.*.title' => 'required|string',
             'tables.*.headings' => 'array|min:1',
             'tables.*.headings.*.title' => 'required|string',
             'tables.*.headings.*.values' => 'array|min:1',
-            'tables.*.headings.*.values.*' => 'required|string',
+            'tables.*.headings.*.values.*.value' => 'required|string',
         ];
     }
 }

@@ -6,22 +6,18 @@
             </div>
             <admin-component-div class="py-12 flex flex-row space-x-5">
                 <form @submit.prevent="create" class="space-y-6 w-3/12 conform">
-                    <vs-input
-                        v-model="form.title"
-                        label-placeholder="Название"
-                        primary>
-                        <template #message-danger v-if="form.error('title')">
-                            {{form.error('title')}}
-                        </template>
-                    </vs-input>
-                    <vs-input
-                        v-model="form.description"
-                        label-placeholder="Описание"
-                        primary>
-                        <template #message-danger v-if="form.error('description')">
-                            {{form.error('description')}}
-                        </template>
-                    </vs-input>
+                    <multi-select
+                        v-model="form.gallery_category"
+                        tag-placeholder="Добавить новую категорию картинок"
+                        placeholder="Поиск категорий картинок"
+                        :options="values"
+                        :multiple="false"
+                        :taggable="true"
+                        label="title"
+                        value="title"
+                        @tag="addTag"
+                        @select="selecting"
+                    ></multi-select>
                     <file-pond
                         name="test"
                         ref="pond"
@@ -50,6 +46,8 @@
     import BackTo from "@/Components/Buttons/BackTo";
     import AdminComponentDiv from "@/Components/AdminComponentDiv";
     import VueFilePond from 'vue-filepond';
+    import MultiSelect from 'vue-multiselect'
+    import 'vue-multiselect/dist/vue-multiselect.min.css';
     import 'filepond/dist/filepond.min.css';
     // Import image preview plugin styles
     import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
@@ -66,14 +64,15 @@
             BackTo,
             FilePond,
             AdminComponentDiv,
+            MultiSelect,
         },
         data() {
             return {
+                values: this.$page.categories,
                 file: '/storage/medium/'+this.$page.gallery.image,
                 form: this.$inertia.form({
-                    title: this.$page.gallery.title,
-                    description: this.$page.gallery.description,
                     image: this.$page.gallery.image,
+                    gallery_category: this.$page.gallery.category,
                 }, {
                     bag: 'default',
                     resetOnSuccess: true,
@@ -86,6 +85,14 @@
             },
             processFile(e) {
                 this.form.image = JSON.parse(this.$refs.pond.getFile().serverId).filename;
+            },
+            addTag(newTag) {
+                newTag = {title: newTag};
+                this.values.push(newTag);
+                this.form.gallery_category = newTag;
+            },
+            selecting(val, id) {
+                this.form.gallery_category = val.title;
             }
         }
     }

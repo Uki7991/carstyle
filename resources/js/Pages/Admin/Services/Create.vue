@@ -105,10 +105,10 @@
                                                     primary
                                                     border
                                                     placeholder="Пустое значение"
-                                                    v-model="formTable.headings[j].values[i]"
+                                                    v-model="formTable.headings[j].values[i].value"
                                                 >
-                                                    <template style="height: unset!important;" #message-danger v-if="form.error('tables.'+index+'.headings.'+j+'.values.'+i)">
-                                                        {{form.error('tables.'+index+'.headings.'+j+'.values.'+i)}}
+                                                    <template style="height: unset!important;" #message-danger v-if="form.error('tables.'+index+'.headings.'+j+'.values.'+i+'.value')">
+                                                        {{form.error('tables.'+index+'.headings.'+j+'.values.'+i+'.value')}}
                                                     </template>
                                                 </vs-input>
                                             </vs-td>
@@ -185,6 +185,7 @@
                     title: '',
                     values: [''],
                 },
+                value: {value: ''},
                 form: this.$inertia.form({
                     title: '',
                     description: '',
@@ -210,36 +211,44 @@
                     error: false,
                     headings: [{
                         ...this.heading,
-                        values: [''],
+                        values: [{
+                            ...this.value,
+                        }],
                     }]
                 });
             },
             addColumn(formTable) {
                 formTable.headings.push({
                     ...this.heading,
-                    values: [''],
+                    values: [{
+                        ...this.value,
+                    }],
                 });
 
                 formTable.headings[formTable.headings.length - 1].values.length = formTable.headings[0].values.length;
             },
             addRow(formTable) {
                 for (let i = 0; i < formTable.headings.length; i++) {
-                    formTable.headings[i].values.push('');
+                    formTable.headings[i].values.push({
+                        ...this.value,
+                    });
                 }
 
             },
             filteredErrors(index) {
+                const selector = '[href="#'+this.form.tables[index].title.toLowerCase().replaceAll(' ', '-')+'"]';
+
                 for (let key in this.$page.errors) {
                     let reg = new RegExp(`tables\.`+index, 'g');
                     if (this.$page.errors.hasOwnProperty(key) && key.match(reg)) {
                         this.form.tables[index].error = true;
-                        document.querySelectorAll('[href="#'+this.form.tables[index].title+'"]')[0].parentElement.classList.add('error');
+                        document.querySelectorAll(selector)[0].parentElement.classList.add('error');
 
                         return true;
                     }
                 }
                 this.form.tables[index].error = false;
-                document.querySelectorAll('[href="#'+this.form.tables[index].title+'"]')[0].parentElement.classList.remove('error');
+                document.querySelectorAll(selector)[0].parentElement.classList.remove('error');
 
                 return false;
             },

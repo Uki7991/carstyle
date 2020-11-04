@@ -25,7 +25,7 @@
                         <template #tbody>
                             <vs-tr v-for="service in $page.services" :key="service.id">
                                 <vs-td>{{service.title}}</vs-td>
-                                <vs-td><img :src="'/storage/small/'+service.image" alt=""></vs-td>
+                                <vs-td><img class="h-12 object-cover" :src="'/storage/small/'+service.image" alt=""></vs-td>
                                 <vs-td>
                                     <div class="w-8">
                                         <vs-switch :val="1" :not-value="0" @input="switchChanged($event, service)" v-model="service.active"></vs-switch>
