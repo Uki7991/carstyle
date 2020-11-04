@@ -44,6 +44,7 @@ return [
         'linkedinbot',          // LinkedIn
         'slackbot',             // Slack
         'TelegramBot (like TwitterBot)',             // Telegram
+        'TelegramBot',             // Telegram
 
         /*
         |--------------------------------------------------------------------------
