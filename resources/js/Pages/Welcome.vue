@@ -112,7 +112,7 @@
                     <div class="flex lg:w-9/12 w-full mx-auto flex-wrap justify-center">
                         <div v-for="(item, i) in advantages" :data-id="i" class="lg:w-4/12 w-full text-center py-7 px-6" :key="i">
                             <div class="rounded-2xl border-2 border-white shadow-2xl w-21 h-21 flex items-center mx-auto justify-center">
-                                <img :src="'/assets/icons/' + item.icon" alt="">
+                                <img class="lazy" src="" :data-src="'/assets/icons/' + item.icon" alt="">
                             </div>
                             <p class="mt-6 mb-5 text-lg font-semibold">{{item.title}}</p>
                             <p>{{ item.text }}</p>
@@ -130,7 +130,7 @@
                             <div class="lg:w-3/12 w-full px-5 my-6" v-for="(item, i) in services" :key="i" @click="activeService(item)">
                                 <p class="font-semibold text-lg text-gray-800">{{ item.title }}</p>
                                 <p class="text-sm text-gray-600 italic">{{ item.description }}</p>
-                                <img class="mt-4" :src="'/storage/large/' + item.image" alt="">
+                                <img class="mt-4 lazy" src="" :data-src="'/storage/large/' + item.image" alt="">
                             </div>
                         </div>
 
@@ -150,7 +150,7 @@
                         </div>
                         <div class="lg:w-1/2 w-full px-3 mb-4" v-for="material in materialCategory.materials" :key="material.id">
                             <div class="bg-white rounded-3xl py-5 px-6">
-                                <img class="h-12 object-cover" :src="'/storage/small/'+material.image" alt="">
+                                <img class="h-12 object-cover lazy" src="" :data-src="'/storage/small/'+material.image" alt="">
                                 <div class="mt-4 text-sm leading-loose divide-y divide-gray-200 lg:divide-y-0">
                                     <div class="flex flex-col lg:flex-row justify-between" v-for="property in material.properties" :key="property.id">
                                         <p>{{property.title}}:</p>
@@ -184,7 +184,7 @@
                             <div v-if="i===3 || filteredImages.slice(0, 4).length - 1 === i" class="h-full w-full absolute rounded-2xl bg-gray-100 opacity-75"></div>
                             <div v-if="i===3 || filteredImages.slice(0, 4).length - 1 === i" class="h-full w-full absolute rounded-2xl backdrop-blur-3"></div>
                             <button v-if="i===3 || filteredImages.slice(0, 4).length - 1 === i" class="border border-indigo-100 text-gray-600 text-sm bg-indigo-200 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-2 px-5">Смотреть все</button>
-                            <img class="w-full h-full object-cover rounded-2xl" :src="'/storage/medium/'+gallery.image" alt="">
+                            <img class="w-full h-full object-cover rounded-2xl lazy" src="" :data-src="'/storage/medium/'+gallery.image" alt="">
                         </div>
                     </div>
                     <div class="lg:hidden">
@@ -193,7 +193,7 @@
                                 <div v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i" class="h-full w-full absolute rounded-2xl bg-gray-100 opacity-75"></div>
                                 <div v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i" class="h-full w-full absolute rounded-2xl backdrop-blur-3"></div>
                                 <button v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i" class="border border-indigo-100 text-gray-600 text-sm bg-indigo-200 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-2 px-5">Смотреть все</button>
-                                <img :src="'/storage/medium/'+image.image" alt="">
+                                <img class="lazy" src="" :data-src="'/storage/medium/'+image.image" alt="">
                             </splide-slide>
                         </splide>
                     </div>
@@ -437,6 +437,7 @@
 
             let last_known_scroll_position = 0;
             let contactsTop = 0;
+
             let isSet = false;
             window.addEventListener('scroll', function(e) {
                 last_known_scroll_position = window.scrollY;
@@ -448,6 +449,53 @@
                     }
                 }
             });
+
+                let lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+                console.log(lazyImages);
+                let active = false;
+
+                const lazyLoad = function() {
+                    if (active === false) {
+                        active = true;
+
+                        setTimeout(function() {
+                            // images.forEach(item => {
+                            //     console.log(item.getAttribute('src'));
+                            //     console.log(item.dataset.src);
+                            //
+                            //     if (item.getAttribute('src') !== '' || item.getAttribute('src') !== null) {
+                            //         if (last_known_scroll_position >= item.getBoundingClientRect().top) {
+                            //             item.src = item.dataset.src;
+                            //         }
+                            //     }
+                            // });
+
+                            lazyImages.forEach(function(lazyImage) {
+                                if ((lazyImage.getBoundingClientRect().top <= window.innerHeight && lazyImage.getBoundingClientRect().bottom >= 0) && getComputedStyle(lazyImage).display !== "none") {
+                                    console.log('removed');
+                                    lazyImage.src = lazyImage.dataset.src;
+                                    lazyImage.classList.remove("lazy");
+
+                                    lazyImages = lazyImages.filter(function(image) {
+                                        return image !== lazyImage;
+                                    });
+
+                                    if (lazyImages.length === 0) {
+                                        document.removeEventListener("scroll", lazyLoad);
+                                        window.removeEventListener("resize", lazyLoad);
+                                        window.removeEventListener("orientationchange", lazyLoad);
+                                    }
+                                }
+                            });
+
+                            active = false;
+                        }, 200);
+                    }
+                };
+
+                document.addEventListener("scroll", lazyLoad);
+                window.addEventListener("resize", lazyLoad);
+                window.addEventListener("orientationchange", lazyLoad);
 
         },
     }
