@@ -1,6 +1,6 @@
 <template>
-    <div class="custom-tabs-component">
-        <ul class="custom-tabs-component-tabs w-3/12">
+    <div class="custom-tabs-component lg:flex-row flex-col">
+        <ul class="custom-tabs-component-tabs lg:w-3/12 w-full">
             <li v-for="service in services" :key="service.id" class="custom-tabs-component-tab" :class="{active: service.activeTab}">
                 <p @click="activeService(service)">{{service.title}}</p>
                 <span>{{service.description}}</span>
@@ -13,7 +13,7 @@
                 </transition>
             </li>
         </ul>
-        <div class="custom-tabs-component-panels w-9/12 flex justify-end">
+        <div class="custom-tabs-component-panels lg:w-9/12 w-full flex justify-end">
             <transition-group duration="200" name="fade">
                 <div class="custom-tabs-component-panel" aria-hidden="true" role="tabpanel" v-for="table in tables" :key="table.id" v-show="table.active">
                     <vs-table>

@@ -10,12 +10,14 @@
         </div>
         <transition name="fade" mode="out-in" duration="300">
             <nav class="fixed lg:sticky top-0 bg-white w-screen lg:w-full h-screen lg:h-auto z-50" v-show="menuActive">
-                <div class="container py-5 flex pl-4 lg:pl-0 flex-col lg:flex-row h-full justify-between lg:justify-start lg:items-center mx-auto">
+                <div
+                    class="container py-5 flex pl-4 lg:pl-0 flex-col lg:flex-row h-full justify-between lg:justify-start lg:items-center mx-auto">
                     <div class="flex justify-between items-center">
                         <div class="text-logo uppercase">
                             Car style
                         </div>
-                        <img @click="closeMenu" class="block lg:hidden w-12" v-if="menuActive" src="/assets/icons/close.svg" alt="">
+                        <img @click="closeMenu" class="block lg:hidden w-12" v-if="menuActive"
+                             src="/assets/icons/close.svg" alt="">
 
                     </div>
                     <ul class="flex pl-0 lg:pl-9 lg:space-x-9 menu font-bold lg:font-normal text-4xl lg:text-base flex-col lg:flex-row">
@@ -77,12 +79,16 @@
 
         <main>
             <section class="first py-32 relative px-4">
-                <div class="dots_back w-10/12 h-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-50"></div>
-                <div class="container mx-auto flex flex-col lg:flex-row space-y-9 lg:space-y-0 justify-end z-10 relative">
+                <div
+                    class="dots_back w-10/12 h-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-50"></div>
+                <div
+                    class="container mx-auto flex flex-col lg:flex-row space-y-9 lg:space-y-0 justify-end z-10 relative">
                     <div class="lg:w-6/12 text-center lg:text-left w-full">
                         <p class="font-bold lg:text-6xl text-4xl mb-5 leading-tight">Тонирование <br> и оклейка авто</p>
-                        <p class="leading-6 text-sm lg:text-base mb-10">Качественное тонирование и оклеивание  вашего автомобиля <!--<br>--> нашими специалистами.
-                            Высококачественные пленки от <!--<br>--> проверенных поставщиков с гарантией выполненной работы 3 <!--<br>--> года.
+                        <p class="leading-6 text-sm lg:text-base mb-10">Качественное тонирование и оклеивание вашего
+                            автомобиля <!--<br>--> нашими специалистами.
+                            Высококачественные пленки от <!--<br>--> проверенных поставщиков с гарантией выполненной
+                            работы 3 <!--<br>--> года.
                             Записывайтесь и получайте <span class="font-bold text-indigo-600">скидку 5%</span>.</p>
                         <form class="flex flex-col lg:flex-row items-center bg-white py-3 px-3 rounded-xl">
                             <div class="flex lg:px-5 lg:py-0 py-5">
@@ -108,10 +114,13 @@
                 </div>
                 <div class="container px-4 lg:px-0 mx-auto">
                     <p class="text-indigo-600 text-lg mb-3 font-semibold text-center">Почему мы?</p>
-                    <p class="font-bold mb-5 lg:text-4xl text-2xl text-center leading-tight">Более 2000 автомобилей было <br> затонированно и оклеено за время работы <br> нашей студии.</p>
+                    <p class="font-bold mb-5 lg:text-4xl text-2xl text-center leading-tight">Более 2000 автомобилей было
+                        <br> затонированно и оклеено за время работы <br> нашей студии.</p>
                     <div class="flex lg:w-9/12 w-full mx-auto flex-wrap justify-center">
-                        <div v-for="(item, i) in advantages" :data-id="i" class="lg:w-4/12 w-full text-center py-7 px-6" :key="i">
-                            <div class="rounded-2xl border-2 border-white shadow-2xl w-21 h-21 flex items-center mx-auto justify-center">
+                        <div v-for="(item, i) in advantages" :data-id="i" class="lg:w-4/12 w-full text-center py-7 px-6"
+                             :key="i">
+                            <div
+                                class="rounded-2xl border-2 border-white shadow-2xl w-21 h-21 flex items-center mx-auto justify-center">
                                 <img class="lazy" src="" :data-src="'/assets/icons/' + item.icon" alt="">
                             </div>
                             <p class="mt-6 mb-5 text-lg font-semibold">{{item.title}}</p>
@@ -127,14 +136,53 @@
                     <p class="font-bold mb-5 lg:text-4xl text-2xl leading-tight">Каталог наших услуг</p>
                     <transition duration="200" name="fade">
                         <div class="flex flex-wrap" v-if="!activeTab">
-                            <div class="lg:w-3/12 w-full px-5 my-6" v-for="(item, i) in services" :key="i" @click="activeService(item)">
+                            <div class="lg:w-3/12 w-full px-5 my-6" v-for="(item, i) in services" :key="i"
+                                 @click="activeService(item)">
                                 <p class="font-semibold text-lg text-gray-800">{{ item.title }}</p>
                                 <p class="text-sm text-gray-600 italic">{{ item.description }}</p>
                                 <img class="mt-4 lazy" src="" :data-src="'/storage/large/' + item.image" alt="">
                             </div>
                         </div>
 
-                        <custom-tabs :services="services" :tables="tables" v-else></custom-tabs>
+                        <!--                        <custom-tabs :services="services" :tables="computedTables" ></custom-tabs>-->
+                        <div v-else class="custom-tabs-component lg:flex-row flex-col">
+                            <ul class="custom-tabs-component-tabs lg:w-3/12 w-full">
+                                <li v-for="service in services" :key="service.id" class="custom-tabs-component-tab"
+                                    :class="{active: service.activeTab}">
+                                    <p @click="activeService(service)">{{service.title}}</p>
+                                    <span>{{service.description}}</span>
+                                    <transition name="fade" duration="200">
+                                        <ul v-show="service.activeTab">
+                                            <li v-for="table in tables.filter(item => item.service_id === service.id)"
+                                                :class="{'is-active': table.active}" :key="table.id">
+                                                <span @click="showPanel(table)">{{table.title}}</span>
+                                            </li>
+                                        </ul>
+                                    </transition>
+                                </li>
+                            </ul>
+                            <div class="custom-tabs-component-panels bg-white p-3 rounded-2xl lg:w-9/12 w-full justify-end">
+                                <div class="custom-tabs-component-panel" aria-hidden="true" role="tabpanel"
+                                     v-for="table in tables" :key="table.id" v-show="table.active">
+                                    <vs-table class="custom">
+                                        <template #thead>
+                                            <vs-tr>
+                                                <vs-th v-for="heading in table.headings" :key="heading.id">
+                                                    {{heading.title}}
+                                                </vs-th>
+                                            </vs-tr>
+                                        </template>
+                                        <template #tbody>
+                                            <vs-tr v-for="(item, i) in table.headings[0].values.length" :key="i">
+                                                <vs-td v-for="(jtem, j) in table.headings.length" :key="j">
+                                                    {{table.headings[j].values[i].value}}
+                                                </vs-td>
+                                            </vs-tr>
+                                        </template>
+                                    </vs-table>
+                                </div>
+                            </div>
+                        </div>
                     </transition>
                 </div>
             </section>
@@ -144,15 +192,19 @@
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Материалы</p>
                     <p class="font-bold mb-5 lg:text-4xl text-2xl leading-tight">Характеристики используемых брендов</p>
 
-                    <div class="flex py-5 flex-wrap" v-for="materialCategory in materialCategories" :key="materialCategory.id">
+                    <div class="flex py-5 flex-wrap" v-for="materialCategory in materialCategories"
+                         :key="materialCategory.id">
                         <div class="w-full mb-7">
                             <p class="text-xl font-bold">{{materialCategory.title}}</p>
                         </div>
-                        <div class="lg:w-1/2 w-full px-3 mb-4" v-for="material in materialCategory.materials" :key="material.id">
+                        <div class="lg:w-1/2 w-full px-3 mb-4" v-for="material in materialCategory.materials"
+                             :key="material.id">
                             <div class="bg-white rounded-3xl py-5 px-6">
-                                <img class="h-12 object-cover lazy" src="" :data-src="'/storage/small/'+material.image" alt="">
+                                <img class="h-12 object-cover lazy" src="" :data-src="'/storage/small/'+material.image"
+                                     alt="">
                                 <div class="mt-4 text-sm leading-loose divide-y divide-gray-200 lg:divide-y-0">
-                                    <div class="flex flex-col lg:flex-row justify-between" v-for="property in material.properties" :key="property.id">
+                                    <div class="flex flex-col lg:flex-row justify-between"
+                                         v-for="property in material.properties" :key="property.id">
                                         <p>{{property.title}}:</p>
                                         <p class="font-medium">{{property.value}}</p>
                                     </div>
@@ -172,7 +224,8 @@
                             <splide :options="slideOptions" :slides="galleryCategories">
                                 <splide-slide v-for="category in galleryCategories" :key="category.id">
                                     <span class="text-xs text-indigo-600 absolute -top-1 -right-2">{{category.galleries_count}}</span>
-                                    <p class="cursor-pointer py-1" :class="{'active font-bold': category.active}" @click.stop="galleryCategoriesActive(category)">{{category.title}}</p>
+                                    <p class="cursor-pointer py-1" :class="{'active font-bold': category.active}"
+                                       @click.stop="galleryCategoriesActive(category)">{{category.title}}</p>
                                 </splide-slide>
                             </splide>
                         </div>
@@ -180,19 +233,31 @@
                     </div>
 
                     <div class="hidden lg:grid grid-cols-3 grid-rows-2 gap-3 h-80">
-                        <div :class="{'row-span-2': i===0 || i===1, 'row-span-1': i===3 || i===4, 'relative': true}" v-for="(gallery, i) in filteredImages.slice(0, 4)" :key="gallery.id">
-                            <div v-if="i===3 || filteredImages.slice(0, 4).length - 1 === i" class="h-full w-full absolute rounded-2xl bg-gray-100 opacity-75"></div>
-                            <div v-if="i===3 || filteredImages.slice(0, 4).length - 1 === i" class="h-full w-full absolute rounded-2xl backdrop-blur-3"></div>
-                            <button v-if="i===3 || filteredImages.slice(0, 4).length - 1 === i" class="border border-indigo-100 text-gray-600 text-sm bg-indigo-200 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-2 px-5">Смотреть все</button>
-                            <img class="w-full h-full object-cover rounded-2xl lazy" src="" :data-src="'/storage/medium/'+gallery.image" alt="">
+                        <div :class="{'row-span-2': i===0 || i===1, 'row-span-1': i===3 || i===4, 'relative': true}"
+                             v-for="(gallery, i) in filteredImages.slice(0, 4)" :key="gallery.id">
+                            <div v-if="i===3 || filteredImages.slice(0, 4).length - 1 === i"
+                                 class="h-full w-full absolute rounded-2xl bg-gray-100 opacity-75"></div>
+                            <div v-if="i===3 || filteredImages.slice(0, 4).length - 1 === i"
+                                 class="h-full w-full absolute rounded-2xl backdrop-blur-3"></div>
+                            <button v-if="i===3 || filteredImages.slice(0, 4).length - 1 === i"
+                                    class="border border-indigo-100 text-gray-600 text-sm bg-indigo-200 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-2 px-5">
+                                Смотреть все
+                            </button>
+                            <img class="w-full h-full object-cover rounded-2xl lazy" src=""
+                                 :data-src="'/storage/medium/'+gallery.image" alt="">
                         </div>
                     </div>
                     <div class="lg:hidden">
                         <splide :options="imageSlideOptions" :slides="filteredImages.slice(0, 5)">
                             <splide-slide v-for="(image, i) in filteredImages.slice(0, 5)" :key="image.id">
-                                <div v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i" class="h-full w-full absolute rounded-2xl bg-gray-100 opacity-75"></div>
-                                <div v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i" class="h-full w-full absolute rounded-2xl backdrop-blur-3"></div>
-                                <button v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i" class="border border-indigo-100 text-gray-600 text-sm bg-indigo-200 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-2 px-5">Смотреть все</button>
+                                <div v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i"
+                                     class="h-full w-full absolute rounded-2xl bg-gray-100 opacity-75"></div>
+                                <div v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i"
+                                     class="h-full w-full absolute rounded-2xl backdrop-blur-3"></div>
+                                <button v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i"
+                                        class="border border-indigo-100 text-gray-600 text-sm bg-indigo-200 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-2 px-5">
+                                    Смотреть все
+                                </button>
                                 <img class="lazy" src="" :data-src="'/storage/medium/'+image.image" alt="">
                             </splide-slide>
                         </splide>
@@ -233,7 +298,8 @@
                     <div class="lg:w-5/12 w-full bg-white lg:block hidden lg:absolute h-202">
                     </div>
                     <div class="lg:w-8/12 z-10 w-full lg:map-shadow lg:absolute right-0 top-7">
-                        <iframe src="" class="lg:h-202 h-72" width="100%" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
+                        <iframe src="" class="lg:h-202 h-72" width="100%" frameborder="1" allowfullscreen="true"
+                                style="position:relative;"></iframe>
                     </div>
                 </div>
 
@@ -279,10 +345,12 @@
                                 <p>carstyle@gmail.com</p>
                             </a>
                         </div>
-                        <p class="hidden lg:block lg:text-sm text-xs text-center text-gray-500">Все права защищены — 2020 © CAR STYLE</p>
+                        <p class="hidden lg:block lg:text-sm text-xs text-center text-gray-500">Все права защищены —
+                            2020 © CAR STYLE</p>
                     </div>
                 </div>
-                <p class="lg:text-sm mt-4 lg:hidden text-xs text-center text-gray-500">Все права защищены — 2020 © CAR STYLE</p>
+                <p class="lg:text-sm mt-4 lg:hidden text-xs text-center text-gray-500">Все права защищены — 2020 © CAR
+                    STYLE</p>
             </footer>
         </main>
     </div>
@@ -428,6 +496,35 @@
             closeMenu() {
                 document.getElementsByTagName('body')[0].classList.remove('overflow-hidden');
                 this.menuActive = false;
+            },
+            showPanel(table) {
+                this.tables = this.tables.map(item => {
+                    return {
+                        ...item,
+                        active: table.id === item.id
+                    };
+                })
+                this.services = this.services.map(item => {
+                    return {
+                        ...item,
+                        activeTab: table.service_id === item.id
+                    };
+                })
+            },
+            activeService(service) {
+                this.services = this.services.map(item => {
+                    return {
+                        ...item,
+                        activeTab: item.id === service.id,
+                    }
+                });
+                let table = this.tables.find(item => item.service_id === service.id);
+                this.tables = this.tables.map(item => {
+                    return {
+                        ...item,
+                        active: table.id === item.id,
+                    }
+                })
             }
         },
         mounted() {
@@ -439,7 +536,7 @@
             let contactsTop = 0;
 
             let isSet = false;
-            window.addEventListener('scroll', function(e) {
+            window.addEventListener('scroll', function (e) {
                 last_known_scroll_position = window.scrollY;
                 contactsTop = document.getElementById('contacts').offsetTop;
                 if (last_known_scroll_position > contactsTop - 500) {
@@ -450,52 +547,40 @@
                 }
             });
 
-                let lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
-                console.log(lazyImages);
-                let active = false;
+            let lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+            let active = false;
 
-                const lazyLoad = function() {
-                    if (active === false) {
-                        active = true;
+            const lazyLoad = function () {
+                if (active === false) {
+                    active = true;
 
-                        setTimeout(function() {
-                            // images.forEach(item => {
-                            //     console.log(item.getAttribute('src'));
-                            //     console.log(item.dataset.src);
-                            //
-                            //     if (item.getAttribute('src') !== '' || item.getAttribute('src') !== null) {
-                            //         if (last_known_scroll_position >= item.getBoundingClientRect().top) {
-                            //             item.src = item.dataset.src;
-                            //         }
-                            //     }
-                            // });
+                    setTimeout(function () {
 
-                            lazyImages.forEach(function(lazyImage) {
-                                if ((lazyImage.getBoundingClientRect().top <= window.innerHeight && lazyImage.getBoundingClientRect().bottom >= 0) && getComputedStyle(lazyImage).display !== "none") {
-                                    console.log('removed');
-                                    lazyImage.src = lazyImage.dataset.src;
-                                    lazyImage.classList.remove("lazy");
+                        lazyImages.forEach(function (lazyImage) {
+                            if ((lazyImage.getBoundingClientRect().top <= window.innerHeight && lazyImage.getBoundingClientRect().bottom >= 0)) {
+                                lazyImage.src = lazyImage.dataset.src;
+                                lazyImage.classList.remove("lazy");
 
-                                    lazyImages = lazyImages.filter(function(image) {
-                                        return image !== lazyImage;
-                                    });
+                                lazyImages = lazyImages.filter(function (image) {
+                                    return image !== lazyImage;
+                                });
 
-                                    if (lazyImages.length === 0) {
-                                        document.removeEventListener("scroll", lazyLoad);
-                                        window.removeEventListener("resize", lazyLoad);
-                                        window.removeEventListener("orientationchange", lazyLoad);
-                                    }
+                                if (lazyImages.length === 0) {
+                                    document.removeEventListener("scroll", lazyLoad);
+                                    window.removeEventListener("resize", lazyLoad);
+                                    window.removeEventListener("orientationchange", lazyLoad);
                                 }
-                            });
+                            }
+                        });
 
-                            active = false;
-                        }, 200);
-                    }
-                };
+                        active = false;
+                    }, 200);
+                }
+            };
 
-                document.addEventListener("scroll", lazyLoad);
-                window.addEventListener("resize", lazyLoad);
-                window.addEventListener("orientationchange", lazyLoad);
+            document.addEventListener("scroll", lazyLoad);
+            window.addEventListener("resize", lazyLoad);
+            window.addEventListener("orientationchange", lazyLoad);
 
         },
     }

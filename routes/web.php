@@ -24,6 +24,7 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/', [IndexController::class, 'home']);
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']], function () {
+    Route::redirect('/', '/admin/dashboard')->name('admin');
     Route::get('/dashboard', function () {
         return Inertia\Inertia::render('Dashboard');
     })->name('dashboard');
@@ -35,5 +36,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']]
     Route::resource('materials', MaterialController::class);
     Route::put('/galleries/{gallery}/status', [GalleryController::class, 'status'])->name('galleries.status');
     Route::resource('galleries', GalleryController::class);
+
+    Route::resource('contacts', \App\Http\Controllers\ContactController::class)->only(['edit', 'update']);
 });
 

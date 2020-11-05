@@ -5,7 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ $contact->title ?? config('app.name', 'Laravel') }}</title>
+        <meta name="description" content="{{ $contact->description ?? '' }}">
+        <meta name="keywords" content="{{ $contact->keywords ?? '' }}">
+        <meta property="og:title" content="{{ $contact->title ?? '' }}">
+        <meta property="og:description" content="{{ $contact->description ?? '' }}">
+        <meta property="og:url" content="{{ \Illuminate\Support\Facades\URL::current() }}">
+        <meta property="og:type" content="site">
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">

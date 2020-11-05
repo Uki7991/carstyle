@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Contact;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
 
@@ -24,9 +27,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::share('contact', Schema::hasTable('contacts') ? Contact::all()->first() : null);
         Inertia::share([
             'form_post' => function() {
                 return session()->get('form_post');
+            },
+            'contact' => function() {
+                return Schema::hasTable('contacts') ? Contact::all()->first() : null;
             }
         ]);
     }

@@ -32,95 +32,13 @@
             </template>
             Галерея
         </vs-sidebar-item>
-        <vs-sidebar-group>
-            <template #header>
-                <vs-sidebar-item arrow>
-                    <template #icon>
-                        <i class='bx bx-group'></i>
-                    </template>
-                    Social media
-                </vs-sidebar-item>
-            </template>
-
-            <vs-sidebar-item id="Instagram">
-                <template #icon>
-                    <i class='bx bxl-instagram'></i>
-                </template>
-                Instagram
-            </vs-sidebar-item>
-            <vs-sidebar-item id="twitter">
-                <template #icon>
-                    <i class='bx bxl-twitter' ></i>
-                </template>
-                Twitter
-            </vs-sidebar-item>
-            <vs-sidebar-item id="Facebook">
-                <template #icon>
-                    <i class='bx bxl-facebook' ></i>
-                </template>
-                Facebook
-            </vs-sidebar-item>
-        </vs-sidebar-group>
-        <vs-sidebar-group>
-            <template #header>
-                <vs-sidebar-item arrow>
-                    <template #icon>
-                        <i class='bx bx-code-alt' ></i>
-                    </template>
-                    Coding
-                </vs-sidebar-item>
-            </template>
-
-            <vs-sidebar-item id="github">
-                <template #icon>
-                    <i class='bx bxl-github' ></i>
-                </template>
-                Github
-            </vs-sidebar-item>
-            <vs-sidebar-item id="codepen">
-                <template #icon>
-                    <i class='bx bxl-codepen'></i>
-                </template>
-                Codepen
-            </vs-sidebar-item>
-            <vs-sidebar-item id="discord">
-                <template #icon>
-                    <i class='bx bxl-discord'></i>
-                </template>
-                Discord
-            </vs-sidebar-item>
-            <vs-sidebar-item id="Javascript">
-                <template #icon>
-                    <i class='bx bxl-javascript' ></i>
-                </template>
-                Javascript
-            </vs-sidebar-item>
-            <vs-sidebar-item id="git">
-                <template #icon>
-                    <i class='bx bxl-git' ></i>
-                </template>
-                Git
-            </vs-sidebar-item>
-        </vs-sidebar-group>
-        <vs-sidebar-item id="donate">
+        <vs-sidebar-item id="contacts" @click.native="link(route('contacts.edit', {contact: $page.contact}))">
             <template #icon>
-                <i class='bx bxs-donate-heart' ></i>
+                <i class='bx bx-slider-alt'></i>
             </template>
-            Donate
+            Настройки
         </vs-sidebar-item>
-        <vs-sidebar-item id="drink">
-            <template #icon>
-                <i class='bx bx-drink'></i>
-            </template>
-            Drink
-        </vs-sidebar-item>
-        <vs-sidebar-item id="shopping">
-            <template #icon>
-                <i class='bx bxs-shopping-bags'></i>
-            </template>
-            Shopping
-        </vs-sidebar-item>
-        <vs-sidebar-item id="chat" @click.native="link(route('logout'))">
+        <vs-sidebar-item id="logout" @click.native="link(route('logout'))">
             <template #icon>
                 <i class='bx bx-exit bx-rotate-180' ></i>
             </template>
@@ -128,14 +46,6 @@
         </vs-sidebar-item>
         <template #footer>
             <vs-row justify="space-between">
-                <vs-avatar badge-color="danger" badge-position="top-right">
-                    <i class='bx bx-bell' ></i>
-
-                    <template #badge>
-                        28
-                    </template>
-                </vs-avatar>
-
                 <vs-avatar>
                     <img :src="$page.user.profile_photo_url" alt="">
                 </vs-avatar>
@@ -165,6 +75,7 @@
             return {
                 active: 'dashboard',
                 reduce: null,
+                pathRegex: pathToRegexp('/:admin/:menu/(.*)*'),
             }
         },
         computed: {
@@ -188,8 +99,8 @@
         },
         created() {
             const current = window.location.pathname + window.location.search + window.location.hash
-            this.active = pathToRegexp('/:admin/:menu/(.*)*').exec(current)[2];
-            // console.log(pathToRegexp('/:admin/:menu/(.*)*').exec(current));
+            console.log(this.pathRegex.exec(current));
+            this.active = this.pathRegex.exec(current) ? this.pathRegex.exec(current)[2] : 'dashboard';
             if (localStorage.getItem('sidebarReduce') === null) {
                 localStorage.setItem('sidebarReduce', false);
             } else {

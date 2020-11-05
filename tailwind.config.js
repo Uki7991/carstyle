@@ -14,6 +14,9 @@ module.exports = {
                 "carstyle-logo": ['"Secular One"'],
                 "carstyle-text": ['Inter'],
             },
+            minWidth: {
+                'screen': '100vw',
+            },
             spacing: {
                 '7': '1.75rem',
                 '9': '2.25rem',
