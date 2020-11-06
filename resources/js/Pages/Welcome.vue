@@ -106,14 +106,20 @@
                             Высококачественные пленки от <!--<br>--> проверенных поставщиков с гарантией выполненной
                             работы 3 <!--<br>--> года.
                             Записывайтесь и получайте <span class="font-bold text-indigo-600">скидку 5%</span>.</p>
-                        <form @submit.prevent="submitForm" class="flex flex-col lg:flex-row items-center bg-white py-3 px-3 rounded-xl">
-                            <div class="flex lg:px-5 lg:py-0 py-5">
+                        <form @submit.prevent="submitForm" class="flex flex-col lg:flex-row items-center bg-white py-3 px-3 rounded-xl space-x-4">
+                            <div class="flex items-center lg:px-5 lg:py-1 py-5" :class="{'border-red-500 border rounded': form.error('name')}">
                                 <img src="/assets/icons/person.svg" class="svg fill-current text-gray-700" alt="">
-                                <input placeholder="Имя" class="w-full ml-2 focus:outline-none" type="text">
+                                <div class="relative">
+                                    <input placeholder="Имя" v-model="form.name" class="w-full ml-2 focus:outline-none" type="text">
+                                    <p v-if="form.error('name')" class="text-red-500 text-xs absolute left-1/2 transform -translate-x-1/2 -bottom-6 w-full">{{form.error('name') | translateErrors('name', 'имя')}}</p>
+                                </div>
                             </div>
-                            <div class="flex lg:px-5 lg:py-0 py-5">
+                            <div class="flex items-center lg:px-5 lg:py-1 py-5" :class="{'border-red-500 border rounded': form.error('phone')}">
                                 <img src="/assets/icons/phone_black.svg" class="svg fill-current text-gray-700" alt="">
-                                <input placeholder="Номер" class="w-full ml-2 focus:outline-none" type="text">
+                                <div class="relative">
+                                    <input placeholder="Номер" v-model="form.phone" class="w-full ml-2 focus:outline-none" type="text">
+                                    <p v-if="form.error('phone')" class="text-red-500 text-xs absolute left-1/2 transform -translate-x-1/2 -bottom-6 w-full">{{form.error('phone') | translateErrors('phone', 'номер')}}</p>
+                                </div>
                             </div>
                             <button class="bg-blue-600 py-3 px-9 mt-4 lg:mt-0 text-white rounded-md">Записаться</button>
                         </form>
@@ -608,7 +614,20 @@
                 })
             },
             submitForm() {
-                this.dialogActive = true;
+                this.$inertia.post(this.route('bids.store'), this.form, {
+                    preserveScroll: true,
+                    onSuccess: (data) => {
+                        // if (this.$page.form_post.status) {
+                            this.form.reset();
+                            this.dialogActive = true;
+                        // }
+                    }
+                })
+            }
+        },
+        filters: {
+            translateErrors(value, type, translate) {
+                return value.replace(type, translate);
             }
         },
         mounted() {

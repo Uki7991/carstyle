@@ -23,6 +23,8 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 
 Route::get('/', [IndexController::class, 'home']);
 
+Route::post('/bids', [\App\Http\Controllers\BidController::class, 'store'])->name('bids.store');
+
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']], function () {
     Route::redirect('/', '/admin/dashboard')->name('admin');
     Route::get('/dashboard', function () {
