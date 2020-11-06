@@ -13,6 +13,7 @@ module.exports = {
             colors: {
                 'secondary': '#E9ECF5',
                 'svg': '#3E50F3',
+                'on-hover': '#5263F4',
             },
             fontFamily: {
                 "carstyle-logo": ['"Secular One"'],

@@ -37,16 +37,16 @@
 
                     </div>
                     <ul class="flex pl-0 lg:pl-9 lg:space-x-9 menu font-bold lg:font-normal text-4xl lg:text-base flex-col lg:flex-row">
-                        <li class="hover:text-indigo-500 transition duration-300">
+                        <li class="hover:text-on-hover transition duration-300">
                             <a href="#services">Услуги</a>
                         </li>
-                        <li class="hover:text-indigo-500 transition duration-300">
+                        <li class="hover:text-on-hover transition duration-300">
                             <a href="#materials">Материалы</a>
                         </li>
-                        <li class="hover:text-indigo-500 transition duration-300">
+                        <li class="hover:text-on-hover transition duration-300">
                             <a href="#work">Наши работы</a>
                         </li>
-                        <li class="hover:text-indigo-500 transition duration-300">
+                        <li class="hover:text-on-hover transition duration-300">
                             <a href="#contacts">Контакты</a>
                         </li>
                     </ul>
@@ -56,12 +56,12 @@
                             <ul class="flex bottom-0 left-0 mt-5 lg:mt-0 space-x-9">
                                 <li v-if="contact.instagram" class="group">
                                     <a :href="contact.instagram" target="_blank" class="icon">
-                                        <img class="svg fill-current text-svg group-hover:text-blue-300 transition duration-400 w-6 lg:w-auto" src="/assets/icons/instagram.svg" alt="">
+                                        <img class="svg fill-current text-svg group-hover:text-on-hover transition duration-400 w-6 lg:w-auto" src="/assets/icons/instagram.svg" alt="">
                                     </a>
                                 </li>
                                 <li v-if="contact.whatsapp" class="group">
                                     <a :href="contact.whatsapp" target="_blank" class="icon">
-                                        <img class="svg fill-current text-svg group-hover:text-blue-300 transition duration-400 w-6 lg:w-auto" src="/assets/icons/whatsapp.svg" alt="">
+                                        <img class="svg fill-current text-svg group-hover:text-on-hover transition duration-400 w-6 lg:w-auto" src="/assets/icons/whatsapp.svg" alt="">
                                     </a>
                                 </li>
                             </ul>
@@ -70,19 +70,19 @@
                             <ul class="flex flex-col lg:items-center lg:space-x-9 space-y-3 lg:space-y-0 lg:flex-row">
                                 <li v-if="contact.address" class=" group">
                                     <a href="#contacts" class="icon flex items-center">
-                                        <img src="/assets/icons/map.svg" class="mr-1 svg fill-current text-svg group-hover:text-blue-300 transition duration-400" alt="">
+                                        <img src="/assets/icons/map.svg" class="mr-1 svg fill-current text-svg group-hover:text-on-hover transition duration-400" alt="">
                                         <span>{{contact.address}}</span>
                                     </a>
                                 </li>
                                 <li class="lg:hidden block group" v-if="contact.email">
                                     <a :href="'mailto:'+contact.email" class="icon flex items-center">
-                                        <img src="/assets/icons/mail.svg" class="mr-1 svg fill-current text-svg group-hover:text-blue-300 transition duration-400" alt="">
+                                        <img src="/assets/icons/mail.svg" class="mr-1 svg fill-current text-svg group-hover:text-on-hover transition duration-400" alt="">
                                         <span>{{contact.email}}</span>
                                     </a>
                                 </li>
                                 <li v-if="contact.phone" class=" group">
                                     <a :href="'tel:'+contact.phone" class="icon flex items-center">
-                                        <img src="/assets/icons/phone.svg" class="mr-1 svg fill-current text-svg group-hover:text-blue-300 transition duration-400" alt="">
+                                        <img src="/assets/icons/phone.svg" class="mr-1 svg fill-current text-svg group-hover:text-on-hover transition duration-400" alt="">
                                         <span>{{contact.phone}}</span>
                                     </a>
                                 </li>
@@ -106,22 +106,22 @@
                             Высококачественные пленки от <!--<br>--> проверенных поставщиков с гарантией выполненной
                             работы 3 <!--<br>--> года.
                             Записывайтесь и получайте <span class="font-bold text-indigo-600">скидку 5%</span>.</p>
-                        <form @submit.prevent="submitForm" class="flex flex-col lg:flex-row items-center bg-white py-3 px-3 rounded-xl space-x-4">
+                        <form @submit.prevent="submitForm" class="flex flex-col lg:flex-row items-center bg-white py-3 px-3 rounded-xl lg:space-x-4 lg:space-y-0 space-y-4">
                             <div class="flex items-center lg:px-5 lg:py-1 py-5" :class="{'border-red-500 border rounded': form.error('name')}">
-                                <img src="/assets/icons/person.svg" class="svg fill-current text-gray-700" alt="">
+                                <img src="/assets/icons/person.svg" class="svg fill-current text-gray-700 w-8 h-7" alt="">
                                 <div class="relative">
                                     <input placeholder="Имя" v-model="form.name" class="w-full ml-2 focus:outline-none" type="text">
                                     <p v-if="form.error('name')" class="text-red-500 text-xs absolute left-1/2 transform -translate-x-1/2 -bottom-6 w-full">{{form.error('name') | translateErrors('name', 'имя')}}</p>
                                 </div>
                             </div>
                             <div class="flex items-center lg:px-5 lg:py-1 py-5" :class="{'border-red-500 border rounded': form.error('phone')}">
-                                <img src="/assets/icons/phone_black.svg" class="svg fill-current text-gray-700" alt="">
+                                <img src="/assets/icons/phone_black.svg" class="svg fill-current text-gray-700 w-8 h-7" alt="">
                                 <div class="relative">
                                     <input placeholder="Номер" v-model="form.phone" class="w-full ml-2 focus:outline-none" type="text">
                                     <p v-if="form.error('phone')" class="text-red-500 text-xs absolute left-1/2 transform -translate-x-1/2 -bottom-6 w-full">{{form.error('phone') | translateErrors('phone', 'номер')}}</p>
                                 </div>
                             </div>
-                            <button class="bg-blue-600 py-3 px-9 mt-4 lg:mt-0 text-white rounded-md">Записаться</button>
+                            <button class="bg-svg hover:bg-on-hover transition duration-300 py-3 px-9 mt-4 lg:mt-0 text-white rounded-md">Записаться</button>
                         </form>
                     </div>
                     <div class="lg:w-6/12 w-full">
@@ -160,7 +160,7 @@
                         <div class="grid lg:grid-cols-4 grid-cols-1 gap-4" v-if="!activeTab">
                             <div class="w-full group my-6 cursor-pointer" v-for="(item, i) in services" :key="i"
                                  @click="activeService(item)">
-                                <p class="font-semibold group-hover:text-indigo-600 transition duration-300 text-lg text-gray-800">{{ item.title }}</p>
+                                <p class="font-semibold group-hover:text-on-hover transition duration-300 text-lg text-gray-800">{{ item.title }}</p>
                                 <p class="text-sm text-gray-600 italic">{{ item.description }}</p>
                                 <img class="mt-4 lazy" src="" :data-src="'/storage/large/' + item.image" alt="">
                             </div>
@@ -248,7 +248,7 @@
                             <splide :options="slideOptions" :slides="galleryCategories">
                                 <splide-slide v-for="category in galleryCategories" :key="category.id">
                                     <span class="text-xs text-indigo-600 absolute -top-1 -right-2">{{category.galleries_count}}</span>
-                                    <p class="cursor-pointer hover:text-indigo-500 transition duration-300 py-1" :class="{'active font-bold': category.active}"
+                                    <p class="cursor-pointer hover:text-on-hover transition duration-300 py-1" :class="{'active font-bold': category.active}"
                                        @click.stop="galleryCategoriesActive(category)">{{category.title}}</p>
                                 </splide-slide>
                             </splide>
@@ -296,25 +296,25 @@
 
                     <div class="flex flex-col space-y-5 py-5">
                         <a href="#contacts" v-if="contact.address" class="flex items-center group">
-                            <img class="mr-1 svg fill-current text-svg group-hover:text-blue-300 transition duration-400" src="/assets/icons/map.svg" alt="">
+                            <img class="mr-1 svg fill-current text-svg group-hover:text-on-hover transition duration-400" src="/assets/icons/map.svg" alt="">
                             <p>{{contact.address}}</p>
                         </a>
                         <a :href="'mailto:'+contact.email" v-if="contact.email" class="flex items-center group">
-                            <img class="mr-1 svg fill-current text-svg group-hover:text-blue-300 transition duration-400" src="/assets/icons/mail.svg" alt="">
+                            <img class="mr-1 svg fill-current text-svg group-hover:text-on-hover transition duration-400" src="/assets/icons/mail.svg" alt="">
                             <p>{{contact.email}}</p>
                         </a>
                         <a :href="'tel:'+contact.phone" v-if="contact.phone" class="flex items-center group">
-                            <img class="mr-1 svg fill-current text-svg group-hover:text-blue-300 transition duration-400" src="/assets/icons/phone.svg" alt="">
+                            <img class="mr-1 svg fill-current text-svg group-hover:text-on-hover transition duration-400" src="/assets/icons/phone.svg" alt="">
                             <p>{{contact.phone}}</p>
                         </a>
                     </div>
 
                     <div class="flex space-x-5 py-5">
                         <a :href="contact.instagram" class="group" target="_blank" v-if="contact.instagram">
-                            <img class="lg:w-9 w-6 cursor-pointer svg fill-current text-svg group-hover:text-blue-300 transition duration-400" src="/assets/icons/instagram.svg" alt="">
+                            <img class="lg:w-9 w-6 cursor-pointer svg fill-current text-svg group-hover:text-on-hover transition duration-400" src="/assets/icons/instagram.svg" alt="">
                         </a>
                         <a :href="contact.whatsapp" class="group" v-if="contact.whatsapp" target="_blank">
-                            <img class="lg:w-9 w-6 cursor-pointer svg fill-current text-svg group-hover:text-blue-300 transition duration-400" src="/assets/icons/whatsapp.svg" alt="">
+                            <img class="lg:w-9 w-6 cursor-pointer svg fill-current text-svg group-hover:text-on-hover transition duration-400" src="/assets/icons/whatsapp.svg" alt="">
                         </a>
                     </div>
                 </div>
@@ -332,18 +332,20 @@
             <footer class="pb-12 pt-24">
                 <div class="container flex lg:block justify-between items-center px-4 lg:px-4 mx-auto">
                     <div class="flex  items-center lg:mb-5">
-                        <div class="text-logo lg:mr-9 uppercase">
-                            Car style
+                        <div class="lg:mr-9">
+                            <a href="#main" class="text-logo uppercase">
+                                Car style
+                            </a>
                         </div>
 
                         <ul class="menu lg:space-x-9 hidden lg:flex">
-                            <li class="hover:text-indigo-500 transition duration-300">
+                            <li class="hover:text-on-hover transition duration-300">
                                 <a href="#services">Услуги</a>
                             </li>
-                            <li class="hover:text-indigo-500 transition duration-300">
+                            <li class="hover:text-on-hover transition duration-300">
                                 <a href="#materials">Материалы</a>
                             </li>
-                            <li class="hover:text-indigo-500 transition duration-300">
+                            <li class="hover:text-on-hover transition duration-300">
                                 <a href="#work">Наши работы</a>
                             </li>
                         </ul>
@@ -351,21 +353,21 @@
                     <div class="flex flex-col lg:flex-row items-center justify-between">
                         <div class="flex lg:space-x-9">
                             <a :href="contact.instagram" class=" hidden lg:block group">
-                                <img src="/assets/icons/instagram.svg" class="svg fill-current text-svg group-hover:text-blue-300 transition duration-400" alt="">
+                                <img src="/assets/icons/instagram.svg" class="svg fill-current text-svg group-hover:text-on-hover transition duration-400" alt="">
                             </a>
                             <a :href="contact.whatsapp" class=" hidden lg:block group">
-                                <img src="/assets/icons/whatsapp.svg" class="svg fill-current text-svg group-hover:text-blue-300 transition duration-400" alt="">
+                                <img src="/assets/icons/whatsapp.svg" class="svg fill-current text-svg group-hover:text-on-hover transition duration-400" alt="">
                             </a>
                             <a :href="'tel:'+contact.phone" class="flex items-center space-x-1 group">
-                                <img src="/assets/icons/phone.svg" class="svg fill-current text-svg group-hover:text-blue-300 transition duration-400" alt="">
+                                <img src="/assets/icons/phone.svg" class="svg fill-current text-svg group-hover:text-on-hover transition duration-400" alt="">
                                 <p>{{contact.phone}}</p>
                             </a>
                             <a href="#contacts" class=" space-x-1 hidden lg:flex items-center group">
-                                <img src="/assets/icons/map.svg" class="svg fill-current text-svg group-hover:text-blue-300 transition duration-400" alt="">
+                                <img src="/assets/icons/map.svg" class="svg fill-current text-svg group-hover:text-on-hover transition duration-400" alt="">
                                 <p>{{contact.address}}</p>
                             </a>
                             <a :href="'mailto:'+contact.address" class=" space-x-1 hidden lg:flex items-center group">
-                                <img src="/assets/icons/mail.svg" class="svg fill-current text-svg group-hover:text-blue-300 transition duration-400" alt="">
+                                <img src="/assets/icons/mail.svg" class="svg fill-current text-svg group-hover:text-on-hover transition duration-400" alt="">
                                 <p>{{contact.email}}</p>
                             </a>
                         </div>
@@ -617,10 +619,10 @@
                 this.$inertia.post(this.route('bids.store'), this.form, {
                     preserveScroll: true,
                     onSuccess: (data) => {
-                        // if (this.$page.form_post.status) {
+                        if (this.$page.form_post && this.$page.form_post.status) {
                             this.form.reset();
                             this.dialogActive = true;
-                        // }
+                        }
                     }
                 })
             }
@@ -668,10 +670,14 @@
                 this.lazyLoad(active);
                 this.replaceSvg();
             });
+
+            const closeMenu = () => this.closeMenu();
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-
+                    setTimeout(function() {
+                        closeMenu();
+                    }, 600);
                     document.querySelector(this.getAttribute('href')).scrollIntoView({
                         behavior: 'smooth'
                     });
