@@ -25,7 +25,7 @@
             </div>
         </div>
         <transition name="fade" mode="out-in" duration="300">
-            <nav class="lg:sticky fixed top-0 w-screen lg:w-full h-screen lg:h-auto z-50" v-show="menuActive">
+            <nav class="transition duration-300 fixed top-0 w-screen lg:w-full h-screen lg:h-auto z-50" v-show="menuActive">
                 <div
                     class="container py-5 flex pl-4 lg:pl-0 flex-col lg:flex-row h-full justify-between lg:justify-start lg:items-center mx-auto">
                     <div class="flex justify-between items-center">
@@ -54,35 +54,35 @@
                     <ul class="flex menu lg:space-x-9 flex-col lg:flex-row lg:items-center lg:ml-auto flex-col-reverse">
                         <li class="">
                             <ul class="flex bottom-0 left-0 mt-5 lg:mt-0 space-x-9">
-                                <li v-if="contact.instagram">
+                                <li v-if="contact.instagram" class="group">
                                     <a :href="contact.instagram" target="_blank" class="icon">
-                                        <img class="w-6 lg:w-auto" src="/assets/icons/instagram.svg" alt="">
+                                        <img class="svg fill-current text-svg group-hover:text-blue-300 transition duration-400 w-6 lg:w-auto" src="/assets/icons/instagram.svg" alt="">
                                     </a>
                                 </li>
-                                <li v-if="contact.whatsapp">
+                                <li v-if="contact.whatsapp" class="group">
                                     <a :href="contact.whatsapp" target="_blank" class="icon">
-                                        <img class="w-6 lg:w-auto" src="/assets/icons/whatsapp.svg" alt="">
+                                        <img class="svg fill-current text-svg group-hover:text-blue-300 transition duration-400 w-6 lg:w-auto" src="/assets/icons/whatsapp.svg" alt="">
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li>
                             <ul class="flex flex-col lg:items-center lg:space-x-9 space-y-3 lg:space-y-0 lg:flex-row">
-                                <li v-if="contact.address">
-                                    <a href="#contacts" class="icon flex">
-                                        <img src="/assets/icons/map.svg" class="mr-1" alt="">
+                                <li v-if="contact.address" class=" group">
+                                    <a href="#contacts" class="icon flex items-center">
+                                        <img src="/assets/icons/map.svg" class="mr-1 svg fill-current text-svg group-hover:text-blue-300 transition duration-400" alt="">
                                         <span>{{contact.address}}</span>
                                     </a>
                                 </li>
-                                <li class="lg:hidden block" v-if="contact.email">
-                                    <a :href="'mailto:'+contact.email" class="icon flex">
-                                        <img src="/assets/icons/mail.svg" class="mr-1" alt="">
+                                <li class="lg:hidden block group" v-if="contact.email">
+                                    <a :href="'mailto:'+contact.email" class="icon flex items-center">
+                                        <img src="/assets/icons/mail.svg" class="mr-1 svg fill-current text-svg group-hover:text-blue-300 transition duration-400" alt="">
                                         <span>{{contact.email}}</span>
                                     </a>
                                 </li>
-                                <li v-if="contact.phone">
-                                    <a :href="'tel:'+contact.phone" class="icon flex">
-                                        <img src="/assets/icons/phone.svg" class="mr-1" alt="">
+                                <li v-if="contact.phone" class=" group">
+                                    <a :href="'tel:'+contact.phone" class="icon flex items-center">
+                                        <img src="/assets/icons/phone.svg" class="mr-1 svg fill-current text-svg group-hover:text-blue-300 transition duration-400" alt="">
                                         <span>{{contact.phone}}</span>
                                     </a>
                                 </li>
@@ -94,7 +94,7 @@
         </transition>
 
         <main>
-            <section id="main" class="first py-32 relative px-4">
+            <section id="main" class="first py-32 pt-48 relative px-4">
                 <div
                     class="dots_back w-10/12 h-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-50"></div>
                 <div
@@ -108,11 +108,11 @@
                             Записывайтесь и получайте <span class="font-bold text-indigo-600">скидку 5%</span>.</p>
                         <form @submit.prevent="submitForm" class="flex flex-col lg:flex-row items-center bg-white py-3 px-3 rounded-xl">
                             <div class="flex lg:px-5 lg:py-0 py-5">
-                                <img src="/assets/icons/person.svg" alt="">
+                                <img src="/assets/icons/person.svg" class="svg fill-current text-gray-700" alt="">
                                 <input placeholder="Имя" class="w-full ml-2 focus:outline-none" type="text">
                             </div>
                             <div class="flex lg:px-5 lg:py-0 py-5">
-                                <img src="/assets/icons/phone_black.svg" alt="">
+                                <img src="/assets/icons/phone_black.svg" class="svg fill-current text-gray-700" alt="">
                                 <input placeholder="Номер" class="w-full ml-2 focus:outline-none" type="text">
                             </div>
                             <button class="bg-blue-600 py-3 px-9 mt-4 lg:mt-0 text-white rounded-md">Записаться</button>
@@ -136,8 +136,8 @@
                         <div v-for="(item, i) in advantages" :data-id="i" class="lg:w-4/12 w-full text-center py-7 px-6"
                              :key="i">
                             <div
-                                class="rounded-2xl border-2 border-white shadow-2xl w-21 h-21 flex items-center mx-auto justify-center">
-                                <img class="lazy" src="" :data-src="'/assets/icons/' + item.icon" alt="">
+                                class="rounded-2xl bg-secondary border-2 border-white shadow-advantage w-21 h-21 flex items-center mx-auto justify-center">
+                                <img class="lazy svg fill-current text-svg" src="" :data-src="'/assets/icons/' + item.icon" alt="">
                             </div>
                             <p class="mt-6 mb-5 text-lg font-semibold">{{item.title}}</p>
                             <p>{{ item.text }}</p>
@@ -151,7 +151,7 @@
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Услуги</p>
                     <p class="font-bold mb-5 lg:text-4xl text-2xl leading-tight">Каталог наших услуг</p>
                     <transition duration="200" name="fade">
-                        <div class="grid grid-cols-4 gap-4" v-if="!activeTab">
+                        <div class="grid lg:grid-cols-4 grid-cols-1 gap-4" v-if="!activeTab">
                             <div class="w-full group my-6 cursor-pointer" v-for="(item, i) in services" :key="i"
                                  @click="activeService(item)">
                                 <p class="font-semibold group-hover:text-indigo-600 transition duration-300 text-lg text-gray-800">{{ item.title }}</p>
@@ -213,7 +213,7 @@
                         <div class="w-full mb-7">
                             <p class="text-xl font-bold">{{materialCategory.title}}</p>
                         </div>
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
                             <div class="w-full mb-4" v-for="material in materialCategory.materials"
                                  :key="material.id">
                                 <div class="bg-white rounded-3xl py-5 px-6">
@@ -289,26 +289,26 @@
                     <p class="font-bold mb-5 lg:text-4xl text-2xl leading-tight">Как нас найти?</p>
 
                     <div class="flex flex-col space-y-5 py-5">
-                        <a href="#contacts" v-if="contact.address" class="flex">
-                            <img class="mr-1" src="/assets/icons/map.svg" alt="">
+                        <a href="#contacts" v-if="contact.address" class="flex items-center group">
+                            <img class="mr-1 svg fill-current text-svg group-hover:text-blue-300 transition duration-400" src="/assets/icons/map.svg" alt="">
                             <p>{{contact.address}}</p>
                         </a>
-                        <a :href="'mailto:'+contact.email" v-if="contact.email" class="flex">
-                            <img class="mr-1" src="/assets/icons/mail.svg" alt="">
+                        <a :href="'mailto:'+contact.email" v-if="contact.email" class="flex items-center group">
+                            <img class="mr-1 svg fill-current text-svg group-hover:text-blue-300 transition duration-400" src="/assets/icons/mail.svg" alt="">
                             <p>{{contact.email}}</p>
                         </a>
-                        <a :href="'tel:'+contact.phone" v-if="contact.phone" class="flex">
-                            <img class="mr-1" src="/assets/icons/phone.svg" alt="">
+                        <a :href="'tel:'+contact.phone" v-if="contact.phone" class="flex items-center group">
+                            <img class="mr-1 svg fill-current text-svg group-hover:text-blue-300 transition duration-400" src="/assets/icons/phone.svg" alt="">
                             <p>{{contact.phone}}</p>
                         </a>
                     </div>
 
                     <div class="flex space-x-5 py-5">
-                        <a :href="contact.instagram" target="_blank" v-if="contact.instagram">
-                            <img class="lg:w-9 w-6 cursor-pointer" src="/assets/icons/instagram.svg" alt="">
+                        <a :href="contact.instagram" class="group" target="_blank" v-if="contact.instagram">
+                            <img class="lg:w-9 w-6 cursor-pointer svg fill-current text-svg group-hover:text-blue-300 transition duration-400" src="/assets/icons/instagram.svg" alt="">
                         </a>
-                        <a :href="contact.whatsapp" v-if="contact.whatsapp" target="_blank">
-                            <img class="lg:w-9 w-6 cursor-pointer" src="/assets/icons/whatsapp.svg" alt="">
+                        <a :href="contact.whatsapp" class="group" v-if="contact.whatsapp" target="_blank">
+                            <img class="lg:w-9 w-6 cursor-pointer svg fill-current text-svg group-hover:text-blue-300 transition duration-400" src="/assets/icons/whatsapp.svg" alt="">
                         </a>
                     </div>
                 </div>
@@ -344,22 +344,22 @@
                     </div>
                     <div class="flex flex-col lg:flex-row items-center justify-between">
                         <div class="flex lg:space-x-9">
-                            <a :href="contact.instagram" class=" hidden lg:block">
-                                <img src="/assets/icons/instagram.svg" alt="">
+                            <a :href="contact.instagram" class=" hidden lg:block group">
+                                <img src="/assets/icons/instagram.svg" class="svg fill-current text-svg group-hover:text-blue-300 transition duration-400" alt="">
                             </a>
-                            <a :href="contact.whatsapp" class=" hidden lg:block">
-                                <img src="/assets/icons/whatsapp.svg" alt="">
+                            <a :href="contact.whatsapp" class=" hidden lg:block group">
+                                <img src="/assets/icons/whatsapp.svg" class="svg fill-current text-svg group-hover:text-blue-300 transition duration-400" alt="">
                             </a>
-                            <a :href="'tel:'+contact.phone" class="flex space-x-1">
-                                <img src="/assets/icons/phone.svg" alt="">
+                            <a :href="'tel:'+contact.phone" class="flex items-center space-x-1 group">
+                                <img src="/assets/icons/phone.svg" class="svg fill-current text-svg group-hover:text-blue-300 transition duration-400" alt="">
                                 <p>{{contact.phone}}</p>
                             </a>
-                            <a href="#contacts" class=" space-x-1 hidden lg:flex">
-                                <img src="/assets/icons/map.svg" alt="">
+                            <a href="#contacts" class=" space-x-1 hidden lg:flex items-center group">
+                                <img src="/assets/icons/map.svg" class="svg fill-current text-svg group-hover:text-blue-300 transition duration-400" alt="">
                                 <p>{{contact.address}}</p>
                             </a>
-                            <a :href="'mailto:'+contact.address" class=" space-x-1 hidden lg:flex">
-                                <img src="/assets/icons/mail.svg" alt="">
+                            <a :href="'mailto:'+contact.address" class=" space-x-1 hidden lg:flex items-center group">
+                                <img src="/assets/icons/mail.svg" class="svg fill-current text-svg group-hover:text-blue-300 transition duration-400" alt="">
                                 <p>{{contact.email}}</p>
                             </a>
                         </div>
@@ -548,6 +548,28 @@
                     }, 200);
                 }
             },
+            replaceSvg() {
+                document.querySelectorAll('img.svg').forEach(item => {
+                    const imgUrl = item.src;
+                    const classes = item.getAttribute('class');
+                    const id = item.getAttribute('id');
+                    if (imgUrl !== null || imgUrl !== '' || imgUrl !== undefined) {
+                        if (this.route().ziggy.baseUrl !== imgUrl) {
+                            window.axios.get(imgUrl)
+                                .then(data => {
+                                    const span = document.createElement('span');
+                                    span.innerHTML = data.data;
+                                    const svg = span.firstChild;
+                                    svg.setAttribute('class', classes);
+                                    svg.setAttribute('id', id);
+                                    item.parentNode.replaceChild(svg, item);
+                                })
+                                .catch(error => {
+                                })
+                        }
+                    }
+                });
+            },
             openMenu() {
                 document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
                 this.menuActive = true;
@@ -603,24 +625,28 @@
                 contactsTop = document.getElementById('contacts').offsetTop;
                 if (last_known_scroll_position > contactsTop - 500) {
                     if (!isSet) {
-                        document.getElementsByTagName('iframe')[0].setAttribute('src', 'https://yandex.ru/map-widget/v1/-/CCQ~nEg3tD');
+                        document.getElementsByTagName('iframe')[0].setAttribute('src', this.contact.yandex);
                         isSet = true;
                     }
                 }
 
-                document.getElementsByTagName('nav')[0].classList.toggle('bg-white', last_known_scroll_position > document.getElementsByTagName('nav')[0].offsetHeight);
+                document.getElementsByTagName('nav')[0].classList.toggle('lg:bg-white', last_known_scroll_position > document.getElementsByTagName('nav')[0].offsetHeight);
             });
 
             let active = false;
 
             document.addEventListener("scroll", () => {
                 this.lazyLoad(active);
+                this.replaceSvg();
             });
             window.addEventListener("resize", () => {
                 this.lazyLoad(active);
+                this.replaceSvg();
+                document.getElementsByTagName('nav')[0].classList.toggle('bg-white', window.innerWidth <= 630);
             });
             window.addEventListener("orientationchange", () => {
                 this.lazyLoad(active);
+                this.replaceSvg();
             });
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
@@ -631,6 +657,10 @@
                     });
                 });
             });
+
+            document.getElementsByTagName('nav')[0].classList.toggle('bg-white', window.innerWidth <= 630);
+
+            this.replaceSvg();
         },
     }
 </script>

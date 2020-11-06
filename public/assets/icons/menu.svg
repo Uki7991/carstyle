@@ -1,5 +1,5 @@
-<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 11H32.9412V13.3529H0V11Z" fill="#222222"/>
-<path d="M7.05882 18.7059H40V21.0588H7.05882V18.7059Z" fill="#222222"/>
-<path d="M0 26.4118H32.9412V28.7647H0V26.4118Z" fill="#222222"/>
+<svg width="40" height="40" viewBox="0 0 40 40"  xmlns="http://www.w3.org/2000/svg">
+<path d="M0 11H32.9412V13.3529H0V11Z" />
+<path d="M7.05882 18.7059H40V21.0588H7.05882V18.7059Z" />
+<path d="M0 26.4118H32.9412V28.7647H0V26.4118Z" />
 </svg>

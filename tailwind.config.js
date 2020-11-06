@@ -10,6 +10,10 @@ module.exports = {
 
     theme: {
         extend: {
+            colors: {
+                'secondary': '#E9ECF5',
+                'svg': '#3E50F3',
+            },
             fontFamily: {
                 "carstyle-logo": ['"Secular One"'],
                 "carstyle-text": ['Inter'],
@@ -48,7 +52,10 @@ module.exports = {
             },
             fontSize: {
                 'xs': '0.7rem',
-            }
+            },
+            boxShadow: {
+                'advantage': '0px 15px 33px -6px #D4D7E1',
+            },
         },
     },
 
