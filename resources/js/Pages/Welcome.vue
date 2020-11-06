@@ -276,7 +276,7 @@
                                         class="border border-indigo-100 text-gray-600 text-sm bg-gray-200 hover:bg-indigo-400 hover:text-white transition duration-300 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-2 px-5">
                                     Смотреть все
                                 </button>
-                                <img class="lazy" src="" :data-src="'/storage/medium/'+image.image" alt="">
+                                <img class="lazy" :src="'/storage/medium/'+image.image" alt="">
                             </splide-slide>
                         </splide>
                     </div>
@@ -618,6 +618,7 @@
 
             let last_known_scroll_position = 0;
             let contactsTop = 0;
+            let contact = this.contact;
 
             let isSet = false;
             window.addEventListener('scroll', function (e) {
@@ -625,7 +626,7 @@
                 contactsTop = document.getElementById('contacts').offsetTop;
                 if (last_known_scroll_position > contactsTop - 500) {
                     if (!isSet) {
-                        document.getElementsByTagName('iframe')[0].setAttribute('src', this.contact.yandex);
+                        document.getElementsByTagName('iframe')[0].setAttribute('src', contact.yandex);
                         isSet = true;
                     }
                 }
