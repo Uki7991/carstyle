@@ -1,6 +1,22 @@
 <template>
     <div>
-        <div class="fixed top-0 w-screen right-0 z-20 bg-white">
+        <vs-dialog
+            blur
+            v-model="dialogActive"
+        >
+            <template #header>
+                <p class="text-2xl font-bold">Ожидайте звонка</p>
+            </template>
+            <p class="font-medium text-center">Наш специалист свяжется с вами <br> в течение 10 мин.</p>
+            <template #footer>
+                <div class="flex mt-9 justify-center">
+                    <button class="font-semibold py-3 px-9 bg-blue-600 rounded-md text-white" @click="dialogActive = false">
+                        Вернуться на сайт
+                    </button>
+                </div>
+            </template>
+        </vs-dialog>
+        <div class="fixed top-0 w-screen lg:hidden right-0 z-20 bg-white">
             <div class="flex justify-between items-center px-4 py-5">
                 <div class="text-logo uppercase">
                     Car style
@@ -9,28 +25,28 @@
             </div>
         </div>
         <transition name="fade" mode="out-in" duration="300">
-            <nav class="fixed lg:sticky top-0 bg-white w-screen lg:w-full h-screen lg:h-auto z-50" v-show="menuActive">
+            <nav class="lg:sticky fixed top-0 w-screen lg:w-full h-screen lg:h-auto z-50" v-show="menuActive">
                 <div
                     class="container py-5 flex pl-4 lg:pl-0 flex-col lg:flex-row h-full justify-between lg:justify-start lg:items-center mx-auto">
                     <div class="flex justify-between items-center">
-                        <div class="text-logo uppercase">
-                            Car style
+                        <div class="">
+                            <a class="text-logo uppercase" href="#main">Car style</a>
                         </div>
                         <img @click="closeMenu" class="block lg:hidden w-12" v-if="menuActive"
                              src="/assets/icons/close.svg" alt="">
 
                     </div>
                     <ul class="flex pl-0 lg:pl-9 lg:space-x-9 menu font-bold lg:font-normal text-4xl lg:text-base flex-col lg:flex-row">
-                        <li>
+                        <li class="hover:text-indigo-500 transition duration-300">
                             <a href="#services">Услуги</a>
                         </li>
-                        <li>
+                        <li class="hover:text-indigo-500 transition duration-300">
                             <a href="#materials">Материалы</a>
                         </li>
-                        <li>
+                        <li class="hover:text-indigo-500 transition duration-300">
                             <a href="#work">Наши работы</a>
                         </li>
-                        <li>
+                        <li class="hover:text-indigo-500 transition duration-300">
                             <a href="#contacts">Контакты</a>
                         </li>
                     </ul>
@@ -78,7 +94,7 @@
         </transition>
 
         <main>
-            <section class="first py-32 relative px-4">
+            <section id="main" class="first py-32 relative px-4">
                 <div
                     class="dots_back w-10/12 h-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-50"></div>
                 <div
@@ -90,7 +106,7 @@
                             Высококачественные пленки от <!--<br>--> проверенных поставщиков с гарантией выполненной
                             работы 3 <!--<br>--> года.
                             Записывайтесь и получайте <span class="font-bold text-indigo-600">скидку 5%</span>.</p>
-                        <form class="flex flex-col lg:flex-row items-center bg-white py-3 px-3 rounded-xl">
+                        <form @submit.prevent="submitForm" class="flex flex-col lg:flex-row items-center bg-white py-3 px-3 rounded-xl">
                             <div class="flex lg:px-5 lg:py-0 py-5">
                                 <img src="/assets/icons/person.svg" alt="">
                                 <input placeholder="Имя" class="w-full ml-2 focus:outline-none" type="text">
@@ -136,9 +152,9 @@
                     <p class="font-bold mb-5 lg:text-4xl text-2xl leading-tight">Каталог наших услуг</p>
                     <transition duration="200" name="fade">
                         <div class="grid grid-cols-4 gap-4" v-if="!activeTab">
-                            <div class="w-full my-6" v-for="(item, i) in services" :key="i"
+                            <div class="w-full group my-6 cursor-pointer" v-for="(item, i) in services" :key="i"
                                  @click="activeService(item)">
-                                <p class="font-semibold text-lg text-gray-800">{{ item.title }}</p>
+                                <p class="font-semibold group-hover:text-indigo-600 transition duration-300 text-lg text-gray-800">{{ item.title }}</p>
                                 <p class="text-sm text-gray-600 italic">{{ item.description }}</p>
                                 <img class="mt-4 lazy" src="" :data-src="'/storage/large/' + item.image" alt="">
                             </div>
@@ -226,7 +242,7 @@
                             <splide :options="slideOptions" :slides="galleryCategories">
                                 <splide-slide v-for="category in galleryCategories" :key="category.id">
                                     <span class="text-xs text-indigo-600 absolute -top-1 -right-2">{{category.galleries_count}}</span>
-                                    <p class="cursor-pointer py-1" :class="{'active font-bold': category.active}"
+                                    <p class="cursor-pointer hover:text-indigo-500 transition duration-300 py-1" :class="{'active font-bold': category.active}"
                                        @click.stop="galleryCategoriesActive(category)">{{category.title}}</p>
                                 </splide-slide>
                             </splide>
@@ -242,7 +258,7 @@
                             <div v-if="i===3 || filteredImages.slice(0, 4).length - 1 === i"
                                  class="h-full w-full absolute rounded-2xl backdrop-blur-3"></div>
                             <button v-if="i===3 || filteredImages.slice(0, 4).length - 1 === i"
-                                    class="border border-indigo-100 text-gray-600 text-sm bg-indigo-200 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-2 px-5">
+                                    class="border border-indigo-100 text-gray-600 text-sm bg-gray-200 hover:bg-indigo-400 hover:text-white transition duration-300 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-2 px-5">
                                 Смотреть все
                             </button>
                             <img class="w-full h-full object-cover rounded-2xl lazy" src=""
@@ -257,7 +273,7 @@
                                 <div v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i"
                                      class="h-full w-full absolute rounded-2xl backdrop-blur-3"></div>
                                 <button v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i"
-                                        class="border border-indigo-100 text-gray-600 text-sm bg-indigo-200 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-2 px-5">
+                                        class="border border-indigo-100 text-gray-600 text-sm bg-gray-200 hover:bg-indigo-400 hover:text-white transition duration-300 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-2 px-5">
                                     Смотреть все
                                 </button>
                                 <img class="lazy" src="" :data-src="'/storage/medium/'+image.image" alt="">
@@ -315,13 +331,13 @@
                         </div>
 
                         <ul class="menu lg:space-x-9 hidden lg:flex">
-                            <li>
+                            <li class="hover:text-indigo-500 transition duration-300">
                                 <a href="#services">Услуги</a>
                             </li>
-                            <li>
+                            <li class="hover:text-indigo-500 transition duration-300">
                                 <a href="#materials">Материалы</a>
                             </li>
-                            <li>
+                            <li class="hover:text-indigo-500 transition duration-300">
                                 <a href="#work">Наши работы</a>
                             </li>
                         </ul>
@@ -369,6 +385,13 @@
         },
         data() {
             return {
+                form: this.$inertia.form({
+                    name: '',
+                    phone: '',
+                }, {
+                    bag: 'default',
+                    resetOnSuccess: true,
+                }),
                 slideOptions: {
                     // type: 'loop',
                     rewind: true,
@@ -451,6 +474,7 @@
                 galleries: this.$page.galleries,
                 galleryCategories: this.$page.galleryCategories,
                 contact: this.$page.contact,
+                dialogActive: false,
             }
         },
         computed: {
@@ -560,6 +584,9 @@
                         active: table.id === item.id,
                     }
                 })
+            },
+            submitForm() {
+                this.dialogActive = true;
             }
         },
         mounted() {
@@ -580,6 +607,8 @@
                         isSet = true;
                     }
                 }
+
+                document.getElementsByTagName('nav')[0].classList.toggle('bg-white', last_known_scroll_position > document.getElementsByTagName('nav')[0].offsetHeight);
             });
 
             let active = false;
