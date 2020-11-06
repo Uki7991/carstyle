@@ -126,6 +126,9 @@ body {
     box-shadow: 0px 15px 33px -6px #D4D7E1;
 }
 
+.splide__arrow {
+    background: transparent !important;
+}
 .splide__arrow--next {
     @apply -right-12 !important;
 }

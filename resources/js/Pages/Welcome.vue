@@ -38,13 +38,13 @@
                     <ul class="flex menu lg:space-x-9 flex-col lg:flex-row lg:items-center lg:ml-auto flex-col-reverse">
                         <li class="">
                             <ul class="flex bottom-0 left-0 mt-5 lg:mt-0 space-x-9">
-                                <li>
-                                    <a href="" class="icon">
+                                <li v-if="contact.instagram">
+                                    <a :href="contact.instagram" target="_blank" class="icon">
                                         <img class="w-6 lg:w-auto" src="/assets/icons/instagram.svg" alt="">
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="" class="icon">
+                                <li v-if="contact.whatsapp">
+                                    <a :href="contact.whatsapp" target="_blank" class="icon">
                                         <img class="w-6 lg:w-auto" src="/assets/icons/whatsapp.svg" alt="">
                                     </a>
                                 </li>
@@ -52,22 +52,22 @@
                         </li>
                         <li>
                             <ul class="flex flex-col lg:items-center lg:space-x-9 space-y-3 lg:space-y-0 lg:flex-row">
-                                <li>
-                                    <a href="" class="icon flex">
+                                <li v-if="contact.address">
+                                    <a href="#contacts" class="icon flex">
                                         <img src="/assets/icons/map.svg" class="mr-1" alt="">
-                                        <span>Краснобогатырская ул., 13, с1 </span>
+                                        <span>{{contact.address}}</span>
                                     </a>
                                 </li>
-                                <li class="lg:hidden block">
-                                    <a href="" class="icon flex">
+                                <li class="lg:hidden block" v-if="contact.email">
+                                    <a :href="'mailto:'+contact.email" class="icon flex">
                                         <img src="/assets/icons/mail.svg" class="mr-1" alt="">
-                                        <span>carstyle@gmail.com</span>
+                                        <span>{{contact.email}}</span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="" class="icon flex">
+                                <li v-if="contact.phone">
+                                    <a :href="'tel:'+contact.phone" class="icon flex">
                                         <img src="/assets/icons/phone.svg" class="mr-1" alt="">
-                                        <span>+74957556983</span>
+                                        <span>{{contact.phone}}</span>
                                     </a>
                                 </li>
                             </ul>
@@ -135,8 +135,8 @@
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Услуги</p>
                     <p class="font-bold mb-5 lg:text-4xl text-2xl leading-tight">Каталог наших услуг</p>
                     <transition duration="200" name="fade">
-                        <div class="flex flex-wrap" v-if="!activeTab">
-                            <div class="lg:w-3/12 w-full px-5 my-6" v-for="(item, i) in services" :key="i"
+                        <div class="grid grid-cols-4 gap-4" v-if="!activeTab">
+                            <div class="w-full my-6" v-for="(item, i) in services" :key="i"
                                  @click="activeService(item)">
                                 <p class="font-semibold text-lg text-gray-800">{{ item.title }}</p>
                                 <p class="text-sm text-gray-600 italic">{{ item.description }}</p>
@@ -188,25 +188,27 @@
             </section>
 
             <section id="materials" class="fourth py-32">
-                <div class="container px-4 lg:px-4 mx-auto">
+                <div class="container px-4 lg:px-0 mx-auto">
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Материалы</p>
                     <p class="font-bold mb-5 lg:text-4xl text-2xl leading-tight">Характеристики используемых брендов</p>
 
-                    <div class="flex py-5 flex-wrap" v-for="materialCategory in materialCategories"
+                    <div class="py-5 justify-between" v-for="materialCategory in materialCategories"
                          :key="materialCategory.id">
                         <div class="w-full mb-7">
                             <p class="text-xl font-bold">{{materialCategory.title}}</p>
                         </div>
-                        <div class="lg:w-1/2 w-full px-3 mb-4" v-for="material in materialCategory.materials"
-                             :key="material.id">
-                            <div class="bg-white rounded-3xl py-5 px-6">
-                                <img class="h-12 object-cover lazy" src="" :data-src="'/storage/small/'+material.image"
-                                     alt="">
-                                <div class="mt-4 text-sm leading-loose divide-y divide-gray-200 lg:divide-y-0">
-                                    <div class="flex flex-col lg:flex-row justify-between"
-                                         v-for="property in material.properties" :key="property.id">
-                                        <p>{{property.title}}:</p>
-                                        <p class="font-medium">{{property.value}}</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="w-full mb-4" v-for="material in materialCategory.materials"
+                                 :key="material.id">
+                                <div class="bg-white rounded-3xl py-5 px-6">
+                                    <img class="h-12 object-cover lazy" src="" :data-src="'/storage/small/'+material.image"
+                                         alt="">
+                                    <div class="mt-4 text-sm leading-loose divide-y divide-gray-200 lg:divide-y-0">
+                                        <div class="flex flex-col lg:flex-row justify-between"
+                                             v-for="property in material.properties" :key="property.id">
+                                            <p>{{property.title}}:</p>
+                                            <p class="font-medium">{{property.value}}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -271,25 +273,25 @@
                     <p class="font-bold mb-5 lg:text-4xl text-2xl leading-tight">Как нас найти?</p>
 
                     <div class="flex flex-col space-y-5 py-5">
-                        <a href="" class="flex">
+                        <a href="#contacts" v-if="contact.address" class="flex">
                             <img class="mr-1" src="/assets/icons/map.svg" alt="">
-                            <p>Краснобогатырская ул., 13, с1 </p>
+                            <p>{{contact.address}}</p>
                         </a>
-                        <a href="" class="flex">
+                        <a :href="'mailto:'+contact.email" v-if="contact.email" class="flex">
                             <img class="mr-1" src="/assets/icons/mail.svg" alt="">
-                            <p>carstyle@gmail.com</p>
+                            <p>{{contact.email}}</p>
                         </a>
-                        <a href="" class="flex">
+                        <a :href="'tel:'+contact.phone" v-if="contact.phone" class="flex">
                             <img class="mr-1" src="/assets/icons/phone.svg" alt="">
-                            <p>+74957556983</p>
+                            <p>{{contact.phone}}</p>
                         </a>
                     </div>
 
                     <div class="flex space-x-5 py-5">
-                        <a href="">
+                        <a :href="contact.instagram" target="_blank" v-if="contact.instagram">
                             <img class="lg:w-9 w-6 cursor-pointer" src="/assets/icons/instagram.svg" alt="">
                         </a>
-                        <a href="">
+                        <a :href="contact.whatsapp" v-if="contact.whatsapp" target="_blank">
                             <img class="lg:w-9 w-6 cursor-pointer" src="/assets/icons/whatsapp.svg" alt="">
                         </a>
                     </div>
@@ -326,23 +328,23 @@
                     </div>
                     <div class="flex flex-col lg:flex-row items-center justify-between">
                         <div class="flex lg:space-x-9">
-                            <a href="" class=" hidden lg:block">
+                            <a :href="contact.instagram" class=" hidden lg:block">
                                 <img src="/assets/icons/instagram.svg" alt="">
                             </a>
-                            <a href="" class=" hidden lg:block">
+                            <a :href="contact.whatsapp" class=" hidden lg:block">
                                 <img src="/assets/icons/whatsapp.svg" alt="">
                             </a>
-                            <a href="" class="flex space-x-1">
+                            <a :href="'tel:'+contact.phone" class="flex space-x-1">
                                 <img src="/assets/icons/phone.svg" alt="">
-                                <p>+74957556983</p>
+                                <p>{{contact.phone}}</p>
                             </a>
-                            <a href="" class=" space-x-1 hidden lg:flex">
+                            <a href="#contacts" class=" space-x-1 hidden lg:flex">
                                 <img src="/assets/icons/map.svg" alt="">
-                                <p>Краснобогатырская ул., 13, с1 </p>
+                                <p>{{contact.address}}</p>
                             </a>
-                            <a href="" class=" space-x-1 hidden lg:flex">
+                            <a :href="'mailto:'+contact.address" class=" space-x-1 hidden lg:flex">
                                 <img src="/assets/icons/mail.svg" alt="">
-                                <p>carstyle@gmail.com</p>
+                                <p>{{contact.email}}</p>
                             </a>
                         </div>
                         <p class="hidden lg:block lg:text-sm text-xs text-center text-gray-500">Все права защищены —
@@ -448,6 +450,7 @@
                 menuActive: false,
                 galleries: this.$page.galleries,
                 galleryCategories: this.$page.galleryCategories,
+                contact: this.$page.contact,
             }
         },
         computed: {
@@ -488,6 +491,38 @@
                     return cat;
                 });
                 category.active = true;
+                this.lazyLoad();
+                window.scrollBy(0, 1);
+            },
+
+            lazyLoad(active) {
+                let lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+
+                if (active === false) {
+                    active = true;
+
+                    setTimeout(function () {
+
+                        lazyImages.forEach(function (lazyImage) {
+                            if ((lazyImage.getBoundingClientRect().top <= window.innerHeight && lazyImage.getBoundingClientRect().bottom >= 0)) {
+                                lazyImage.src = lazyImage.dataset.src;
+                                lazyImage.classList.remove("lazy");
+
+                                lazyImages = lazyImages.filter(function (image) {
+                                    return image !== lazyImage;
+                                });
+
+                                if (lazyImages.length === 0) {
+                                    // document.removeEventListener("scroll", lazyLoad);
+                                    // window.removeEventListener("resize", lazyLoad);
+                                    // window.removeEventListener("orientationchange", lazyLoad);
+                                }
+                            }
+                        });
+
+                        active = false;
+                    }, 200);
+                }
             },
             openMenu() {
                 document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
@@ -547,41 +582,26 @@
                 }
             });
 
-            let lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
             let active = false;
 
-            const lazyLoad = function () {
-                if (active === false) {
-                    active = true;
+            document.addEventListener("scroll", () => {
+                this.lazyLoad(active);
+            });
+            window.addEventListener("resize", () => {
+                this.lazyLoad(active);
+            });
+            window.addEventListener("orientationchange", () => {
+                this.lazyLoad(active);
+            });
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
 
-                    setTimeout(function () {
-
-                        lazyImages.forEach(function (lazyImage) {
-                            if ((lazyImage.getBoundingClientRect().top <= window.innerHeight && lazyImage.getBoundingClientRect().bottom >= 0)) {
-                                lazyImage.src = lazyImage.dataset.src;
-                                lazyImage.classList.remove("lazy");
-
-                                lazyImages = lazyImages.filter(function (image) {
-                                    return image !== lazyImage;
-                                });
-
-                                if (lazyImages.length === 0) {
-                                    document.removeEventListener("scroll", lazyLoad);
-                                    window.removeEventListener("resize", lazyLoad);
-                                    window.removeEventListener("orientationchange", lazyLoad);
-                                }
-                            }
-                        });
-
-                        active = false;
-                    }, 200);
-                }
-            };
-
-            document.addEventListener("scroll", lazyLoad);
-            window.addEventListener("resize", lazyLoad);
-            window.addEventListener("orientationchange", lazyLoad);
-
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
         },
     }
 </script>
