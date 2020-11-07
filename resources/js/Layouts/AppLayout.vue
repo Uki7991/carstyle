@@ -256,7 +256,7 @@
                 })
             },
         },
-        updated() {
+        mounted() {
             if (this.$page.form_post) {
                 this.$vs.notification({
                     position: 'top-right',
@@ -269,9 +269,6 @@
                 });
 
             }
-        },
-        mounted() {
-
             bus.$on('reduce', (reduce) => {
                 this.reduce = reduce;
             })

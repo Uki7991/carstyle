@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advantage;
 use App\Models\Contact;
 use App\Models\Gallery;
 use App\Models\GalleryCategory;
@@ -17,6 +18,7 @@ class IndexController extends Controller
 {
     public function home(Request $request)
     {
+        $advantages = Advantage::where('active', true)->get();
         $services = Service::with('tables.headings.values')->where('active', true)->get();
         $materialCategories = MaterialCategory::whereHas('materials', function(Builder $query) {
             $query->with('properties')->where('active', true);
@@ -48,6 +50,7 @@ class IndexController extends Controller
             'galleryCategories' => $galleryCategory,
             'tables' => $tables,
             'contact' => $contact,
+            'advantages' => $advantages,
         ]);
     }
 }

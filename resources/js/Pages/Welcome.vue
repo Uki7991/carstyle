@@ -55,12 +55,12 @@
                         <li class="">
                             <ul class="flex bottom-0 left-0 mt-5 lg:mt-0 space-x-9">
                                 <li v-if="contact.instagram" class="group">
-                                    <a :href="contact.instagram" target="_blank" class="icon">
+                                    <a :href="contact.instagram" target="_blank" rel="noreferrer" class="icon">
                                         <img class="svg fill-current text-svg group-hover:text-on-hover transition duration-400 w-6 lg:w-auto" src="/assets/icons/instagram.svg" alt="">
                                     </a>
                                 </li>
                                 <li v-if="contact.whatsapp" class="group">
-                                    <a :href="contact.whatsapp" target="_blank" class="icon">
+                                    <a :href="contact.whatsapp" target="_blank" rel="noreferrer" class="icon">
                                         <img class="svg fill-current text-svg group-hover:text-on-hover transition duration-400 w-6 lg:w-auto" src="/assets/icons/whatsapp.svg" alt="">
                                     </a>
                                 </li>
@@ -110,14 +110,16 @@
                             <div class="flex items-center lg:px-5 lg:py-1 py-5" :class="{'border-red-500 border rounded': form.error('name')}">
                                 <img src="/assets/icons/person.svg" class="svg fill-current text-gray-700 w-8 h-7" alt="">
                                 <div class="relative">
-                                    <input placeholder="Имя" v-model="form.name" class="w-full ml-2 focus:outline-none" type="text">
+                                    <label for="name" class="hidden">Name</label>
+                                    <input id="name" placeholder="Имя" v-model="form.name" class="w-full ml-2 focus:outline-none" type="text">
                                     <p v-if="form.error('name')" class="text-red-500 text-xs absolute left-1/2 transform -translate-x-1/2 -bottom-6 w-full">{{form.error('name') | translateErrors('name', 'имя')}}</p>
                                 </div>
                             </div>
                             <div class="flex items-center lg:px-5 lg:py-1 py-5" :class="{'border-red-500 border rounded': form.error('phone')}">
                                 <img src="/assets/icons/phone_black.svg" class="svg fill-current text-gray-700 w-8 h-7" alt="">
                                 <div class="relative">
-                                    <input placeholder="Номер" v-model="form.phone" class="w-full ml-2 focus:outline-none" type="text">
+                                    <label for="phone" class="hidden">Phone</label>
+                                    <input id="phone" placeholder="Номер" v-model="form.phone" class="w-full ml-2 focus:outline-none" type="text">
                                     <p v-if="form.error('phone')" class="text-red-500 text-xs absolute left-1/2 transform -translate-x-1/2 -bottom-6 w-full">{{form.error('phone') | translateErrors('phone', 'номер')}}</p>
                                 </div>
                             </div>
@@ -143,10 +145,10 @@
                              :key="i">
                             <div
                                 class="rounded-2xl bg-secondary border-2 border-white shadow-advantage w-21 h-21 flex items-center mx-auto justify-center">
-                                <img class="lazy svg fill-current text-svg" src="" :data-src="'/assets/icons/' + item.icon" alt="">
+                                <img class="lazy svg fill-current text-svg" src="" :data-src="'/storage/files/' + item.image" alt="">
                             </div>
                             <p class="mt-6 mb-5 text-lg font-semibold">{{item.title}}</p>
-                            <p>{{ item.text }}</p>
+                            <p>{{ item.description }}</p>
                         </div>
                     </div>
                 </div>
@@ -319,10 +321,10 @@
                     </div>
 
                     <div class="flex space-x-5 py-5">
-                        <a :href="contact.instagram" class="group" target="_blank" v-if="contact.instagram">
+                        <a :href="contact.instagram" class="group" target="_blank" rel="noreferrer" v-if="contact.instagram">
                             <img class="lg:w-9 w-6 cursor-pointer svg fill-current text-svg group-hover:text-on-hover transition duration-400" src="/assets/icons/instagram.svg" alt="">
                         </a>
-                        <a :href="contact.whatsapp" class="group" v-if="contact.whatsapp" target="_blank">
+                        <a :href="contact.whatsapp" class="group" v-if="contact.whatsapp" target="_blank" rel="noreferrer">
                             <img class="lg:w-9 w-6 cursor-pointer svg fill-current text-svg group-hover:text-on-hover transition duration-400" src="/assets/icons/whatsapp.svg" alt="">
                         </a>
                     </div>
@@ -331,7 +333,7 @@
                     <div class="lg:w-5/12 w-full bg-white lg:block hidden lg:absolute h-202">
                     </div>
                     <div class="lg:w-8/12 z-10 w-full lg:map-shadow lg:absolute right-0 top-7">
-                        <iframe src="" class="lg:h-202 h-72" width="100%" frameborder="1" allowfullscreen="true"
+                        <iframe title="yandex_map" src="" class="lg:h-202 h-72" width="100%" frameborder="1" allowfullscreen="true"
                                 style="position:relative;"></iframe>
                     </div>
                 </div>
@@ -452,38 +454,7 @@
                         }
                     }
                 },
-                advantages: [
-                    {
-                        icon: 'warranty.svg',
-                        title: 'Даем гарантию',
-                        text: 'Получайте гарантию 3 года на проделаную работу'
-                    },
-                    {
-                        icon: 'price.svg',
-                        title: 'Низкие цены',
-                        text: 'Платите приятные цены за качественную работу'
-                    },
-                    {
-                        icon: 'material.svg',
-                        title: 'Лучшые материалы',
-                        text: 'Оригинальные пленки Llumar, Suntek, SPECTROLL, KPMF'
-                    },
-                    {
-                        icon: 'card.svg',
-                        title: 'Удобная оплата',
-                        text: 'Принимаем к оплате карты, а также безналичный расчет'
-                    },
-                    {
-                        icon: 'time.svg',
-                        title: 'Трепетное отношение',
-                        text: 'Сохраняем заводскую гарантию на автомобиль'
-                    },
-                    {
-                        icon: 'wifi.svg',
-                        title: 'Клиентская зона',
-                        text: 'Скоротать время ожидания с кофе и бесплатным WI-FI'
-                    },
-                ],
+                advantages: this.$page.advantages,
                 services: this.$page.services,
                 materialCategories: this.$page.materialCategories,
                 tables: this.$page.tables,

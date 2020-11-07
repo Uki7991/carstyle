@@ -14,6 +14,12 @@
             </template>
             Dashboard
         </vs-sidebar-item>
+        <vs-sidebar-item @click.native="link(route('advantages.index'))" id="advantages">
+            <template #icon>
+                <i class='bx bxs-bullseye'></i>
+            </template>
+            Премущества
+        </vs-sidebar-item>
         <vs-sidebar-item @click.native="link(route('services.index'))" id="services">
             <template #icon>
                 <i class='bx bx-grid-alt'></i>

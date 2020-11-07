@@ -7,6 +7,9 @@ use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\AdvantageController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BidController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +26,7 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 
 Route::get('/', [IndexController::class, 'home']);
 
-Route::post('/bids', [\App\Http\Controllers\BidController::class, 'store'])->name('bids.store');
+Route::post('/bids', [BidController::class, 'store'])->name('bids.store');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']], function () {
     Route::redirect('/', '/admin/dashboard')->name('admin');
@@ -38,7 +41,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']]
     Route::resource('materials', MaterialController::class);
     Route::put('/galleries/{gallery}/status', [GalleryController::class, 'status'])->name('galleries.status');
     Route::resource('galleries', GalleryController::class);
+    Route::put('/advantages/{advantage}/status', [AdvantageController::class, 'status'])->name('advantages.status');
+    Route::resource('advantages', AdvantageController::class);
 
-    Route::resource('contacts', \App\Http\Controllers\ContactController::class)->only(['edit', 'update']);
+    Route::resource('contacts', ContactController::class)->only(['edit', 'update']);
 });
 
