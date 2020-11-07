@@ -16,7 +16,7 @@
                 </div>
             </template>
         </vs-dialog>
-        <div class="fixed top-0 w-screen lg:hidden right-0 z-20 bg-white">
+        <div class="fixed top-0 w-screen xl:hidden right-0 z-20 bg-white">
             <div class="flex justify-between items-center px-4 py-5">
                 <div class="text-logo uppercase">
                     Car style
@@ -25,18 +25,18 @@
             </div>
         </div>
         <transition name="fade" mode="out-in" duration="300">
-            <nav class="transition duration-300 fixed top-0 w-screen lg:w-full h-screen lg:h-auto z-50" v-show="menuActive">
+            <nav class="transition duration-300 fixed top-0 w-screen xl:w-full h-screen xl:h-auto z-50" v-show="menuActive">
                 <div
-                    class="container py-5 flex pl-4 lg:pl-0 flex-col lg:flex-row h-full justify-between lg:justify-start lg:items-center mx-auto">
+                    class="xl:container lg:px-4 xl:px-0 py-5 flex pl-4 xl:pl-0 flex-col xl:flex-row h-full justify-between xl:justify-start xl:items-center mx-auto">
                     <div class="flex justify-between items-center">
                         <div class="">
                             <a class="text-logo uppercase" href="#main">Car style</a>
                         </div>
-                        <img @click="closeMenu" class="block lg:hidden w-12" v-if="menuActive"
+                        <img @click="closeMenu" class="block xl:hidden w-12" v-if="menuActive"
                              src="/assets/icons/close.svg" alt="">
 
                     </div>
-                    <ul class="flex pl-0 lg:pl-9 lg:space-x-9 menu font-bold lg:font-normal text-4xl lg:text-base flex-col lg:flex-row">
+                    <ul class="flex pl-0 xl:pl-9 xl:space-x-9 menu font-bold xl:font-normal text-4xl xl:text-base flex-col xl:flex-row">
                         <li class="hover:text-on-hover transition duration-300">
                             <a href="#services">Услуги</a>
                         </li>
@@ -51,23 +51,23 @@
                         </li>
                     </ul>
 
-                    <ul class="flex menu lg:space-x-9 flex-col lg:flex-row lg:items-center lg:ml-auto flex-col-reverse">
+                    <ul class="flex menu xl:space-x-9 flex-col xl:flex-row xl:items-center xl:ml-auto flex-col-reverse">
                         <li class="">
-                            <ul class="flex bottom-0 left-0 mt-5 lg:mt-0 space-x-9">
+                            <ul class="flex bottom-0 left-0 mt-5 xl:mt-0 space-x-9">
                                 <li v-if="contact.instagram" class="group">
                                     <a :href="contact.instagram" target="_blank" rel="noreferrer" class="icon">
-                                        <img class="svg fill-current text-svg group-hover:text-on-hover transition duration-400 w-6 lg:w-auto" src="/assets/icons/instagram.svg" alt="">
+                                        <img class="svg fill-current text-svg group-hover:text-on-hover transition duration-400 w-6 xl:w-auto" src="/assets/icons/instagram.svg" alt="">
                                     </a>
                                 </li>
                                 <li v-if="contact.whatsapp" class="group">
                                     <a :href="contact.whatsapp" target="_blank" rel="noreferrer" class="icon">
-                                        <img class="svg fill-current text-svg group-hover:text-on-hover transition duration-400 w-6 lg:w-auto" src="/assets/icons/whatsapp.svg" alt="">
+                                        <img class="svg fill-current text-svg group-hover:text-on-hover transition duration-400 w-6 xl:w-auto" src="/assets/icons/whatsapp.svg" alt="">
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <ul class="flex flex-col lg:items-center lg:space-x-9 space-y-3 lg:space-y-0 lg:flex-row">
+                            <ul class="flex flex-col xl:items-center xl:space-x-9 space-y-3 xl:space-y-0 xl:flex-row">
                                 <li v-if="contact.address" class=" group">
                                     <a href="#contacts" class="icon flex items-center">
                                         <img src="/assets/icons/map.svg" class="mr-1 svg fill-current text-svg group-hover:text-on-hover transition duration-400" alt="">
@@ -98,8 +98,8 @@
                 <div
                     class="dots_back w-10/12 h-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-50"></div>
                 <div
-                    class="container mx-auto flex flex-col lg:flex-row space-y-9 lg:space-y-0 justify-end z-10 relative">
-                    <div class="lg:w-6/12 text-center lg:text-left w-full">
+                    class="container lg:items-center mx-auto flex flex-col lg:flex-row ll:justify-center space-y-9 lg:space-y-0 z-10 relative">
+                    <div class="lg:w-6/12 xl:w-5/12 ll:w-4/12 text-center lg:text-left w-full">
                         <p class="font-bold lg:text-6xl text-4xl mb-5 leading-tight">Тонирование <br> и оклейка авто</p>
                         <p class="leading-6 text-sm lg:text-base mb-10">Качественное тонирование и оклеивание вашего
                             автомобиля <!--<br>--> нашими специалистами.
@@ -127,7 +127,7 @@
                         </form>
                     </div>
                     <div class="lg:w-6/12 w-full">
-                        <img src="/assets/images/car.png" class="max-w-full lg:max-w-none" alt="">
+                        <img src="/assets/images/car.png" class="max-w-full ll:max-w-none" alt="">
                     </div>
                 </div>
             </section>
@@ -141,7 +141,7 @@
                     <p class="font-bold mb-5 lg:text-4xl text-2xl text-center leading-tight">Более 2000 автомобилей было
                         <br> затонированно и оклеено за время работы <br> нашей студии.</p>
                     <div class="flex lg:w-9/12 w-full mx-auto flex-wrap justify-center">
-                        <div v-for="(item, i) in advantages" :data-id="i" class="lg:w-4/12 w-full text-center py-7 px-6"
+                        <div v-for="(item, i) in advantages" :data-id="i" class="lg:w-4/12 md:w-4/12 sm:w-6/12 w-full text-center py-7 px-6"
                              :key="i">
                             <div
                                 class="rounded-2xl bg-secondary border-2 border-white shadow-advantage w-21 h-21 flex items-center mx-auto justify-center">
@@ -159,7 +159,7 @@
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Услуги</p>
                     <p class="font-bold mb-5 lg:text-4xl text-2xl leading-tight">Каталог наших услуг</p>
                     <transition duration="200" name="fade">
-                        <div class="grid lg:grid-cols-4 grid-cols-1 gap-4" v-if="!activeTab">
+                        <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4" v-if="!activeTab">
                             <div class="w-full group my-6 cursor-pointer" v-for="(item, i) in services" :key="i"
                                  @click="activeService(item)">
                                 <p class="font-semibold group-hover:text-on-hover transition duration-300 text-lg text-gray-800">{{ item.title }}</p>
@@ -244,13 +244,13 @@
             <section id="work" class="fifth py-32">
                 <div class="container px-4 lg:px-0 mx-auto">
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Наши работы</p>
-                    <div class="flex flex-col lg:flex-row items-end justify-between">
+                    <div class="flex flex-col lg:flex-row lg:items-end justify-between">
                         <p class="font-bold mb-5 text-4xl text-2xl leading-tight">Фотографии работ</p>
-                        <div class="block justify-center relative mb-5 lg:w-5/12 w-full">
+                        <div class="block catogories_slide justify-center relative mb-5 lg:w-5/12 w-full">
                             <splide :options="slideOptions" :slides="galleryCategories">
                                 <splide-slide v-for="category in galleryCategories" :key="category.id">
                                     <span class="text-xs text-indigo-600 absolute -top-1 -right-2">{{category.galleries_count}}</span>
-                                    <p class="cursor-pointer hover:text-on-hover transition duration-300 py-1" :class="{'active font-bold': category.active}"
+                                    <p class="cursor-pointer hover:text-on-hover text-non-active transition duration-300 py-1" :class="{'active font-bold': category.active}"
                                        @click.stop="galleryCategoriesActive(category)">{{category.title}}</p>
                                 </splide-slide>
                             </splide>
@@ -283,7 +283,7 @@
                     </div>
                     <div class="lg:hidden">
                         <splide :options="imageSlideOptions" :slides="filteredImages.slice(0, 5)">
-                            <splide-slide v-for="(image, i) in filteredImages.slice(0, 5)" :key="image.id">
+                            <splide-slide v-for="(image, i) in filteredImages.slice(0, 5)" :key="image.id" @click.native="coolIndex = i" class="custom">
                                 <div v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i"
                                      class="h-full w-full absolute rounded-2xl bg-gray-100 opacity-75"></div>
                                 <div v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i"
@@ -293,7 +293,7 @@
                                         class="border border-indigo-100 text-gray-600 text-sm bg-gray-200 hover:bg-indigo-400 hover:text-white transition duration-300 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-2 px-5">
                                     Смотреть все
                                 </button>
-                                <img class="lazy cursor-pointer hover:shadow-xl hover:-translate-y-2 transition duration-300" :class="{transform: i!==4}" @click="coolIndex = i" :src="'/storage/medium/'+image.image" alt="">
+                                <img class="cursor-pointer hover:shadow-xl hover:-translate-y-2 transition duration-300" :class="{transform: i!==4}" @click="clickedImage(i)" :src="'/storage/small/'+image.image" alt="">
                             </splide-slide>
                         </splide>
                     </div>
@@ -382,11 +382,11 @@
                                 <p>{{contact.email}}</p>
                             </a>
                         </div>
-                        <p class="hidden lg:block lg:text-sm text-xs text-center text-gray-500">Все права защищены —
+                        <p class="hidden xl:block lg:text-sm text-xs text-center text-gray-500">Все права защищены —
                             2020 © CAR STYLE</p>
                     </div>
                 </div>
-                <p class="lg:text-sm mt-4 lg:hidden text-xs text-center text-gray-500">Все права защищены — 2020 © CAR
+                <p class="lg:text-sm mt-4 xl:hidden text-xs text-center text-gray-500">Все права защищены — 2020 © CAR
                     STYLE</p>
             </footer>
         </main>
@@ -426,7 +426,7 @@
                         right: '1rem',
                     },
                     breakpoints: {
-                        640: {
+                        1024: {
                             arrows: false,
                             width: '100%',
                         }
@@ -448,7 +448,7 @@
                         right: '1rem',
                     },
                     breakpoints: {
-                        640: {
+                        1024: {
                             arrows: false,
                             width: '100%',
                         }
@@ -512,7 +512,7 @@
                 });
                 category.active = true;
                 this.lazyLoad();
-                window.scrollBy(0, 1);
+                window.scrollBy(0, 10);
             },
 
             lazyLoad(active) {
@@ -613,6 +613,9 @@
                         }
                     }
                 })
+            },
+            clickedImage(i) {
+                console.log(i);
             }
         },
         filters: {
@@ -640,7 +643,7 @@
                     }
                 }
 
-                document.getElementsByTagName('nav')[0].classList.toggle('lg:bg-white', last_known_scroll_position > document.getElementsByTagName('nav')[0].offsetHeight);
+                document.getElementsByTagName('nav')[0].classList.toggle('xl:bg-white', last_known_scroll_position > document.getElementsByTagName('nav')[0].offsetHeight);
             });
 
             let active = false;
@@ -652,7 +655,7 @@
             window.addEventListener("resize", () => {
                 this.lazyLoad(active);
                 this.replaceSvg();
-                document.getElementsByTagName('nav')[0].classList.toggle('bg-white', window.innerWidth <= 630);
+                document.getElementsByTagName('nav')[0].classList.toggle('bg-white', window.innerWidth <= 1280);
             });
             window.addEventListener("orientationchange", () => {
                 this.lazyLoad(active);
@@ -663,7 +666,7 @@
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    if (window.innerWidth < 630) {
+                    if (window.innerWidth < 1280) {
                         setTimeout(function() {
                             closeMenu();
                         }, 600);
@@ -674,7 +677,7 @@
                 });
             });
 
-            document.getElementsByTagName('nav')[0].classList.toggle('bg-white', window.innerWidth <= 630);
+            document.getElementsByTagName('nav')[0].classList.toggle('bg-white', window.innerWidth <= 1280);
 
             this.replaceSvg();
         },

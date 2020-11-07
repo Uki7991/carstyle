@@ -219,6 +219,11 @@ body {
 .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
     opacity: 0;
 }
+
+.catogories_slide p.active {
+    @apply text-black;
+}
+
 .custom .vs-table table {
     @apply min-w-screen;
 }

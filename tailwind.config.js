@@ -10,10 +10,14 @@ module.exports = {
 
     theme: {
         extend: {
+            screens: {
+                'll': '1750px',
+            },
             colors: {
                 'secondary': '#E9ECF5',
                 'svg': '#3E50F3',
                 'on-hover': '#5263F4',
+                'non-active': '#AEB1B9',
             },
             fontFamily: {
                 "carstyle-logo": ['"Secular One"'],
