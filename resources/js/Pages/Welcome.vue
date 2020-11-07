@@ -256,6 +256,13 @@
 
                     </div>
 
+                    <cool-light-box
+                        :items="filteredCoolImages"
+                        :index="coolIndex"
+                        :effect="'fade'"
+                        @close="coolIndex = null"
+                    ></cool-light-box>
+
                     <div class="hidden lg:grid grid-cols-3 grid-rows-2 gap-3 h-80">
                         <div :class="{'row-span-2': i===0 || i===1, 'row-span-1': i===3 || i===4, 'relative': true}"
                              v-for="(gallery, i) in filteredImages.slice(0, 4)" :key="gallery.id">
@@ -264,10 +271,11 @@
                             <div v-if="i===3 || filteredImages.slice(0, 4).length - 1 === i"
                                  class="h-full w-full absolute rounded-2xl backdrop-blur-3"></div>
                             <button v-if="i===3 || filteredImages.slice(0, 4).length - 1 === i"
+                                    @click="coolIndex = i"
                                     class="border border-indigo-100 text-gray-600 text-sm bg-gray-200 hover:bg-indigo-400 hover:text-white transition duration-300 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-2 px-5">
                                 Смотреть все
                             </button>
-                            <img class="w-full h-full object-cover rounded-2xl lazy" src=""
+                            <img class="w-full h-full object-cover rounded-2xl lazy cursor-pointer hover:shadow-xl hover:-translate-y-2 transition duration-300" :class="{transform: i!==3}" @click="coolIndex = i" src=""
                                  :data-src="'/storage/medium/'+gallery.image" alt="">
                         </div>
                     </div>
@@ -279,10 +287,11 @@
                                 <div v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i"
                                      class="h-full w-full absolute rounded-2xl backdrop-blur-3"></div>
                                 <button v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i"
+                                        @click="coolIndex = i"
                                         class="border border-indigo-100 text-gray-600 text-sm bg-gray-200 hover:bg-indigo-400 hover:text-white transition duration-300 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-2 px-5">
                                     Смотреть все
                                 </button>
-                                <img class="lazy" :src="'/storage/medium/'+image.image" alt="">
+                                <img class="lazy cursor-pointer hover:shadow-xl hover:-translate-y-2 transition duration-300" :class="{transform: i!==4}" @click="coolIndex = i" :src="'/storage/medium/'+image.image" alt="">
                             </splide-slide>
                         </splide>
                     </div>
@@ -483,6 +492,7 @@
                 galleryCategories: this.$page.galleryCategories,
                 contact: this.$page.contact,
                 dialogActive: false,
+                coolIndex: null,
             }
         },
         computed: {
@@ -499,6 +509,13 @@
                         return item;
                     }
                 });
+            },
+            filteredCoolImages() {
+                return this.filteredImages.map(item => {
+                    return {
+                        src: '/storage/large/'+item.image,
+                    };
+                })
             }
         },
         methods: {
@@ -675,9 +692,11 @@
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    setTimeout(function() {
-                        closeMenu();
-                    }, 600);
+                    if (window.innerWidth < 630) {
+                        setTimeout(function() {
+                            closeMenu();
+                        }, 600);
+                    }
                     document.querySelector(this.getAttribute('href')).scrollIntoView({
                         behavior: 'smooth'
                     });

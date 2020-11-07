@@ -32,8 +32,8 @@ class AppServiceProvider extends ServiceProvider
             'form_post' => function() {
                 return session()->get('form_post');
             },
-            'contact' => function() {
-                return Schema::hasTable('contacts') ? Contact::all()->first() : null;
+            'contact_id' => function() {
+                return Schema::hasTable('contacts') ? Contact::all()->first()->id : null;
             }
         ]);
     }

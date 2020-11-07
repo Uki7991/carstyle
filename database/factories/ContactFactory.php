@@ -31,6 +31,7 @@ class ContactFactory extends Factory
             'instagram' => 'https://instagram.com/carstyle/',
             'whatsapp' => 'https://wa.link/tu14r5',
             'yandex' => 'https://yandex.ru/map-widget/v1/-/CCQ~nEg3tD',
+            'mail_to' => 'admin@admin.com',
         ];
     }
 }

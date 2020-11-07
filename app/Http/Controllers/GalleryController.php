@@ -97,10 +97,12 @@ class GalleryController extends Controller
         if (!$category) {
             $category = GalleryCategory::create(['title' => $request->gallery_category['title']]);
         }
-        if ($request->has('image')) {
-            ImageUploader::delete($gallery->image);
-        }
 
+        $previousImage = $gallery->image;
+
+        if ($request->has('image') && $gallery->wasChanged('image') && $previousImage) {
+            ImageUploader::delete($previousImage);
+        }
         $gallery->update($request->all());
         $category->galleries()->save($gallery);
 

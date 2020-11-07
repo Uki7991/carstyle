@@ -32,7 +32,7 @@
             </template>
             Галерея
         </vs-sidebar-item>
-        <vs-sidebar-item id="contacts" @click.native="link(route('contacts.edit', {contact: $page.contact}))">
+        <vs-sidebar-item id="contacts" @click.native="link(route('contacts.edit', {contact: $page.contact_id}))">
             <template #icon>
                 <i class='bx bx-slider-alt'></i>
             </template>

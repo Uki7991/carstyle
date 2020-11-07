@@ -33,6 +33,7 @@ class ContactRequest extends FormRequest
             'instagram' => 'required',
             'whatsapp' => 'required',
             'yandex' => 'required',
+            'mail_to' => 'required',
         ];
     }
 }

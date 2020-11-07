@@ -12,78 +12,109 @@
                         Сохранить
                     </vs-button>
                 </div>
-                <form @submit.prevent="create" class="conform space-x-4 flex w-full">
-                    <div class="w-4/12 flex flex-col space-y-6 border border-gray-200 rounded-xl p-3">
+                <form @submit.prevent="create" class="conform grid grid-cols-3 gap-2 w-full">
+                    <div class="flex flex-col space-y-6 border border-gray-200 rounded-xl p-3">
                         <p class="font-bold text-xl mb-4">SEO элементы</p>
                         <vs-input
                             label-placeholder="Title"
                             primary
                             class="w-full"
                             v-model="form.title"
-                        ></vs-input>
+                        >
+                            <template #message-danger v-if="form.error('title')">{{form.error('title')}}</template>
+                        </vs-input>
 
                         <div>
                             <label for="description">Описание</label>
                             <textarea id="description" v-model="form.description" class="w-full border rounded-2xl px-4 py-2" rows="4"></textarea>
+                            <p class="text-xs text-red-500" v-if="form.error('description')">{{form.error('description')}}</p>
                         </div>
                         <div>
                             <label for="keywords">Ключевые слова</label>
                             <textarea id="keywords" v-model="form.keywords" class="w-full border rounded-2xl px-4 py-2" rows="4"></textarea>
+                            <p class="text-xs text-red-500" v-if="form.error('keywords')">{{form.error('keywords')}}</p>
                         </div>
                     </div>
-                    <div class="w-4/12 flex flex-col space-y-8 border border-gray-200 rounded-xl p-3">
+                    <div class="flex flex-col space-y-8 border border-gray-200 rounded-xl p-3">
                         <p class="font-bold text-xl mb-4">Контакты</p>
                         <vs-input
                             label-placeholder="Телефон"
                             primary
                             class="w-full"
                             v-model="form.phone"
-                        ></vs-input>
+                        >
+                            <template #message-danger v-if="form.error('phone')">{{form.error('phone')}}</template>
+                        </vs-input>
                         <vs-input
                             label-placeholder="email"
                             primary
                             class="w-full"
                             v-model="form.email"
-                        ></vs-input>
+                        >
+                            <template #message-danger v-if="form.error('email')">{{form.error('email')}}</template>
+                        </vs-input>
                         <vs-input
                             label-placeholder="Адрес"
                             primary
                             class="w-full"
                             v-model="form.address"
-                        ></vs-input>
+                        >
+                            <template #message-danger v-if="form.error('address')">{{form.error('address')}}</template>
+                        </vs-input>
                         <vs-input
                             label-placeholder="Instagram"
                             primary
                             class="w-full"
                             v-model="form.instagram"
-                        ></vs-input>
+                        >
+                            <template #message-danger v-if="form.error('instagram')">{{form.error('instagram')}}</template>
+                        </vs-input>
                         <vs-input
                             label-placeholder="Whatsapp"
                             primary
                             class="w-full"
                             v-model="form.whatsapp"
-                        ></vs-input>
+                        >
+                            <template #message-danger v-if="form.error('whatsapp')">{{form.error('whatsapp')}}</template>
+                        </vs-input>
                         <vs-input
                             label-placeholder="Карта"
                             primary
                             class="w-full"
                             v-model="form.yandex"
-                        ></vs-input>
+                        >
+                            <template #message-danger v-if="form.error('yandex')">{{form.error('yandex')}}</template>
+                        </vs-input>
                     </div>
-                    <div class="w-4/12 flex flex-col space-y-8 border border-gray-200 rounded-xl p-3">
+                    <div class="flex flex-col space-y-8 border border-gray-200 rounded-xl p-3">
                         <p class="font-bold text-xl mb-4">Скрипты</p>
                         <div>
                             <label for="google_script">Google скрипты</label>
                             <textarea id="google_script" class="w-full border rounded-xl px-4 py-2" v-model="form.google_script" rows="4"></textarea>
+                            <p class="text-xs text-red-500" v-if="form.error('google_script')">{{form.error('google_script')}}</p>
                         </div>
                         <div>
                             <label for="yandex_script">Yandex скрипты</label>
                             <textarea id="yandex_script" class="w-full border rounded-xl px-4 py-2" v-model="form.yandex_script" rows="4"></textarea>
+                            <p class="text-xs text-red-500" v-if="form.error('yandex_script')">{{form.error('yandex_script')}}</p>
                         </div>
                         <div>
                             <label for="other_script">Другие скрипты</label>
                             <textarea id="other_script" class="w-full border rounded-xl px-4 py-2" v-model="form.other_script" rows="4"></textarea>
+                            <p class="text-xs text-red-500" v-if="form.error('other_script')">{{form.error('other_script')}}</p>
                         </div>
+                    </div>
+                    <div class="flex flex-col space-y-8 border border-gray-200 rounded-xl p-3">
+                        <p class="font-bold text-xl mb-4">Заявки</p>
+                        <vs-input
+                            label-placeholder="Email для запросов"
+                            primary
+                            v-model="form.mail_to"
+                        >
+                            <template #message-danger v-if="form.error('mail_to')">
+                                {{form.error('mail_to')}}
+                            </template>
+                        </vs-input>
                     </div>
                 </form>
             </admin-component-div>
@@ -121,6 +152,7 @@
                     'yandex_script': this.$page.contact.yandex_script,
                     'google_script': this.$page.contact.google_script,
                     'other_script': this.$page.contact.other_script,
+                    'mail_to': this.$page.contact.mail_to,
                 }, {
                     bag: 'default',
                     resetOnSuccess: true,

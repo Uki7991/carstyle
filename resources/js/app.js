@@ -11,6 +11,8 @@ import Tabs from 'vue-tabs-component';
 import VueSplide from '@splidejs/vue-splide';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 import 'vuesax/dist/vuesax.css'
+import CoolLightBox from 'vue-cool-lightbox'
+import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 
 Vue.mixin({ methods: { route } });
 Vue.mixin(Link);
@@ -20,6 +22,7 @@ Vue.use(PortalVue);
 Vue.use(Vuesax);
 Vue.use(Tabs);
 Vue.use(VueSplide);
+Vue.use(CoolLightBox);
 
 const app = document.getElementById('app');
 export const bus = new Vue();

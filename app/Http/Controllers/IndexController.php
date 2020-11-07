@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\Gallery;
 use App\Models\GalleryCategory;
 use App\Models\Material;
@@ -10,6 +11,7 @@ use App\Models\Service;
 use App\Models\ServiceTable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class IndexController extends Controller
 {
@@ -37,6 +39,7 @@ class IndexController extends Controller
             $item->activeTab = false;
             return $item;
         });
+        $contact = Schema::hasTable('contacts') ? Contact::all()->first() : null;
 
         return inertia('Welcome', [
             'services' => $services,
@@ -44,6 +47,7 @@ class IndexController extends Controller
             'galleries' => $galleries,
             'galleryCategories' => $galleryCategory,
             'tables' => $tables,
+            'contact' => $contact,
         ]);
     }
 }
