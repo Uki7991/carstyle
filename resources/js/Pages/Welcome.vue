@@ -27,7 +27,7 @@
         <transition name="fade" mode="out-in" duration="300">
             <nav class="transition duration-300 fixed top-0 w-screen xl:w-full h-screen xl:h-auto z-50" v-show="menuActive">
                 <div
-                    class="xl:container lg:px-4 xl:px-0 py-5 flex pl-4 xl:pl-0 flex-col xl:flex-row h-full justify-between xl:justify-start xl:items-center mx-auto">
+                    class="xl:max-w-screen-xl lg:px-4 xl:px-0 py-5 flex pl-4 xl:pl-0 flex-col xl:flex-row h-full justify-between xl:justify-start xl:items-center mx-auto">
                     <div class="flex justify-between items-center">
                         <div class="">
                             <a class="text-logo uppercase" href="#main">Car style</a>
@@ -98,15 +98,15 @@
                 <div
                     class="dots_back w-10/12 h-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-50"></div>
                 <div
-                    class="container lg:items-center mx-auto flex flex-col lg:flex-row ll:justify-center space-y-9 lg:space-y-0 z-10 relative">
-                    <div class="lg:w-6/12 xl:w-5/12 ll:w-4/12 text-center lg:text-left w-full">
-                        <p class="font-bold lg:text-6xl text-4xl mb-5 leading-tight">Тонирование <br> и оклейка авто</p>
-                        <p class="leading-6 text-sm lg:text-base mb-10">Качественное тонирование и оклеивание вашего
+                    class="max-w-screen-xl lg:items-center mx-auto flex flex-col lg:flex-row ll:justify-center space-y-9 lg:space-y-0 z-10 relative">
+                    <div class="lg:w-6/12 xl:w-5/12 text-center lg:text-left w-full md:w-9/12 mx-auto">
+                        <p class="font-bold md:text-5xl lg:text-6xl text-4xl mb-5 leading-tight">Тонирование <br> и оклейка авто</p>
+                        <p class="leading-6 text-sm md:text-base mb-10">Качественное тонирование и оклеивание вашего
                             автомобиля <!--<br>--> нашими специалистами.
                             Высококачественные пленки от <!--<br>--> проверенных поставщиков с гарантией выполненной
                             работы 3 <!--<br>--> года.
                             Записывайтесь и получайте <span class="font-bold text-indigo-600">скидку 5%</span>.</p>
-                        <form @submit.prevent="submitForm" class="flex flex-col lg:flex-row items-center bg-white py-3 px-3 rounded-xl lg:space-x-4 lg:space-y-0 space-y-4">
+                        <form @submit.prevent="submitForm" class="flex flex-col md:flex-row items-center bg-white py-3 px-3 rounded-xl md:space-x-4 md:space-y-0 space-y-4">
                             <div class="flex items-center lg:px-5 lg:py-1 py-5" :class="{'border-red-500 border rounded': form.error('name')}">
                                 <img src="/assets/icons/person.svg" class="svg fill-current text-gray-700 w-8 h-7" alt="">
                                 <div class="relative">
@@ -136,7 +136,7 @@
                 <div class="absolute w-1/2 top-0 left-1/2 transform -translate-x-1/2">
                     <img class="w-full" src="/assets/images/styler.png" alt="">
                 </div>
-                <div class="container px-4 lg:px-0 mx-auto">
+                <div class="max-w-screen-xl px-4 lg:px-0 mx-auto">
                     <p class="text-indigo-600 text-lg mb-3 font-semibold text-center">Почему мы?</p>
                     <p class="font-bold mb-5 lg:text-4xl text-2xl text-center leading-tight">Более 2000 автомобилей было
                         <br> затонированно и оклеено за время работы <br> нашей студии.</p>
@@ -155,7 +155,7 @@
             </section>
 
             <section id="services" class="third py-32">
-                <div class="container px-4 lg:px-0 mx-auto">
+                <div class="max-w-screen-xl px-4 lg:px-0 mx-auto">
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Услуги</p>
                     <p class="font-bold mb-5 lg:text-4xl text-2xl leading-tight">Каталог наших услуг</p>
                     <transition duration="200" name="fade">
@@ -212,7 +212,7 @@
             </section>
 
             <section id="materials" class="fourth py-32">
-                <div class="container px-4 lg:px-0 mx-auto">
+                <div class="max-w-screen-xl px-4 lg:px-0 mx-auto">
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Материалы</p>
                     <p class="font-bold mb-5 lg:text-4xl text-2xl leading-tight">Характеристики используемых брендов</p>
 
@@ -242,7 +242,7 @@
             </section>
 
             <section id="work" class="fifth py-32">
-                <div class="container px-4 lg:px-0 mx-auto">
+                <div class="max-w-screen-xl px-4 lg:px-0 mx-auto">
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Наши работы</p>
                     <div class="flex flex-col lg:flex-row lg:items-end justify-between">
                         <p class="font-bold mb-5 text-4xl text-2xl leading-tight">Фотографии работ</p>
@@ -283,7 +283,7 @@
                     </div>
                     <div class="lg:hidden">
                         <splide :options="imageSlideOptions" :slides="filteredImages.slice(0, 5)">
-                            <splide-slide v-for="(image, i) in filteredImages.slice(0, 5)" :key="image.id" @click.native="coolIndex = i" class="custom">
+                            <splide-slide v-for="(image, i) in filteredImages.slice(0, 5)" :key="image.id" @click.native="coolIndex = i" class="rounded-2xl">
                                 <div v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i"
                                      class="h-full w-full absolute rounded-2xl bg-gray-100 opacity-75"></div>
                                 <div v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i"
@@ -301,7 +301,7 @@
             </section>
 
             <section id="contacts" class="sixth bg-white lg:bg-transparent py-32 relative">
-                <div class="container px-4 lg:px-0 mx-auto bg-transparent z-10 relative">
+                <div class="max-w-screen-xl px-4 lg:px-0 mx-auto bg-transparent z-10 relative">
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Контакты</p>
                     <p class="font-bold mb-5 lg:text-4xl text-2xl leading-tight">Как нас найти?</p>
 
@@ -341,7 +341,7 @@
             </section>
 
             <footer class="pb-12 pt-24">
-                <div class="container flex lg:block justify-between items-center px-4 lg:px-4 mx-auto">
+                <div class="max-w-screen-xl flex lg:block justify-between items-center px-4 lg:px-4 mx-auto">
                     <div class="flex  items-center lg:mb-5">
                         <div class="lg:mr-9">
                             <a href="#main" class="text-logo uppercase">
