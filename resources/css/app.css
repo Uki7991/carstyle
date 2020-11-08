@@ -155,6 +155,7 @@ body {
 
 .dots_back {
     background-image: url("/assets/images/dots_back.png");
+    z-index: -1;
     @apply bg-no-repeat bg-cover absolute;
 }
 .vs-input__message.vs-input__message--danger.v-enter-to {
@@ -190,27 +191,30 @@ body {
 .admin-service-tabs .tabs-component-panels {
     @apply p-4 border max-w-full overflow-hidden relative z-10 bg-white;
 }
-
+.custom-tabs-component-panel .vs-table__thead .vs-table__th {
+    background: none;
+    @apply font-semibold;
+}
 .custom-tabs-component {
     @apply flex;
 }
 .custom-tabs-component-tab {
-    @apply mb-8;
+    @apply py-4;
 }
-.custom-tabs-component-tabs .custom-tabs-component-tab.active p {
-    @apply text-indigo-500;
+.custom-tabs-component-tabs .custom-tabs-component-tab.active>p {
+    @apply text-indigo-500 font-semibold;
 }
 .custom-tabs-component-tabs .custom-tabs-component-tab p {
     @apply cursor-pointer;
 }
-.custom-tabs-component-tabs ul {
-    @apply pl-4;
-}
-.custom-tabs-component-tabs ul li {
-    @apply p-2 cursor-pointer;
-}
+
 .custom-tabs-component-tabs ul li.is-active {
     @apply text-indigo-500;
+}
+
+
+.custom-tabs-component-tabs ul li.is-active span {
+    @apply flex;
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -222,6 +226,9 @@ body {
 
 .catogories_slide p.active {
     @apply text-black;
+}
+.catogories_slide span.active {
+    @apply text-indigo-600 !important;
 }
 
 .custom .vs-table table {

@@ -96,7 +96,7 @@
         <main>
             <section id="main" class="first py-32 pt-48 relative px-4">
                 <div
-                    class="dots_back w-10/12 h-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-50"></div>
+                    class="dots_back w-10/12 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-3/4"></div>
                 <div
                     class="max-w-screen-xl lg:items-center mx-auto flex flex-col lg:flex-row ll:justify-center space-y-9 lg:space-y-0 z-10 relative">
                     <div class="lg:w-6/12 xl:w-5/12 text-center lg:text-left w-full md:w-9/12 mx-auto">
@@ -133,6 +133,8 @@
             </section>
 
             <section class="second py-32 relative">
+                <div
+                    class="dots_back w-10/12 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-3/4"></div>
                 <div class="absolute w-1/2 top-0 left-1/2 transform -translate-x-1/2">
                     <img class="w-full" src="/assets/images/styler.png" alt="">
                 </div>
@@ -170,16 +172,17 @@
 
                         <!--                        <custom-tabs :services="services" :tables="computedTables" ></custom-tabs>-->
                         <div v-else class="custom-tabs-component lg:flex-row flex-col">
-                            <ul class="custom-tabs-component-tabs lg:w-3/12 w-full">
+                            <ul class="custom-tabs-component-tabs lg:w-3/12 pr-4 w-full divide-y divide-gray-200">
                                 <li v-for="service in services" :key="service.id" class="custom-tabs-component-tab"
                                     :class="{active: service.activeTab}">
                                     <p @click="activeService(service)">{{service.title}}</p>
-                                    <span>{{service.description}}</span>
+                                    <span class="italic hover:line-through cursor-pointer text-description">{{service.description}}</span>
                                     <transition name="fade" duration="200">
-                                        <ul v-show="service.activeTab">
+                                        <ul v-show="service.activeTab" class="mt-4">
                                             <li v-for="table in tables.filter(item => item.service_id === service.id)"
-                                                :class="{'is-active': table.active}" :key="table.id">
-                                                <span @click="showPanel(table)">{{table.title}}</span>
+                                                :class="{'is-active': table.active}" class="flex py-1-5 group" :key="table.id">
+                                                <span class="hidden group-hover:flex">—&nbsp;</span>
+                                                <p class="group-hover:text-indigo-500" @click="showPanel(table)">{{table.title}}</p>
                                             </li>
                                         </ul>
                                     </transition>
@@ -248,9 +251,9 @@
                         <p class="font-bold mb-5 text-4xl text-2xl leading-tight">Фотографии работ</p>
                         <div class="block catogories_slide justify-center relative mb-5 lg:w-5/12 w-full">
                             <splide :options="slideOptions" :slides="galleryCategories">
-                                <splide-slide v-for="category in galleryCategories" :key="category.id">
-                                    <span class="text-xs text-indigo-600 absolute -top-1 -right-2">{{category.galleries_count}}</span>
-                                    <p class="cursor-pointer hover:text-on-hover text-non-active transition duration-300 py-1" :class="{'active font-bold': category.active}"
+                                <splide-slide class="group" v-for="category in galleryCategories" :key="category.id">
+                                    <span class="text-xs group-hover:text-indigo-600 text-non-active absolute -top-1 -right-2" :class="{'active': category.active}">{{category.galleries_count}}</span>
+                                    <p class="cursor-pointer group-hover:text-on-hover text-non-active transition duration-300 py-1" :class="{'active font-bold': category.active}"
                                        @click.stop="galleryCategoriesActive(category)">{{category.title}}</p>
                                 </splide-slide>
                             </splide>
@@ -265,7 +268,7 @@
                         @close="coolIndex = null"
                     ></cool-light-box>
 
-                    <div class="hidden lg:grid grid-cols-3 grid-rows-2 gap-3 h-80">
+                    <div class="hidden lg:grid grid-cols-3 grid-rows-2 gap-8 h-80">
                         <div :class="{'row-span-2': i===0 || i===1, 'row-span-1': i===3 || i===4, 'relative': true}"
                              v-for="(gallery, i) in filteredImages.slice(0, 4)" :key="gallery.id">
                             <div v-if="i===3 || filteredImages.slice(0, 4).length - 1 === i"

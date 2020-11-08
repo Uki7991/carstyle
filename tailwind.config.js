@@ -18,6 +18,7 @@ module.exports = {
                 'svg': '#3E50F3',
                 'on-hover': '#5263F4',
                 'non-active': '#AEB1B9',
+                'description': '#6B6D73',
             },
             fontFamily: {
                 "carstyle-logo": ['"Secular One"'],
@@ -27,6 +28,7 @@ module.exports = {
                 'screen': '100vw',
             },
             spacing: {
+                '1-5': '0.37rem',
                 '7': '1.75rem',
                 '9': '2.25rem',
                 '21': '5.25rem',
