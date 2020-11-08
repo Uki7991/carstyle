@@ -162,11 +162,11 @@
                     <p class="font-bold mb-5 lg:text-4xl text-2xl leading-tight">Каталог наших услуг</p>
                     <transition duration="200" name="fade">
                         <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4" v-if="!activeTab">
-                            <div class="w-full group rounded-2xl my-6 cursor-pointer" v-for="(item, i) in services" :key="i"
+                            <div class="w-full group my-6 cursor-pointer" v-for="(item, i) in services" :key="i"
                                  @click="activeService(item)">
                                 <p class="font-semibold group-hover:text-on-hover transition duration-300 text-lg text-gray-800">{{ item.title }}</p>
                                 <p class="text-sm text-gray-600 italic">{{ item.description }}</p>
-                                <img class="mt-4 lazy" src="" :data-src="'/storage/large/' + item.image" alt="">
+                                <img class="mt-4 lazy rounded-2xl" src="" :data-src="'/storage/large/' + item.image" alt="">
                             </div>
                         </div>
 
