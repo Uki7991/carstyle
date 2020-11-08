@@ -22,4 +22,9 @@ class ServiceTable extends Model
     {
         return $this->hasMany(ServiceTableHeading::class, 'service_table_id', 'id');
     }
+
+    public function values()
+    {
+        return $this->hasManyThrough(ServiceTableBody::class, ServiceTableHeading::class, 'service_table_id', 'service_table_heading_id', 'id', 'id');
+    }
 }

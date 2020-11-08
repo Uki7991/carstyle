@@ -161,7 +161,7 @@
                     <p class="text-indigo-600 text-lg mb-3 font-semibold">Услуги</p>
                     <p class="font-bold mb-5 lg:text-4xl text-2xl leading-tight">Каталог наших услуг</p>
                     <transition duration="200" name="fade">
-                        <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4" v-if="!activeTab">
+                        <div class="grid lg:grid-cols-4 mt-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4" v-if="!activeTab">
                             <div class="w-full group my-6 cursor-pointer" v-for="(item, i) in services" :key="i"
                                  @click="activeService(item)">
                                 <p class="font-semibold group-hover:text-on-hover transition duration-300 text-lg text-gray-800">{{ item.title }}</p>
@@ -189,10 +189,10 @@
                                 </li>
                             </ul>
 
-                            <vs-dialog overflow-hidden full-screen v-model="activeDescription">
-                                <div class="py-16 px-32">
+                            <vs-dialog scroll overflow-hidden full-screen v-model="activeDescription">
+                                <div class="lg:py-16 lg:px-32">
                                     <p class="font-bold text-4xl mb-10">{{computedService.title}}</p>
-                                    <div v-html="computedService.full_description"></div>
+                                    <div class="ql" v-html="computedService.full_description"></div>
                                 </div>
                             </vs-dialog>
                             <div class="custom-tabs-component-panels bg-white p-3 rounded-2xl lg:w-9/12 w-full justify-end">
@@ -209,7 +209,7 @@
                                         <template #tbody>
                                             <vs-tr v-for="(item, i) in table.headings[0].values.length" :key="i">
                                                 <vs-td v-for="(jtem, j) in table.headings.length" :key="j">
-                                                    <div class="flex">
+                                                    <div class="block lg:flex">
                                                         <div class="w-2/3">
                                                             {{table.headings[j].values[i].value}}
                                                         </div>

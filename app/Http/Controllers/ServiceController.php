@@ -7,6 +7,7 @@ use App\Http\Requests\StoreServiceRequest;
 use App\Models\Service;
 use App\Models\ServiceTable;
 use App\Models\ServiceTableBody;
+use App\Models\ServiceTableHeading;
 use App\Services\ImageUploader;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -109,6 +110,39 @@ class ServiceController extends Controller
         $previousImage = $service->image;
 
         DB::transaction(function () use ($request, $service) {
+
+            if (count($request->deleted['tables'])) {
+                foreach ($request->deleted['tables'] as $table) {
+                    $table = ServiceTable::find($table['id']);
+                    if ($table) {
+                        $table->values()->delete();
+                        $table->headings()->delete();
+                        $table->delete();
+                    }
+                }
+            }
+
+            if (count($request->deleted['headings'])) {
+                foreach ($request->deleted['headings'] as $heading) {
+                    $heading = ServiceTableHeading::find($heading['id']);
+
+                    if ($heading) {
+                        $heading->values()->delete();
+                        $heading->delete();
+                    }
+                }
+            }
+
+            if (count($request->deleted['values'])) {
+                foreach ($request->deleted['values'] as $value) {
+                    $value = ServiceTableBody::find($value['id']);
+
+                    if ($value) {
+                        $value->delete();
+                    }
+                }
+            }
+
             $service->update($request->validated());
 
             foreach ($request->tables as $rTable) {

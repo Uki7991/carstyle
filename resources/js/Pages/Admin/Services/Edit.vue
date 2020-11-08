@@ -212,6 +212,11 @@
                     full_description: this.$page.service.full_description,
                     image: this.$page.service.image,
                     tables: this.$page.service.tables,
+                    deleted: {
+                        tables: [],
+                        headings: [],
+                        values: [],
+                    }
                 }, {
                     bag: 'default',
                     resetOnSuccess: true,
@@ -275,14 +280,23 @@
                 return false;
             },
             removeColumn(headingIndex, index) {
+                this.form.deleted.headings.push({
+                    ...this.form.tables[index].headings[headingIndex]
+                });
                 this.form.tables[index].headings.splice(headingIndex, 1);
             },
             removeRow(i, index) {
                 this.form.tables[index].headings.forEach(item => {
+                    this.form.deleted.values.push({
+                        ...item.values[i]
+                    });
                     item.values.splice(i, 1);
                 })
             },
             removeTable(index) {
+                this.form.deleted.tables.push({
+                    ...this.form.tables[index]
+                });
                 this.form.tables.splice(index, 1);
                 if (document.getElementsByClassName('tabs-component-tab').length === 2) {
                     document.getElementsByClassName('tabs-component-tab')[0].classList.add('is-active');

@@ -255,3 +255,52 @@ button.ql-omega:after {
         @apply min-w-full;
     }
 }
+
+.ql .ql-align-center {
+    text-align: center;
+}
+.ql .ql-align-right {
+    text-align: right;
+}
+.ql .ql-align-justify {
+    text-align: justify;
+}
+
+.ql .ql-size-small {
+    font-size: .75em;
+}
+.ql .ql-size-large {
+    font-size: 1.5em;
+}
+.ql .ql-size-huge {
+    font-size: 2.5em;
+}
+
+.ql ul, .ql ol {
+    padding-left: 1.5em;
+}
+.ql ul li, .ql ol li {
+    padding-left: 1.5em;
+}
+.ql ol li:before {
+    margin-left: -1.5em;
+    margin-right: .3em;
+    text-align: right;
+    content: counter(list-0,decimal) '. ';
+    display: inline-block;
+    white-space: nowrap;
+    width: 1.2em;
+}
+.ql ul>li::before {
+    margin-left: -1.5em;
+    margin-right: .3em;
+    text-align: right;
+    display: inline-block;
+    white-space: nowrap;
+    width: 1.2em;
+    content: '\2022';
+}
+
+.vs-dialog--scroll .vs-dialog__content {
+    max-height: 90vh !important;
+}
