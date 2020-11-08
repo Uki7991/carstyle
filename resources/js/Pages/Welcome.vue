@@ -16,7 +16,7 @@
                 </div>
             </template>
         </vs-dialog>
-        <div class="fixed top-0 w-screen xl:hidden right-0 z-20 bg-white">
+        <div class="fixed top-0 w-screen xl:hidden right-0 z-20 bg-white site-header">
             <div class="flex justify-between items-center px-4 py-5">
                 <div class="text-logo uppercase">
                     Car style
@@ -25,7 +25,7 @@
             </div>
         </div>
         <transition name="fade" mode="out-in" duration="300">
-            <nav class="transition duration-300 fixed top-0 w-screen xl:w-full h-screen xl:h-auto z-50" v-show="menuActive">
+            <nav class="transition duration-300 fixed top-0 w-screen xl:w-full h-screen xl:h-auto z-50 site-header" v-show="menuActive">
                 <div
                     class="xl:max-w-screen-xl lg:px-4 xl:px-0 py-5 flex pl-4 xl:pl-0 flex-col xl:flex-row h-full justify-between xl:justify-start xl:items-center mx-auto">
                     <div class="flex justify-between items-center">
@@ -634,6 +634,55 @@
             let last_known_scroll_position = 0;
             let contactsTop = 0;
             let contact = this.contact;
+
+            let prevScroll = window.scrollY || document.scrollTop;
+            let curScroll;
+            let direction = 0;
+            let prevDirection = 0;
+
+            let header = document.getElementsByClassName('site-header');
+
+            let checkScroll = function() {
+
+                /*
+                ** Find the direction of scroll
+                ** 0 - initial, 1 - up, 2 - down
+                */
+
+                curScroll = window.scrollY || document.scrollTop;
+                if (curScroll > prevScroll) {
+                    //scrolled up
+                    direction = 2;
+                }
+                else if (curScroll < prevScroll) {
+                    //scrolled down
+                    direction = 1;
+                }
+
+                if (direction !== prevDirection) {
+                    toggleHeader(direction, curScroll);
+                }
+
+                prevScroll = curScroll;
+            };
+
+            let toggleHeader = function(direction, curScroll) {
+                if (direction === 2 && curScroll > 52) {
+
+                    //replace 52 with the height of your header in px
+
+                    header[0].classList.add('hide');
+                    header[1].classList.add('hide');
+                    prevDirection = direction;
+                }
+                else if (direction === 1) {
+                    header[0].classList.remove('hide');
+                    header[1].classList.remove('hide');
+                    prevDirection = direction;
+                }
+            };
+
+            window.addEventListener('scroll', checkScroll);
 
             let isSet = false;
             window.addEventListener('scroll', function (e) {
