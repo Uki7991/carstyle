@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BidRequest;
 use App\Mail\BidAccept;
 use App\Models\Bid;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Schema;
 
 class BidController extends Controller
 {
@@ -40,7 +42,9 @@ class BidController extends Controller
     {
         $bid = Bid::create($request->all());
 
-        Mail::to('tilek.kubanov@gmail.com')->send(new BidAccept($bid));
+        $contact = Contact::all()->first();
+
+        Mail::to($contact->mail_to)->send(new BidAccept($bid));
 
         $request->session()->flash('form_post', [
             'status' => true,
