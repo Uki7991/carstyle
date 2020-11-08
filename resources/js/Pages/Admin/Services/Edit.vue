@@ -22,6 +22,9 @@
                             {{form.error('description')}}
                         </template>
                     </vs-input>
+                    <div>
+                        <vue-editor id="editor" :editor-toolbar="customToolbar" v-model="form.full_description"></vue-editor>
+                    </div>
                     <file-pond
                         name="test"
                         ref="pond"
@@ -98,7 +101,6 @@
                                     <template #tbody>
                                         <vs-tr v-for="(item, i) in formTable.headings[0].values.length" :key="i">
                                             <vs-td v-for="(jtem, j) in formTable.headings.length" :key="j">
-                                                {{i}} {{j}}
                                                 <vs-input
                                                     primary
                                                     border
@@ -107,6 +109,16 @@
                                                 >
                                                     <template style="height: unset!important;" #message-danger v-if="form.error('tables.'+index+'.headings.'+j+'.values.'+i+'.value')">
                                                         {{form.error('tables.'+index+'.headings.'+j+'.values.'+i+'.value')}}
+                                                    </template>
+                                                </vs-input>
+                                                <vs-input
+                                                    primary
+                                                    border
+                                                    placeholder="Пустое значение"
+                                                    v-model="formTable.headings[j].values[i].description"
+                                                >
+                                                    <template style="height: unset!important;" #message-danger v-if="form.error('tables.'+index+'.headings.'+j+'.values.'+i+'.description')">
+                                                        {{form.error('tables.'+index+'.headings.'+j+'.values.'+i+'.description')}}
                                                     </template>
                                                 </vs-input>
                                             </vs-td>
@@ -161,6 +173,7 @@
     // Import image preview and file type validation plugins
     // import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
     import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+    import { VueEditor } from "vue2-editor";
 
     const FilePond = VueFilePond(FilePondPluginImagePreview);
 
@@ -170,9 +183,18 @@
             BackTo,
             FilePond,
             AdminComponentDiv,
+            VueEditor,
         },
         data() {
             return {
+                customToolbar: [
+                    ["bold", "italic", "underline"],
+                    [{ list: "ordered" }, { list: "bullet" }],
+                    [{ 'size': ['small', false, 'large', 'huge'] }],
+                    [{ 'align': ['', 'center', 'right', 'justify'] }],
+                    ['omega'],
+                    ['clean'],
+                ],
                 table: {
                     title: 'Новая таблица',
                     headings: [],
@@ -187,6 +209,7 @@
                 form: this.$inertia.form({
                     title: this.$page.service.title,
                     description: this.$page.service.description,
+                    full_description: this.$page.service.full_description,
                     image: this.$page.service.image,
                     tables: this.$page.service.tables,
                 }, {
@@ -218,12 +241,14 @@
             addColumn(formTable) {
                 formTable.headings.push({
                     ...this.heading,
-                    values: [{
-                        ...this.value,
-                    }],
+                    values: formTable.headings[0].values.map(item => {
+                        return {
+                            ...this.values,
+                        };
+                    }),
                 });
 
-                formTable.headings[formTable.headings.length - 1].values.length = formTable.headings[0].values.length;
+                // formTable.headings[formTable.headings.length - 1].values.length = formTable.headings[0].values.length;
             },
             addRow(formTable) {
                 for (let i = 0; i < formTable.headings.length; i++) {
@@ -268,6 +293,17 @@
         updated() {
             this.form.tables.forEach((item, index) => {
                 this.filteredErrors(index);
+            });
+        },
+        mounted() {
+            let customButton = document.querySelector('.ql-omega');
+            let editor = document.querySelector('.quillWrapper');
+            customButton.addEventListener('click', function() {
+                console.log('clicked')
+                if (window.screenfull.isEnabled) {
+                    console.log('enabled');
+                    window.screenfull.toggle(editor);
+                }
             });
         }
     }

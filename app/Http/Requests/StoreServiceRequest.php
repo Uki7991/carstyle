@@ -26,6 +26,7 @@ class StoreServiceRequest extends FormRequest
         return [
             'title' => 'required|string',
             'description' => 'required|string',
+            'full_description' => 'nullable',
             'image' => 'required',
             'tables' => 'array|min:1',
             'tables.*.title' => 'required|string',

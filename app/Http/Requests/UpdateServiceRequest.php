@@ -26,6 +26,7 @@ class UpdateServiceRequest extends FormRequest
         return [
             'title' => 'required|string',
             'description' => 'required|string',
+            'full_description' => 'nullable',
             'tables' => 'array|min:1',
             'tables.*.title' => 'required|string',
             'tables.*.headings' => 'array|min:1',

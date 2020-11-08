@@ -10,7 +10,7 @@ class ServiceTableBody extends Model
     use HasFactory;
 
     protected $fillable = [
-        'value', 'service_table_heading_id',
+        'value', 'service_table_heading_id', 'description',
     ];
 
     public function heading()

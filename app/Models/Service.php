@@ -11,7 +11,7 @@ class Service extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'description', 'image', 'active',
+        'title', 'description', 'image', 'active', 'full_description',
     ];
 
     public function getActiveAttribute($value) {

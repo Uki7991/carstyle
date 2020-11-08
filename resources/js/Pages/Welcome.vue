@@ -98,8 +98,8 @@
                 <div
                     class="dots_back w-10/12 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-3/4"></div>
                 <div
-                    class="max-w-screen-xl lg:items-center mx-auto flex flex-col lg:flex-row ll:justify-center space-y-9 lg:space-y-0 z-10 relative">
-                    <div class="lg:w-6/12 xl:w-5/12 text-center lg:text-left w-full md:w-9/12 mx-auto">
+                    class="max-w-screen-xl lg:items-center mx-auto flex flex-col lg:flex-row ll:justify-between space-y-9 lg:space-y-0 z-10 relative">
+                    <div class="lg:w-6/12 xl:w-5/12 text-center lg:text-left w-full md:w-9/12">
                         <p class="font-bold md:text-5xl lg:text-6xl text-4xl mb-5 leading-tight">Тонирование <br> и оклейка авто</p>
                         <p class="leading-6 text-sm md:text-base mb-10">Качественное тонирование и оклеивание вашего
                             автомобиля <!--<br>--> нашими специалистами.
@@ -162,7 +162,7 @@
                     <p class="font-bold mb-5 lg:text-4xl text-2xl leading-tight">Каталог наших услуг</p>
                     <transition duration="200" name="fade">
                         <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4" v-if="!activeTab">
-                            <div class="w-full group my-6 cursor-pointer" v-for="(item, i) in services" :key="i"
+                            <div class="w-full group rounded-2xl my-6 cursor-pointer" v-for="(item, i) in services" :key="i"
                                  @click="activeService(item)">
                                 <p class="font-semibold group-hover:text-on-hover transition duration-300 text-lg text-gray-800">{{ item.title }}</p>
                                 <p class="text-sm text-gray-600 italic">{{ item.description }}</p>
@@ -176,7 +176,7 @@
                                 <li v-for="service in services" :key="service.id" class="custom-tabs-component-tab"
                                     :class="{active: service.activeTab}">
                                     <p @click="activeService(service)">{{service.title}}</p>
-                                    <span class="italic hover:line-through cursor-pointer text-description">{{service.description}}</span>
+                                    <span class="italic hover:line-through cursor-pointer text-description" v-if="service.full_description" @click="showFullDescription(service)">{{service.description}}</span>
                                     <transition name="fade" duration="200">
                                         <ul v-show="service.activeTab" class="mt-4">
                                             <li v-for="table in tables.filter(item => item.service_id === service.id)"
@@ -188,6 +188,13 @@
                                     </transition>
                                 </li>
                             </ul>
+
+                            <vs-dialog overflow-hidden full-screen v-model="activeDescription">
+                                <div class="py-16 px-32">
+                                    <p class="font-bold text-4xl mb-10">{{computedService.title}}</p>
+                                    <div v-html="computedService.full_description"></div>
+                                </div>
+                            </vs-dialog>
                             <div class="custom-tabs-component-panels bg-white p-3 rounded-2xl lg:w-9/12 w-full justify-end">
                                 <div class="custom-tabs-component-panel" aria-hidden="true" role="tabpanel"
                                      v-for="table in tables" :key="table.id" v-show="table.active">
@@ -202,7 +209,18 @@
                                         <template #tbody>
                                             <vs-tr v-for="(item, i) in table.headings[0].values.length" :key="i">
                                                 <vs-td v-for="(jtem, j) in table.headings.length" :key="j">
-                                                    {{table.headings[j].values[i].value}}
+                                                    <div class="flex">
+                                                        <div class="w-2/3">
+                                                            {{table.headings[j].values[i].value}}
+                                                        </div>
+
+                                                        <vs-tooltip circle class="group" v-if="table.headings[j].values[i].description">
+                                                            <i class='bx bxs-info-circle bx-xs text-non-active group-hover:text-svg' ></i>
+                                                            <template #tooltip>
+                                                                {{table.headings[j].values[i].description}}
+                                                            </template>
+                                                        </vs-tooltip>
+                                                    </div>
                                                 </vs-td>
                                             </vs-tr>
                                         </template>
@@ -268,7 +286,7 @@
                         @close="coolIndex = null"
                     ></cool-light-box>
 
-                    <div class="hidden lg:grid grid-cols-3 grid-rows-2 gap-8 h-80">
+                    <div class="hidden lg:grid grid-cols-3 mt-5 grid-rows-2 gap-8 h-80">
                         <div :class="{'row-span-2': i===0 || i===1, 'row-span-1': i===3 || i===4, 'relative': true}"
                              v-for="(gallery, i) in filteredImages.slice(0, 4)" :key="gallery.id">
                             <div v-if="i===3 || filteredImages.slice(0, 4).length - 1 === i"
@@ -284,7 +302,7 @@
                                  :data-src="'/storage/medium/'+gallery.image" alt="">
                         </div>
                     </div>
-                    <div class="lg:hidden">
+                    <div class="lg:hidden mt-5">
                         <splide :options="imageSlideOptions" :slides="filteredImages.slice(0, 5)">
                             <splide-slide v-for="(image, i) in filteredImages.slice(0, 5)" :key="image.id" @click.native="coolIndex = i" class="rounded-2xl">
                                 <div v-if="i===4 || filteredImages.slice(0, 5).length - 1 === i"
@@ -467,6 +485,8 @@
                 contact: this.$page.contact,
                 dialogActive: false,
                 coolIndex: null,
+                activeDescription: false,
+                computedService: {},
             }
         },
         computed: {
@@ -490,7 +510,7 @@
                         src: '/storage/large/'+item.image,
                     };
                 })
-            }
+            },
         },
         methods: {
             activeService(service) {
@@ -619,6 +639,10 @@
             },
             clickedImage(i) {
                 console.log(i);
+            },
+            showFullDescription(service) {
+                this.activeDescription = true;
+                this.computedService = service;
             }
         },
         filters: {
