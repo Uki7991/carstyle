@@ -143,7 +143,7 @@ class ServiceController extends Controller
                 }
             }
 
-            $service->update($request->validated());
+            $service->update($request->all());
 
             foreach ($request->tables as $rTable) {
                 $table = $service->tables()->updateOrCreate([

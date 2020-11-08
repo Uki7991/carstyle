@@ -166,7 +166,7 @@
                                  @click="activeService(item)">
                                 <p class="font-semibold group-hover:text-on-hover transition duration-300 text-lg text-gray-800">{{ item.title }}</p>
                                 <p class="text-sm text-gray-600 italic">{{ item.description }}</p>
-                                <img class="mt-4 lazy rounded-2xl" src="" :data-src="'/storage/large/' + item.image" alt="">
+                                <img class="mt-4 lazy rounded-2xl h-48 w-full object-cover" src="" :data-src="'/storage/large/' + item.image" alt="">
                             </div>
                         </div>
 
