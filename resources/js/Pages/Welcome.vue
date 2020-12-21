@@ -71,7 +71,9 @@
                                 <li v-if="contact.address" class=" group">
                                     <a href="#contacts" class="icon flex items-center">
                                         <img src="/assets/icons/map.svg" class="mr-1 svg fill-current text-svg group-hover:text-on-hover transition duration-400" alt="">
-                                        <span>{{contact.address}}</span>
+                                        <div>
+                                            <p v-for="address in contact.address">{{address}}</p>
+                                        </div>
                                     </a>
                                 </li>
                                 <li class="lg:hidden block group" v-if="contact.email">
@@ -329,7 +331,9 @@
                     <div class="flex flex-col space-y-5 py-5">
                         <a href="#contacts" v-if="contact.address" class="flex items-center group">
                             <img class="mr-1 svg fill-current text-svg group-hover:text-on-hover transition duration-400" src="/assets/icons/map.svg" alt="">
-                            <p>{{contact.address}}</p>
+                            <div>
+                                <p v-for="address in contact.address">{{address}}</p>
+                            </div>
                         </a>
                         <a :href="'mailto:'+contact.email" v-if="contact.email" class="flex items-center group">
                             <img class="mr-1 svg fill-current text-svg group-hover:text-on-hover transition duration-400" src="/assets/icons/mail.svg" alt="">
@@ -383,7 +387,7 @@
                         </ul>
                     </div>
                     <div class="flex flex-col lg:flex-row items-center justify-between">
-                        <div class="flex lg:space-x-9">
+                        <div class="flex lg:space-x-9 items-center">
                             <a :href="contact.instagram" class=" hidden lg:block group">
                                 <img src="/assets/icons/instagram.svg" class="svg fill-current text-svg group-hover:text-on-hover transition duration-400" alt="">
                             </a>
@@ -396,9 +400,11 @@
                             </a>
                             <a href="#contacts" class=" space-x-1 hidden lg:flex items-center group">
                                 <img src="/assets/icons/map.svg" class="svg fill-current text-svg group-hover:text-on-hover transition duration-400" alt="">
-                                <p>{{contact.address}}</p>
+                                <div>
+                                    <p v-for="address in contact.address">{{address}}</p>
+                                </div>
                             </a>
-                            <a :href="'mailto:'+contact.address" class=" space-x-1 hidden lg:flex items-center group">
+                            <a :href="'mailto:'+contact.email" class=" space-x-1 hidden lg:flex items-center group">
                                 <img src="/assets/icons/mail.svg" class="svg fill-current text-svg group-hover:text-on-hover transition duration-400" alt="">
                                 <p>{{contact.email}}</p>
                             </a>

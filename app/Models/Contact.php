@@ -15,4 +15,9 @@ class Contact extends Model
         'google_script', 'yandex_script', 'other_script',
         'mail_to',
     ];
+
+    public function getAddressAttribute($val)
+    {
+        return explode("\n", $val);
+    }
 }

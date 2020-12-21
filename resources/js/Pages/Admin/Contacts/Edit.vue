@@ -53,14 +53,16 @@
                         >
                             <template #message-danger v-if="form.error('email')">{{form.error('email')}}</template>
                         </vs-input>
-                        <vs-input
-                            label-placeholder="Адрес"
-                            primary
-                            class="w-full"
-                            v-model="form.address"
-                        >
-                            <template #message-danger v-if="form.error('address')">{{form.error('address')}}</template>
-                        </vs-input>
+                        <div>
+                            <label for="address">Адрес</label>
+                            <textarea
+                                id="address"
+                                class="w-full border rounded-2xl px-4 py-2"
+                                v-model="form.address"
+                            >
+                        </textarea>
+                            <p class="text-xs text-red-500" v-if="form.error('address')">{{form.error('address')}}</p>
+                        </div>
                         <vs-input
                             label-placeholder="Instagram"
                             primary
