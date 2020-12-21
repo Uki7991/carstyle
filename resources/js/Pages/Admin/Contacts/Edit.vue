@@ -165,7 +165,7 @@
             create() {
                 this.form.put(this.route('contacts.update', {contact: this.$page.contact.id}));
             }
-        }
+        },
     }
 </script>
 

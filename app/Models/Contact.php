@@ -16,8 +16,12 @@ class Contact extends Model
         'mail_to',
     ];
 
-    public function getAddressAttribute($val)
+    protected $appends = [
+        'address_front',
+    ];
+
+    public function getAddressFrontAttribute()
     {
-        return explode("\n", $val);
+        return explode("\n", $this->address);
     }
 }

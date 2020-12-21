@@ -72,7 +72,7 @@
                                     <a href="#contacts" class="icon flex items-center">
                                         <img src="/assets/icons/map.svg" class="mr-1 svg fill-current text-svg group-hover:text-on-hover transition duration-400" alt="">
                                         <div>
-                                            <p v-for="address in contact.address">{{address}}</p>
+                                            <p v-for="address in contact.address_front">{{address}}</p>
                                         </div>
                                     </a>
                                 </li>
@@ -332,7 +332,7 @@
                         <a href="#contacts" v-if="contact.address" class="flex items-center group">
                             <img class="mr-1 svg fill-current text-svg group-hover:text-on-hover transition duration-400" src="/assets/icons/map.svg" alt="">
                             <div>
-                                <p v-for="address in contact.address">{{address}}</p>
+                                <p v-for="address in contact.address_front">{{address}}</p>
                             </div>
                         </a>
                         <a :href="'mailto:'+contact.email" v-if="contact.email" class="flex items-center group">
@@ -401,7 +401,7 @@
                             <a href="#contacts" class=" space-x-1 hidden lg:flex items-center group">
                                 <img src="/assets/icons/map.svg" class="svg fill-current text-svg group-hover:text-on-hover transition duration-400" alt="">
                                 <div>
-                                    <p v-for="address in contact.address">{{address}}</p>
+                                    <p v-for="address in contact.address_front">{{address}}</p>
                                 </div>
                             </a>
                             <a :href="'mailto:'+contact.email" class=" space-x-1 hidden lg:flex items-center group">
